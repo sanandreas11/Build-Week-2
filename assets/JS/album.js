@@ -43,13 +43,24 @@ const getSongsFromAlbum = function () {
       }
     })
     .then((data) => {
-      data.forEach((tracks) => {
+      for (let i = 0; i < data.tracks.length; i++) {
         const tracklist = document.getElementById("tracklist")
-        tracklist.innerHTML = `<div>
-         <p id="track" class="text-light ms-2">${tracks.title}</p>
-         <p id="artist" class="text-light ms2">${tracks.artist.name}</p>   
+        tracklist.innerHTML = ` <div>
+         <p id="track" class="text-light ms-2">${data.tracks.title}</p>
+         <p id="artist" class="text-light ms2">${data.tracks.artist.name}</p>   
         </div>`
-      })
+      }
+      //     for (let i = 0; i < data.tracks.length; i++) {
+      //         const tracklist = document.getElementById("tracks")
+      //         const newLi = document.createElement("li")
+      //         const trackName = document.createElement("p")
+      //         const artistName = document.createElement("p")
+      //         trackName.innerText = data.tracks.title
+      //         newLi.appendChild(trackName)
+      //         artistName.innerText = data.artist.name
+      //         newLi.appendChild(artistName)
+      //         tracklist.appendChild(newLi)
+      //   }
     })
     .catch((err) => {
       console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
