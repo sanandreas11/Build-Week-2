@@ -40,6 +40,12 @@ $font-sizes: map-merge($font-sizes, (
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'MyFont';
+  src: url('../fonts/CircularStd-Light.otf') format('opentype');
+  font-weight: light;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'MyFont';
