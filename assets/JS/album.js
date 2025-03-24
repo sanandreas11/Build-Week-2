@@ -24,7 +24,7 @@ const getAlbumDetails = function () {
       albumName.innerText = data.title //funziona
       albumName.setAttribute("href", "./artist.html?id=" + data.artist.id)
       artistName.innerText = data.artist.name //funziona
-      releaseYear.innerText = data.release_date.slice(0, 4) //funziona
+      releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
       console.log(data.tracks)
     })
     .catch((err) => {
