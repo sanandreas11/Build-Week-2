@@ -1,32 +1,68 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "MyFont";
-  src: url("../fonts/CircularStd-Black.otf") format("opentype");
-  font-weight: normal;
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-Light.otf);
+  font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: "MyFont";
-  src: url("../fonts/CircularStd-Light.otf") format("opentype");
-  font-weight: light;
-  font-style: normal;
-}
-@font-face {
-  font-family: "MyFont";
-  src: url("../fonts/CircularStd-Bold.otf") format("opentype");
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "MyFont";
-  src: url("../fonts/CircularStd-BlackItalic.otf") format("opentype");
-  font-weight: normal;
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-LightItalic.otf);
+  font-weight: 300;
   font-style: italic;
 }
 @font-face {
-  font-family: "MyFont";
-  src: url("../fonts/CircularStd-BoldItalic.otf") format("opentype");
-  font-weight: bold;
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-Book.otf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-BookItalic.otf);
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-Medium.otf);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-MediumItalic.otf);
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-MediumItalic.otf);
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-Bold.otf);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-BoldItalic.otf);
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-Black.otf);
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circular";
+  src: url(../fonts/CircularStd-BlackItalic.otf);
+  font-weight: 900;
   font-style: italic;
 }
 /*!
@@ -104,7 +140,7 @@
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: "MyFont", sans-serif;
+  --bs-body-font-family: "Circular", sans-serif;
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
@@ -6013,7 +6049,7 @@ textarea.form-control-lg {
   z-index: var(--bs-tooltip-zindex);
   display: block;
   margin: var(--bs-tooltip-margin);
-  font-family: "MyFont", sans-serif;
+  font-family: "Circular", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6123,7 +6159,7 @@ textarea.form-control-lg {
   z-index: var(--bs-popover-zindex);
   display: block;
   max-width: var(--bs-popover-max-width);
-  font-family: "MyFont", sans-serif;
+  font-family: "Circular", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
