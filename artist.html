@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artista | Music App</title>
+    <link rel="stylesheet" href="assets/style/mystile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <style>
+      #top-tracks .list-group-item {
+        cursor: pointer;
+      }
+
+      .card {
+        border: none;
+        padding: 0;
+      }
+
+      .btn {
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .sidebar h2 {
+        font-size: 1.5rem;
+      }
+
+      /* Sidebar styling for mobile */
+      .sidebar {
+        background-color: black;
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-12 col-md-3 sidebar p-3">
+          <h2 class="text-white">Music App</h2>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link text-white">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="search.html" class="nav-link text-white">Cerca</a>
+            </li>
+            <li class="nav-item">
+              <a href="library.html" class="nav-link text-white"
+                >La tua libreria</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="col-12 col-md-7">
+          <div class="card">
+            <img id="artist-image" class="card-img-top" alt="Artist Image" />
+
+            <div class="card-body">
+              <!-- Artist Name as Card Title -->
+              <h5 id="artist-name" class="card-title"></h5>
+              <!-- Fans Count as Card Text -->
+              <p class="card-text">
+                <strong>Fans:</strong> <span id="artist-fans"></span>
+              </p>
+
+              <!-- Artist Link Button -->
+              <a
+                id="artist-link"
+                href="#"
+                target="_blank"
+                class="btn btn-success rounded-circle"
+              >
+                <i class="bi bi-play-fill fs-3 text-dark"></i>
+              </a>
+            </div>
+
+            <!-- Popular Tracks as Ordered List -->
+            <ol class="list-group list-group-flush">
+              <li class="list-group-item"><h6>Popolari</h6></li>
+              <li class="list-group-item" id="top-tracks"></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Friend Activity Sidebar -->
+        <aside class="col-12 col-md-2 bg-black text-white p-3">
+          <h5>Attività amici</h5>
+          <ul id="friend-activity" class="list-unstyled">
+            <li>Charlie - In Camera</li>
+            <li>lightdark02 - Aimed to Kill</li>
+            <li>Valeria - New Kings</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+    <audio id="audio-player" controls class="w-100 mt-3"></audio>
+
+    <script src="assets/JS/artist.js"></script>
+  </body>
+</html>
