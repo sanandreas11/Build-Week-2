@@ -1,0 +1,68 @@
+@import "./scss/functions";
+@import "./scss/variables";
+
+
+
+$primary:      #20D760 ;
+
+
+
+$theme-colors-2: (
+  "primary":    $primary,
+  
+ 
+) ;
+
+$theme-colors:map-merge($theme-colors,$theme-colors-2);
+
+$spacers-2: (
+  
+  6: $spacer * .3.5,
+  7: $spacer * 4,
+  8: $spacer * 4.5,
+  9: $spacer * 5,
+  10: $spacer * 5.5,
+) ;
+$spacers:map-merge($spacers,$spacers-2);
+
+$h1: $font-size-base * 5;
+
+
+$font-sizes: map-merge($font-sizes, (
+  1: $font-size-base * 6.5
+));
+
+
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../fonts/CircularStd-Black.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../fonts/CircularStd-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../fonts/CircularStd-BlackItalic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../fonts/CircularStd-BoldItalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+$font-family-base: 'MyFont', sans-serif;
+
+
+
+@import "./scss/bootstrap.scss"
