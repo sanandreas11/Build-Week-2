@@ -124,4 +124,19 @@ document.addEventListener("DOMContentLoaded", () => {
       playTrack(0);
     }
   });
+
+  // Funzione per riprodurre i brani in ordine casuale
+  document.getElementById("random-icon").addEventListener("click", () => {
+    trackQueue = shuffleArray(trackQueue); // Mescola la coda dei brani
+    playTrack(0); // Inizia la riproduzione dal primo brano della coda mescolata
+  });
+
+  // Funzione per mescolare l'array
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Scambia gli elementi
+    }
+    return array;
+  }
 });

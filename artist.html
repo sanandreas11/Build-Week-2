@@ -14,27 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
     <style>
-      .list-group-item {
-        border: none !important;
-        background-color: #212529 !important;
-        cursor: pointer !important;
-        color: #f8f9fa !important;
-      }
-
-      .list-group-item:hover {
-        cursor: pointer;
-      }
-
-      #artist-link i {
-        color: black;
-      }
-
-      #loading {
-        display: none;
-        color: white;
-        font-size: 1.5rem;
-      }
-
+      /* Stile generale per il corpo e la container */
       body,
       .container-fluid {
         margin: 0;
@@ -50,11 +30,77 @@
         padding: 15px;
       }
 
+      /* Stile per la lista degli elementi */
+      .list-group-item {
+        border: none !important;
+        background-color: #212529 !important;
+        cursor: pointer !important;
+        color: #f8f9fa !important;
+      }
+
+      .list-group-item:hover {
+        cursor: pointer;
+      }
+
       .list-group-item.active {
         background-color: green !important;
         color: white;
       }
 
+      /* Colore per i link all'interno del sidebar */
+      #artist-link i {
+        color: white !important; /* Colore bianco per l'icona play con !important */
+      }
+
+      #artist-link:hover i {
+        color: green !important; /* Colore verde quando il mouse passa sopra sull'icona play */
+      }
+
+      #loading {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      /* Stile per le icone */
+      #heart-icon i,
+      #download-icon i,
+      #dots-icon i,
+      #random-icon i {
+        color: white; /* Colore bianco per le icone */
+        background-color: transparent; /* Rimuove qualsiasi sfondo */
+      }
+
+      /* Stile per i bottoni con icone */
+      #heart-icon,
+      #download-icon,
+      #dots-icon,
+      #random-icon,
+      #artist-link {
+        background-color: #212529; /* Colore di sfondo dark per i bottoni */
+        border: none; /* Rimuove il bordo */
+        padding: 10px; /* Aggiungi un po' di padding per la spaziatura */
+        border-radius: 50%; /* Bordo arrotondato per i bottoni */
+      }
+
+      /* Colore verde quando il mouse passa sopra le icone */
+      #heart-icon:hover i,
+      #download-icon:hover i,
+      #dots-icon:hover i,
+      #random-icon:hover i {
+        color: green; /* Colore verde al passaggio del mouse */
+      }
+
+      /* Colore verde quando il mouse passa sopra il bottone con play */
+      #heart-icon:hover,
+      #download-icon:hover,
+      #dots-icon:hover,
+      #random-icon:hover,
+      #artist-link:hover {
+        background-color: #343a40; /* Colore di sfondo verde scuro al passaggio del mouse */
+      }
+
+      /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
           display: flex;
@@ -101,6 +147,7 @@
         }
       }
 
+      /* Stile per layout su desktop */
       @media (min-width: 768px) {
         .track-info {
           display: grid;
@@ -182,13 +229,47 @@
               <p class="card-text">
                 <strong>Fans:</strong> <span id="artist-fans"></span>
               </p>
+
+              <!-- Aggiungi icone -->
+              <a
+                href="#"
+                id="heart-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-heart fs-3"></i>
+              </a>
+              <a
+                href="#"
+                id="download-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-download fs-3"></i>
+              </a>
+              <a
+                href="#"
+                id="dots-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-three-dots-vertical fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
+
+              <a
+                href="#"
+                id="random-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-shuffle fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
+
               <a
                 id="artist-link"
                 href="#"
                 target="_blank"
                 class="btn btn-success rounded-circle"
               >
-                <i class="bi bi-play-fill fs-3 text-dark"></i>
+                <i class="bi bi-play-fill fs-3 text-dark" id="play-icon"></i>
               </a>
             </div>
 
