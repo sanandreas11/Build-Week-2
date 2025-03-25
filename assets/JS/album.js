@@ -33,11 +33,11 @@ const getAlbumDetails = function () {
       for (let i = 0; i < data.tracks.data.length; i++) {
         const tracklist = document.getElementById("tracklist")
         tracklist.innerHTML += ` <div class='border border-light'>
-         <p id="track" class="text-light ms-2 mt-3">${data.tracks.data[i].title}</p>
-         <p id="artist" class="text-light ms-2">${data.tracks.data[i].artist.name}</p>   
+         <p id="track" class="text-light ms-2 mt-3">${data.tracks.data[i].title}</p>   
         </div>`
       }
     })
+    // <p id="artist" class="text-light ms-2">${data.tracks.data[i].artist.name}</p>
     .catch((err) => {
       console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
     })
