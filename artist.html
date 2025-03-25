@@ -85,6 +85,20 @@
         .duration {
           display: none;
         }
+
+        #audio-player {
+          position: relative;
+          z-index: 10; /* Assicurati che il player sia sopra la navbar */
+          margin-bottom: 50px; /* Spazio tra player e navbar */
+        }
+
+        .navbar.fixed-bottom {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 5; /* Assicurati che la navbar stia sotto il player */
+        }
       }
 
       @media (min-width: 768px) {
