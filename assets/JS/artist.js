@@ -1,31 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const artistId = params.get("id");
+  const params = new URLSearchParams(window.location.search)
+  const artistId = params.get("artistId")
 
   if (!artistId) {
-    console.error("Nessun ID artista trovato nell'URL");
-    return;
+    console.error("Nessun ID artista trovato nell'URL")
+    return
   }
 
-  const apiUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`;
-  const topTracksUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=5`;
+  const apiUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`
+  const topTracksUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=5`
 
-  const artistName = document.getElementById("artist-name");
-  const artistImage = document.getElementById("artist-image");
-  const artistFans = document.getElementById("artist-fans");
-  const artistLink = document.getElementById("artist-link");
-  const topTracksList = document.getElementById("top-tracks");
-  const audioPlayer = document.getElementById("audio-player");
-  const loading = document.getElementById("loading");
+  const artistName = document.getElementById("artist-name")
+  const artistImage = document.getElementById("artist-image")
+  const artistFans = document.getElementById("artist-fans")
+  const artistLink = document.getElementById("artist-link")
+  const topTracksList = document.getElementById("top-tracks")
+  const audioPlayer = document.getElementById("audio-player")
+  const loading = document.getElementById("loading")
 
-  let trackQueue = [];
-  let currentTrackIndex = 0;
+  let trackQueue = []
+  let currentTrackIndex = 0
 
-  loading.style.display = "block";
+  loading.style.display = "block"
 
   function hideLoader() {
-    loading.style.display = "none";
-    document.querySelector(".container-fluid").style.opacity = 1; // Forza il layout a ricalcolarsi
+    loading.style.display = "none"
+    document.querySelector(".container-fluid").style.opacity = 1 // Forza il layout a ricalcolarsi
   }
 
   fetch(apiUrl)
@@ -33,17 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
       response.ok ? response.json() : Promise.reject("Errore nell'API")
     )
     .then((data) => {
-      hideLoader();
-      artistName.textContent = data.name;
-      artistImage.src = data.picture_big;
-      artistFans.textContent = data.nb_fan.toLocaleString();
-      artistLink.href = data.link;
+      hideLoader()
+      artistName.textContent = data.name
+      artistImage.src = data.picture_big
+      artistFans.textContent = data.nb_fan.toLocaleString()
+      artistLink.href = data.link
     })
     .catch((error) => {
-      hideLoader();
-      console.error("Errore nel recupero dati artista:", error);
-      loading.textContent = "Errore nel caricamento dei dati dell'artista";
-    });
+      hideLoader()
+      console.error("Errore nel recupero dati artista:", error)
+      loading.textContent = "Errore nel caricamento dei dati dell'artista"
+    })
 
   fetch(topTracksUrl)
     .then((response) =>
@@ -52,17 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
         : Promise.reject("Errore nell'API per i brani")
     )
     .then((data) => {
-      topTracksList.innerHTML = "";
-      trackQueue = data.data;
+      topTracksList.innerHTML = ""
+      trackQueue = data.data
 
       data.data.forEach((track, index) => {
-        const listItem = document.createElement("li");
+        const listItem = document.createElement("li")
         listItem.className =
-          "list-group-item bg-dark text-white border-secondary";
-        const rank = track.rank || "";
+          "list-group-item bg-dark text-white border-secondary"
+        const rank = track.rank || ""
 
         // Aggiungi l'immagine dell'album
-        const albumImage = track.album ? track.album.cover_small : ""; // Controlla se esiste un album e prendi l'immagine
+        const albumImage = track.album ? track.album.cover_small : "" // Controlla se esiste un album e prendi l'immagine
 
         listItem.innerHTML = `
             <div class="row align-items-center">
@@ -88,40 +88,40 @@ document.addEventListener("DOMContentLoaded", () => {
           .padStart(2, "0")}</span>
               </div>
             </div>
-          `;
+          `
 
-        listItem.addEventListener("click", () => playTrack(index));
-        topTracksList.appendChild(listItem);
-      });
+        listItem.addEventListener("click", () => playTrack(index))
+        topTracksList.appendChild(listItem)
+      })
     })
     .catch((error) => {
-      console.error("Errore nel recupero dei top brani:", error);
-    });
+      console.error("Errore nel recupero dei top brani:", error)
+    })
 
   function playTrack(index) {
     if (index >= 0 && index < trackQueue.length) {
-      currentTrackIndex = index;
-      audioPlayer.src = trackQueue[index].preview;
-      audioPlayer.play();
+      currentTrackIndex = index
+      audioPlayer.src = trackQueue[index].preview
+      audioPlayer.play()
 
       document.querySelectorAll(".list-group-item").forEach((item) => {
-        item.classList.remove("active");
-      });
+        item.classList.remove("active")
+      })
 
-      topTracksList.children[index].classList.add("active");
+      topTracksList.children[index].classList.add("active")
     }
   }
 
   audioPlayer.addEventListener("ended", () => {
     if (currentTrackIndex < trackQueue.length - 1) {
-      playTrack(currentTrackIndex + 1);
+      playTrack(currentTrackIndex + 1)
     }
-  });
+  })
 
   artistLink.addEventListener("click", (event) => {
     if (trackQueue.length > 0) {
-      event.preventDefault();
-      playTrack(0);
+      event.preventDefault()
+      playTrack(0)
     }
-  });
-});
+  })
+})
