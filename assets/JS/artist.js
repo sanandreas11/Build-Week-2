@@ -10,33 +10,46 @@ document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`;
   const topTracksUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=5`;
 
-  // Elementi DOM
   const artistName = document.getElementById("artist-name");
   const artistImage = document.getElementById("artist-image");
   const artistFans = document.getElementById("artist-fans");
   const artistLink = document.getElementById("artist-link");
   const topTracksList = document.getElementById("top-tracks");
   const audioPlayer = document.getElementById("audio-player");
+  const loading = document.getElementById("loading");
 
-  let trackQueue = []; // Lista delle tracce in ordine
+  let trackQueue = [];
   let currentTrackIndex = 0;
 
-  // Fetch info artista
+  loading.style.display = "block";
+
+  function hideLoader() {
+    loading.style.display = "none";
+  }
+
   fetch(apiUrl)
-    .then((response) => response.json())
+    .then((response) =>
+      response.ok ? response.json() : Promise.reject("Errore nell'API")
+    )
     .then((data) => {
+      hideLoader();
       artistName.textContent = data.name;
       artistImage.src = data.picture_big;
       artistFans.textContent = data.nb_fan.toLocaleString();
       artistLink.href = data.link;
     })
-    .catch((error) =>
-      console.error("Errore nel recupero dati artista:", error)
-    );
+    .catch((error) => {
+      hideLoader();
+      console.error("Errore nel recupero dati artista:", error);
+      loading.textContent = "Errore nel caricamento dei dati dell'artista";
+    });
 
-  // Fetch top brani
   fetch(topTracksUrl)
-    .then((response) => response.json())
+    .then((response) =>
+      response.ok
+        ? response.json()
+        : Promise.reject("Errore nell'API per i brani")
+    )
     .then((data) => {
       topTracksList.innerHTML = "";
       trackQueue = data.data;
@@ -45,42 +58,62 @@ document.addEventListener("DOMContentLoaded", () => {
         const listItem = document.createElement("li");
         listItem.className =
           "list-group-item bg-dark text-white border-secondary";
+        const rank = track.rank || "";
+
         listItem.innerHTML = `
-              <div class="d-flex justify-content-between">
-                <span>${track.title}</span>
-                <span>${Math.floor(track.duration / 60)}:${(track.duration % 60)
+            <div class="row align-items-center">
+              <div class="col-7 d-flex flex-column gap-2">
+                <span class="track-title">${track.title}</span>
+                <span class="track-artist text-muted">${
+                  track.artist.name
+                }</span>
+              </div>
+              <div class="col-3 d-none d-md-block text-center">
+                <span class="rank">${rank}</span>
+              </div>
+              <div class="col-2 d-none d-md-block text-center">
+                <span class="duration">${Math.floor(track.duration / 60)}:${(
+          track.duration % 60
+        )
           .toString()
           .padStart(2, "0")}</span>
               </div>
-            `;
+              <div class="col-2 d-block d-md-none text-center ms-auto">
+                <i class="bi bi-three-dots-vertical track-action"></i>
+              </div>
+            </div>
+          `;
         listItem.addEventListener("click", () => playTrack(index));
         topTracksList.appendChild(listItem);
       });
     })
-    .catch((error) =>
-      console.error("Errore nel recupero dei top brani:", error)
-    );
+    .catch((error) => {
+      console.error("Errore nel recupero dei top brani:", error);
+    });
 
-  // Funzione per riprodurre una traccia dalla lista
   function playTrack(index) {
     if (index >= 0 && index < trackQueue.length) {
       currentTrackIndex = index;
       audioPlayer.src = trackQueue[index].preview;
       audioPlayer.play();
+
+      document.querySelectorAll(".list-group-item").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      topTracksList.children[index].classList.add("active");
     }
   }
 
-  // Quando il brano finisce, riproduce quello successivo
   audioPlayer.addEventListener("ended", () => {
     if (currentTrackIndex < trackQueue.length - 1) {
       playTrack(currentTrackIndex + 1);
     }
   });
 
-  // Quando si clicca su "Ascolta su Deezer", inizia la playlist invece di aprire il sito
   artistLink.addEventListener("click", (event) => {
-    event.preventDefault();
     if (trackQueue.length > 0) {
+      event.preventDefault();
       playTrack(0);
     }
   });
