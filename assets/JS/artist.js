@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function hideLoader() {
     loading.style.display = "none";
+    document.querySelector(".container-fluid").style.opacity = 1; // Forza il layout a ricalcolarsi
   }
 
   fetch(apiUrl)
@@ -60,15 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
           "list-group-item bg-dark text-white border-secondary";
         const rank = track.rank || "";
 
+        // Aggiungi l'immagine dell'album
+        const albumImage = track.album ? track.album.cover_small : ""; // Controlla se esiste un album e prendi l'immagine
+
         listItem.innerHTML = `
             <div class="row align-items-center">
-              <div class="col-7 d-flex flex-column gap-2">
-                <span class="track-title">${track.title}</span>
-                <span class="track-artist text-muted">${
-                  track.artist.name
-                }</span>
+              <div class="col-2 d-flex justify-content-center">
+                ${
+                  albumImage
+                    ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
+                    : ""
+                }
               </div>
-              <div class="col-3 d-none d-md-block text-center">
+              <div class="col-6 d-flex flex-column gap-2">
+                <span class="track-title">${track.title}</span>
+                <span class="track-artist">${track.artist.name}</span>
+              </div>
+              <div class="col-2 d-none d-md-block text-center">
                 <span class="rank">${rank}</span>
               </div>
               <div class="col-2 d-none d-md-block text-center">
@@ -78,11 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
           .toString()
           .padStart(2, "0")}</span>
               </div>
-              <div class="col-2 d-block d-md-none text-center ms-auto">
-                <i class="bi bi-three-dots-vertical track-action"></i>
-              </div>
             </div>
           `;
+
         listItem.addEventListener("click", () => playTrack(index));
         topTracksList.appendChild(listItem);
       });
