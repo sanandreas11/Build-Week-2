@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artista | Music App</title>
+    <link rel="stylesheet" href="assets/style/mystile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <style>
+      .list-group-item {
+        border: none !important;
+        background-color: #212529 !important;
+        cursor: pointer !important;
+        color: #f8f9fa !important;
+      }
+
+      .list-group-item:hover {
+        cursor: pointer;
+      }
+
+      #artist-link i {
+        color: black;
+      }
+
+      #loading {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      body,
+      .container-fluid {
+        margin: 0;
+        padding: 0;
+      }
+
+      .row {
+        margin: 0;
+      }
+
+      .sidebar {
+        background-color: black;
+        padding: 15px;
+      }
+
+      .list-group-item.active {
+        background-color: green !important;
+        color: white;
+      }
+
+      @media (max-width: 767.98px) {
+        .track-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .track-title {
+          font-size: 1rem;
+        }
+
+        .track-artist {
+          font-size: 0.875rem;
+          color: white;
+          margin-top: 5px;
+        }
+
+        .three-dots {
+          font-size: 1.5rem;
+          margin-left: auto;
+        }
+
+        .track-artist {
+          display: block;
+        }
+
+        .rank,
+        .duration {
+          display: none;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .track-info {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          align-items: center;
+        }
+
+        .track-title {
+          text-align: center;
+        }
+
+        .track-artist {
+          display: none;
+        }
+
+        .rank,
+        .duration {
+          text-align: center;
+        }
+
+        .three-dots {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 d-none d-md-block sidebar border border-dark">
+          <nav>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#"
+                  ><i class="bi bi-three-dots"></i
+                ></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="#"
+                  ><i class="bi bi-house-door"></i> Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="./search.html"
+                  ><i class="bi bi-search"></i> Cerca</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#"
+                  ><i class="bi bi-music-note-list"></i> La tua libreria</a
+                >
+              </li>
+
+              <li class="nav-item mt-3">
+                <a class="nav-link text-light" href="#"
+                  ><i class="bi bi-plus-circle"></i> Crea playlist</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#"
+                  ><i class="bi bi-heart"></i> Brani che ti piacciono</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#"
+                  ><i class="bi bi-file-earmark-music"></i> I tuoi episodi</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-12 col-md-7">
+          <div class="card bg-dark text-light">
+            <img id="artist-image" class="card-img-top" alt="Artist Image" />
+
+            <div class="card-body">
+              <h5 id="artist-name" class="card-title"></h5>
+              <p class="card-text">
+                <strong>Fans:</strong> <span id="artist-fans"></span>
+              </p>
+              <a
+                id="artist-link"
+                href="#"
+                target="_blank"
+                class="btn btn-success rounded-circle"
+              >
+                <i class="bi bi-play-fill fs-3 text-dark"></i>
+              </a>
+            </div>
+
+            <ol class="list-group list-group-flush">
+              <li class="list-group-item"><h6>Popolari</h6></li>
+              <li class="list-group-item" id="top-tracks"></li>
+            </ol>
+          </div>
+        </div>
+
+        <aside
+          class="col-md-2 d-none d-md-block activity-bar bg-black text-light"
+        >
+          <h5>Attività amici</h5>
+
+          <div
+            class="card mb-3"
+            style="max-width: 300px; border: none; background-color: #343a40"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-30.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Charlie"
+                  style="width: 30px; height: 30px"
+                />
+              </div>
+              <div class="col-9">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Charlie
+                  </h6>
+                  <p class="card-text text-light" style="font-size: 12px">
+                    In Camera - Yumi Zouma
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card mb-3"
+            style="max-width: 300px; border: none; background-color: #343a40"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-29.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Lightdark02"
+                  style="width: 30px; height: 30px"
+                />
+              </div>
+              <div class="col-9">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Lightdark02
+                  </h6>
+                  <p class="card-text text-light" style="font-size: 12px">
+                    Aimed to Kill-Jade LeMac
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card mb-3"
+            style="max-width: 300px; border: none; background-color: #343a40"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-38.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Valeria"
+                  style="width: 30px; height: 30px"
+                />
+              </div>
+              <div class="col-9">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Valeria
+                  </h6>
+                  <p class="card-text text-light" style="font-size: 12px">
+                    New Kings-Sleeping Wolf
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="loading" class="text-center text-white">Caricamento...</div>
+
+    <audio id="audio-player" controls class="w-100 mt-3"></audio>
+    <nav class="navbar fixed-bottom d-md-none bg-black border border-dark">
+      <div class="container d-flex justify-content-around">
+        <a class="nav-link text-light" href="#"
+          ><i class="bi bi-house-door"></i
+        ></a>
+        <a class="nav-link text-light" href="./search.html"
+          ><i class="bi bi-search"></i
+        ></a>
+        <a class="nav-link text-light" href="#"
+          ><i class="bi bi-music-note-list"></i
+        ></a>
+      </div>
+    </nav>
+
+    <script src="assets/JS/artist.js"></script>
+  </body>
+</html>

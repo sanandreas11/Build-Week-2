@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="./assets/style/mystile.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spotify Demo</title>
+    <link rel="stylesheet" href="./assets/style/mystile.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
 
 <body class="my-3 bg-dark">
@@ -16,14 +15,12 @@
             <!-- Sidebar (Sinistra) -->
             <div class="col-md-2 d-none d-md-block sidebar">
                 <nav>
-
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link text-light" href="#"><i class="bi bi-three-dots"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fw-bold" href="#"><i class="bi bi-house-door"></i>
-                                Home</a>
+                            <a class="nav-link text-light fw-bold" href="#"><i class="bi bi-house-door"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="./search.html"><i class="bi bi-search"></i> Cerca</a>
@@ -33,19 +30,36 @@
                                 libreria</a>
                         </li>
 
-                        <li class="nav-item mt-3">
-                            <a class="nav-link text-light" href="#"><i class="bi bi-plus-circle"></i> Crea
-                                playlist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="bi bi-heart"></i> Brani che ti
-                                piacciono</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="bi bi-file-earmark-music"></i> I tuoi
-                                episodi</a>
-                        </li>
-                    </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#"><i class="bi bi-three-dots"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light fw-bold" href="#"><i class="bi bi-house-door"></i>
+                                    Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="./search.html"><i class="bi bi-search"></i>
+                                    Cerca</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#"><i class="bi bi-music-note-list"></i> La tua
+                                    libreria</a>
+                            </li>
+
+                            <li class="nav-item mt-3">
+                                <a class="nav-link text-light" href="#"><i class="bi bi-plus-circle"></i> Crea
+                                    playlist</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#"><i class="bi bi-heart"></i> Brani che ti
+                                    piacciono</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#"><i class="bi bi-file-earmark-music"></i> I tuoi
+                                    episodi</a>
+                            </li>
+                        </ul>
                 </nav>
             </div>
 
@@ -79,25 +93,42 @@
                     </div>
 
                     <!-- Sezione 2 -->
-                    <div id="sez2" class="mt-1">
-                        <h3 class="my-3 text-white">Buonasera</h3>
-                        <div id="sezione2">
+                    <div id="sez2" class="d-flex justify-content-between align-items-center mt-1">
+                        <h3 class="my-3 ms-2 text-white mb-0">Buonasera</h3>
+                        <!-- Container delle icone, visibile solo su mobile -->
+                        <div class="d-flex d-md-none">
 
+                            <i class="bi bi-bell text-white fs-4"></i>
 
+                            <i class="bi bi-clock text-white fs-4 ms-3"></i>
+
+                            <i class="bi bi-gear text-white fs-4 ms-3"></i>
                         </div>
+                    </div>
+                    <!-- Container "musica e podcast", visibile solo su mobile -->
+                    <div class="d-flex d-md-none my-1">
+                        <p class="my-3 text-white mb-0 ms-2 me-5"> Musica</p>
+                        <p class="my-3 text-white mb-0 ms-3"> Podcast e show</p>
+                    </div>
+                    <div id="sezione2">
 
-                        <!-- Sezione 3 -->
-                        <div id="sez3" class="mt-1">
-                            <h2 class="my-3 text-white">Altro di ciò che ti piace</h2>
-                            <div class="container" id="sezione3">
-                                <div class="row d-flex justify-content-around">
 
-                                </div>
+                    </div>
+
+                    <!-- Sezione 3 -->
+                    <div id="sez3" class="mt-1">
+                        <h2 class="my-3 text-white">Altro di ciò che ti piace</h2>
+                        <div class="container">
+                            <div class="row d-flex" id="sezione3">
+
 
 
                             </div>
+
+
                         </div>
                     </div>
+                </div>
             </main>
 
             <!-- Sidebar Destra (Aside) -->
@@ -168,15 +199,10 @@
         </div>
     </nav>
 
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="./script/index.js"></script>
 </body>
-
 
 </html>
