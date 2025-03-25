@@ -6,8 +6,8 @@
     <title>Album Page</title>
     <link rel="stylesheet" href="./assets/style/mystile.css" />
   </head>
-  <body class="bg-dark">
-    <main>
+  <body class="bg-black">
+    <main class="col-md-8 col-sm-12 px-4">
       <div id="album" class="d-flex flex-column mt-3 ms-2">
         <img id="album-cover" class="align-self-center mb-3" alt="" />
         <h1 id="album-name" class="text-light"></h1>
@@ -77,8 +77,8 @@
           <button class="btn btn-primary rounded-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="20"
+              height="26"
               fill="currentColor"
               class="bi bi-play-fill text-white"
               viewBox="0 0 16 16"
@@ -91,7 +91,7 @@
         </div>
       </div>
     </main>
-    <aside id="tracklist">
+    <aside id="tracklist" class="vh-100 col-md-8 col-sm-12 px-4">
       <ul id="tracks"></ul>
     </aside>
     <script
