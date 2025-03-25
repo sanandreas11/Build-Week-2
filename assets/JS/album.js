@@ -45,3 +45,5 @@ const getAlbumDetails = function () {
       console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
     })
 }
+
+getAlbumDetails()
