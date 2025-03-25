@@ -112,6 +112,78 @@
         padding: 1em;
       }
 
+      .audio-player-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #121212;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        color: #fff;
+      }
+
+      .audio-player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .player-controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .control-button {
+        background-color: #1a1a1a;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .control-button:hover {
+        background-color: #333;
+      }
+
+      .audio-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      #track-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      #custom-player {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10%;
+      }
+      #controls {
+        display: flex;
+      }
+
+      #controls .btn {
+        border: none;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+        margin-left: 0.2em;
+      }
+
+      #controls .btn:hover {
+        background-color: #495057;
+      }
+
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -147,7 +219,15 @@
         #audio-player {
           position: relative;
           z-index: 10;
-          margin-bottom: 50px;
+          margin-bottom: 50px; /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
+        }
+
+        #custom-player {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10%;
+          margin-bottom: 70px; /* Questo garantisce che il player non si sovrapponga alla navbar */
         }
 
         .navbar.fixed-bottom {
@@ -155,10 +235,9 @@
           bottom: 0;
           left: 0;
           right: 0;
-          z-index: 5;
+          z-index: 5; /* Assicurati che la navbar stia dietro al player */
         }
       }
-
       /* Stile per layout su desktop */
       @media (min-width: 768px) {
         .track-info {
@@ -410,7 +489,26 @@
 
     <div id="loading" class="text-center text-white">Caricamento...</div>
 
-    <audio id="audio-player" controls class="w-100 mt-3"></audio>
+    <div id="custom-player" class="player">
+      <div id="player-info">
+        <h5 id="track-title-player"></h5>
+        <!-- Titolo del brano da aggiornare -->
+      </div>
+      <div id="controls">
+        <button id="prev" class="btn btn-dark">
+          <i class="bi bi-skip-backward-fill fs-3 text-white"></i>
+          <!-- Icona precedente -->
+        </button>
+        <button id="play-pause" class="btn btn-dark">
+          <i class="bi bi-play-fill fs-3 text-white" id="play-icon"></i>
+          <!-- Icona play/pause -->
+        </button>
+        <button id="next" class="btn btn-dark">
+          <i class="bi bi-skip-forward-fill fs-3 text-white"></i>
+          <!-- Icona successiva -->
+        </button>
+      </div>
+    </div>
 
     <nav class="navbar fixed-bottom d-md-none bg-black border border-dark">
       <div class="container d-flex justify-content-around">
