@@ -34,7 +34,7 @@ listaAlbumSez2.forEach((albumId) => {
         .catch((error) => console.error("Errore nel recupero dei dati:", error))
 })
 
-let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792]
+let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792,]
 
 const container2 = document.getElementById("sezione3")
 container2.classList.add(
@@ -57,10 +57,10 @@ listaAlbumSez3.forEach((albumId) => {
             }
 
             const col2 = document.createElement("div")
-            col2.classList.add("col-12", "col-md-2", "p-1")
+            col2.classList.add("col-12", "p-1", "w-20")
 
             col2.innerHTML = `
-            <div class="card mb-3" style="height: 350px; width:180px; background-color:#2c2c2c">
+            <div class="card mb-3" style="height:350px; background-color:#2c2c2c">
                 <img src="${data.cover_big}" class="card-img-top" alt="${data.title}">
                 <div class="card-body">
                     <h4 class="text-light">${data.title}</h4>
