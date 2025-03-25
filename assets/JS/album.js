@@ -1,5 +1,5 @@
 const URLparameters = new URLSearchParams(location.search)
-const albumId = URLparameters.get("id")
+const albumId = URLparameters.get("albumId")
 const albumUrl = `https://striveschool-api.herokuapp.com/api/deezer/album/`
 
 const getAlbumDetails = function () {
@@ -22,8 +22,11 @@ const getAlbumDetails = function () {
       albumCover.setAttribute("src", data.cover) //Funziona
       artistCover.setAttribute("src", data.artist.picture_small)
       albumName.innerText = data.title //funziona
-      albumName.setAttribute("href", "./artist.html?id=" + data.artist.id)
       artistName.innerText = data.artist.name //funziona
+      artistName.setAttribute(
+        "href",
+        "./artist.html?artistId=" + data.artist.id
+      )
       releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
       console.log(data.tracks.data)
       console.log(data)
