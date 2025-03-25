@@ -49,11 +49,11 @@
 
       /* Colore per i link all'interno del sidebar */
       #artist-link i {
-        color: white !important; /* Colore bianco per l'icona play con !important */
+        color: white !important;
       }
 
       #artist-link:hover i {
-        color: green !important; /* Colore verde quando il mouse passa sopra sull'icona play */
+        color: green !important;
       }
 
       #loading {
@@ -67,8 +67,8 @@
       #download-icon i,
       #dots-icon i,
       #random-icon i {
-        color: white; /* Colore bianco per le icone */
-        background-color: transparent; /* Rimuove qualsiasi sfondo */
+        color: white;
+        background-color: transparent;
       }
 
       /* Stile per i bottoni con icone */
@@ -77,10 +77,10 @@
       #dots-icon,
       #random-icon,
       #artist-link {
-        background-color: #212529; /* Colore di sfondo dark per i bottoni */
-        border: none; /* Rimuove il bordo */
-        padding: 10px; /* Aggiungi un po' di padding per la spaziatura */
-        border-radius: 50%; /* Bordo arrotondato per i bottoni */
+        background-color: #212529;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
       }
 
       /* Colore verde quando il mouse passa sopra le icone */
@@ -88,7 +88,7 @@
       #download-icon:hover i,
       #dots-icon:hover i,
       #random-icon:hover i {
-        color: green; /* Colore verde al passaggio del mouse */
+        color: green;
       }
 
       /* Colore verde quando il mouse passa sopra il bottone con play */
@@ -97,20 +97,21 @@
       #dots-icon:hover,
       #random-icon:hover,
       #artist-link:hover {
-        background-color: #343a40; /* Colore di sfondo verde scuro al passaggio del mouse */
+        background-color: #343a40;
       }
 
       .image-container {
-        width: 100%; /* Imposta la larghezza del contenitore */
-        display: flex; /* Usa flexbox per il centramento */
-        justify-content: center; /* Centra orizzontalmente l'immagine */
-        align-items: center; /* Centra verticalmente l'immagine */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       #artist-image {
-        width: 50%; /* Riduce la larghezza dell'immagine alla metà */
+        width: 50%;
         padding: 1em;
       }
+
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -145,8 +146,8 @@
 
         #audio-player {
           position: relative;
-          z-index: 10; /* Assicurati che il player sia sopra la navbar */
-          margin-bottom: 50px; /* Spazio tra player e navbar */
+          z-index: 10;
+          margin-bottom: 50px;
         }
 
         .navbar.fixed-bottom {
@@ -154,7 +155,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          z-index: 5; /* Assicurati che la navbar stia sotto il player */
+          z-index: 5;
         }
       }
 
@@ -410,6 +411,7 @@
     <div id="loading" class="text-center text-white">Caricamento...</div>
 
     <audio id="audio-player" controls class="w-100 mt-3"></audio>
+
     <nav class="navbar fixed-bottom d-md-none bg-black border border-dark">
       <div class="container d-flex justify-content-around">
         <a class="nav-link text-light" href="#"
