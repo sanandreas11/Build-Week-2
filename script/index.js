@@ -60,7 +60,7 @@ listaAlbumSez3.forEach((albumId) => {
             col2.classList.add("col-12", "col-md-2", "p-1")
 
             col2.innerHTML = `
-            <div class="card mb-3" style=" height: 350px; width:180px; background-color:#2c2c2c">
+            <div class="card mb-3" style="height: 350px; width:180px; background-color:#2c2c2c">
                 <img src="${data.cover_big}" class="card-img-top" alt="${data.title}">
                 <div class="card-body">
                     <h4 class="text-light">${data.title}</h4>
