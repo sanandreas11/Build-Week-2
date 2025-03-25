@@ -100,6 +100,17 @@
         background-color: #343a40; /* Colore di sfondo verde scuro al passaggio del mouse */
       }
 
+      .image-container {
+        width: 100%; /* Imposta la larghezza del contenitore */
+        display: flex; /* Usa flexbox per il centramento */
+        justify-content: center; /* Centra orizzontalmente l'immagine */
+        align-items: center; /* Centra verticalmente l'immagine */
+      }
+
+      #artist-image {
+        width: 50%; /* Riduce la larghezza dell'immagine alla metà */
+        padding: 1em;
+      }
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -222,14 +233,19 @@
 
         <div class="col-12 col-md-7">
           <div class="card bg-dark text-light">
-            <img id="artist-image" class="card-img-top" alt="Artist Image" />
-
+            <div class="image-container">
+              <img id="artist-image" class="card-img-top" alt="Artist Image" />
+            </div>
             <div class="card-body">
               <h2 id="track-title" class="card-title"></h2>
               <!-- Nuovo elemento h2 per il titolo del brano -->
               <h5 id="artist-name" class="card-title"></h5>
               <p class="card-text">
                 <strong>Fans:</strong> <span id="artist-fans"></span>
+              </p>
+              <!-- Nuovo paragrafo per la data dell'album -->
+              <p id="album-date" class="card-text" style="display: none">
+                <strong>Data album:</strong> <span id="album-date-value"></span>
               </p>
 
               <!-- Aggiungi icone -->
