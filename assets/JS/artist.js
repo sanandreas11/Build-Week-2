@@ -104,10 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
       audioPlayer.src = trackQueue[index].preview;
       audioPlayer.play();
 
+      // Aggiorna il titolo del brano nell'elemento <h2>
+      const trackTitle = trackQueue[index].title;
+      document.getElementById("track-title").textContent = trackTitle; // Imposta il titolo
+
+      // Rimuovi la classe 'active' da tutti gli elementi della lista
       document.querySelectorAll(".list-group-item").forEach((item) => {
         item.classList.remove("active");
       });
 
+      // Aggiungi la classe 'active' al brano selezionato
       topTracksList.children[index].classList.add("active");
     }
   }
