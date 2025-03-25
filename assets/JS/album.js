@@ -1,6 +1,6 @@
 const URLparameters = new URLSearchParams(location.search)
 const albumId = URLparameters.get("id")
-const albumUrl = `https://striveschool-api.herokuapp.com/api/deezer/album/39949511`
+const albumUrl = `https://striveschool-api.herokuapp.com/api/deezer/album/`
 
 const getAlbumDetails = function () {
   fetch(albumUrl + albumId)
@@ -25,42 +25,15 @@ const getAlbumDetails = function () {
       albumName.setAttribute("href", "./artist.html?id=" + data.artist.id)
       artistName.innerText = data.artist.name //funziona
       releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
-      console.log(data.tracks)
-    })
-    .catch((err) => {
-      console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
-    })
-}
-// LE CANZONI SI TROVANO DENTRO UN ARRAY DI NOME DATA CHE BISOGNA FAR CICLARE PER DISPORRE LE CANZONI DINAMICAMENTE
-const getSongsFromAlbum = function () {
-  fetch(albumUrl + albumId)
-    .then((response) => {
-      console.log("response", response)
-      if (response.ok) {
-        return response.json()
-      } else {
-        throw new Error("Errore nel recupero dei dettagli")
-      }
-    })
-    .then((data) => {
-      for (let i = 0; i < data.tracks.length; i++) {
+      console.log(data.tracks.data)
+      console.log(data)
+      for (let i = 0; i < data.tracks.data.length; i++) {
         const tracklist = document.getElementById("tracklist")
-        tracklist.innerHTML = ` <div>
-         <p id="track" class="text-light ms-2">${data.tracks.title}</p>
-         <p id="artist" class="text-light ms2">${data.tracks.artist.name}</p>   
+        tracklist.innerHTML += ` <div>
+         <p id="track" class="text-light ms-2">${data.tracks.data[i].title}</p>
+         <p id="artist" class="text-light ms2">${data.tracks.data[i].artist.name}</p>   
         </div>`
       }
-      //     for (let i = 0; i < data.tracks.length; i++) {
-      //         const tracklist = document.getElementById("tracks")
-      //         const newLi = document.createElement("li")
-      //         const trackName = document.createElement("p")
-      //         const artistName = document.createElement("p")
-      //         trackName.innerText = data.tracks.title
-      //         newLi.appendChild(trackName)
-      //         artistName.innerText = data.artist.name
-      //         newLi.appendChild(artistName)
-      //         tracklist.appendChild(newLi)
-      //   }
     })
     .catch((err) => {
       console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
@@ -68,4 +41,3 @@ const getSongsFromAlbum = function () {
 }
 
 getAlbumDetails()
-getSongsFromAlbum()
