@@ -6,6 +6,7 @@ let trackQueue = []
 let currentTrackIndex = 0
 let audio = new Audio()
 let isPlaying = false
+const artistLink = document.getElementById("artist-link")
 
 const getAlbumDetails = function () {
   fetch(albumUrl + albumId)
@@ -37,7 +38,7 @@ const getAlbumDetails = function () {
       console.log(data.tracks.data)
       console.log(data)
       const tracklist = document.getElementById("tracklist")
-      tracklist.innerHTML = "" // 🔹 Svuota prima di aggiungere nuovi elementi
+      tracklist.innerHTML = ""
 
       data.tracks.data.forEach((track, i) => {
         const trackItem = document.createElement("div")
@@ -53,7 +54,6 @@ const getAlbumDetails = function () {
     })
 }
 
-// Funzione per riprodurre il brano e evidenziarlo nella lista
 function playTrack(index) {
   if (index >= 0 && index < trackQueue.length) {
     currentTrackIndex = index
@@ -81,16 +81,15 @@ function playTrack(index) {
     })
 
     // Aggiungi la classe 'active' al brano selezionato
-    topTracksList.children[index].classList.add("active")
-
-    // Passa alla traccia successiva quando il brano finisce
-    audio.addEventListener("ended", () => {
-      if (currentTrackIndex < trackQueue.length - 1) {
-        playTrack(currentTrackIndex + 1)
-      }
-    })
+    document.getElementById("tracklist").children[index].classList.add("active")
   }
 }
+// Passa alla traccia successiva quando il brano finisce
+audio.addEventListener("ended", () => {
+  if (currentTrackIndex < trackQueue.length - 1) {
+    playTrack(currentTrackIndex + 1)
+  }
+})
 
 // Play/Pause toggle
 document.getElementById("play-pause").addEventListener("click", () => {
@@ -125,7 +124,7 @@ document.getElementById("prev").addEventListener("click", () => {
 // Shuffle functionality
 document.getElementById("random-icon").addEventListener("click", () => {
   trackQueue = shuffleArray(trackQueue)
-  getAlbumDetails()
+  renderTrackList()
   const randomIndex = Math.floor(Math.random() * trackQueue.length)
   playTrack(randomIndex)
 })
@@ -138,4 +137,17 @@ function shuffleArray(array) {
   }
   return array
 }
-getAlbumDetails()
+
+// Handle artist link click to start playing first track
+artistLink.addEventListener("click", (event) => {
+  if (trackQueue.length > 0) {
+    event.preventDefault()
+    playTrack(0)
+  }
+})
+
+if (!albumId) {
+  console.error("Album ID is missing from URL.")
+} else {
+  getAlbumDetails()
+}
