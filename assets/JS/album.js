@@ -36,17 +36,20 @@ const getAlbumDetails = function () {
       releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
       console.log(data.tracks.data)
       console.log(data)
-      for (let i = 0; i < data.tracks.data.length; i++) {
-        const tracklist = document.getElementById("tracklist")
-        tracklist.innerHTML += ` <div class='songs'>
-         <p id="track" class="text-light ms-2">${data.tracks.data[i].title}</p>   
-         <p id="artist" class="text-secondary ms-2 mb-5">${data.tracks.data[i].artist.name}</p>
-        </div>`
-        tracklist.addEventListener("click", () => playTrack(i))
-      }
+      const tracklist = document.getElementById("tracklist")
+      tracklist.innerHTML = "" // 🔹 Svuota prima di aggiungere nuovi elementi
+
+      data.tracks.data.forEach((track, i) => {
+        const trackItem = document.createElement("div")
+        trackItem.classList.add("songs")
+        trackItem.innerHTML = `<p class="text-light ms-2">${track.title}</p>   
+          <p class="text-secondary ms-2 mb-5">${track.artist.name}</p>`
+        trackItem.addEventListener("click", () => playTrack(i))
+        tracklist.appendChild(trackItem)
+      })
     })
     .catch((err) => {
-      console.log("ERRORE NEL RECUPERO DATI CONCERTO", err)
+      console.log("ERRORE NEL RECUPERO DATI ALBUM", err)
     })
 }
 // Funzione per riprodurre il brano e evidenziarlo nella lista
