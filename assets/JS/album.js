@@ -25,7 +25,7 @@ const getAlbumDetails = function () {
       const artistCover = document.getElementById("artist-img-sm")
       const albumName = document.getElementById("album-name")
       const artistName = document.getElementById("artist-name")
-      const releaseYear = document.getElementById("release-year")
+      const releaseYear = document.querySelectorAll(".release-year")
       albumCover.setAttribute("src", data.cover) //Funziona
       artistCover.setAttribute("src", data.artist.picture_small)
       albumName.innerText = data.title //funziona
@@ -34,7 +34,7 @@ const getAlbumDetails = function () {
         "href",
         "./artist.html?artistId=" + data.artist.id
       )
-      releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
+      releaseYear[(0, 1)].innerText = " " + data.release_date.slice(0, 4) //funziona
       console.log(data.tracks.data)
       console.log(data)
       const tracklist = document.getElementById("tracklist")
@@ -70,7 +70,10 @@ function playTrack(index) {
     ).innerHTML = `<i class="bi bi-pause-fill"></i>`
 
     // Aggiorna il titolo del brano nel player
-    document.getElementById("track-title").textContent = track.title
+    document.getElementById("track-title-player").textContent = track.title
+
+    // Rimuove il loading quando si seleziona una canzone
+    document.getElementById("loading").classList.add("d-none")
 
     // Aggiorna il titolo del brano nel player specifico
     document.getElementById("track-title-player").textContent = track.title // Nuova riga per aggiornare il titolo nel player
