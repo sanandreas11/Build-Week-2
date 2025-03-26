@@ -27,6 +27,18 @@
             margin-top: 10px;
             margin-left: 5px;
         }
+
+        .sidebar-playlists::-webkit-scrollbar {
+            width: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+            scrollbar-width: thin;
+        }
+
+        .sidebar-playlists:hover::-webkit-scrollbar {
+            opacity: 1;
+        }
     </style>
 
 </head>
@@ -70,8 +82,9 @@
                         </ul>
                 </nav>
 
-                <!-- playlists-->
-                <div class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2">
+                <!-- playlists  (ricopiate nel vostro codice anche le classi dalla riga 26 a 41 "li" e "sidebar-playlists")-->
+                <div class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
+                    style="max-height: 500px;">
                     <ul class="list-unstyled text-secondary small">
                         <li>early stage emily syndrome (sett-ott 2022)</li>
                         <li>Be The Young</li>
@@ -87,6 +100,11 @@
                         <li>honey and glass (nov-dic 2021)</li>
                         <li>(Revenge) Training Arc 🏋️</li>
                         <li>Lidia 💛 Emily</li>
+                        <li>minecraft e nintendo switch (sep-oct 2021)</li>
+                        <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
+                        <li>Culo 2021</li>
+                        <li>Frah Quintale Mix</li>
+                        <li>Francesco Guccini Mix</li>
                     </ul>
                 </div>
                 <!-- playlists-->
