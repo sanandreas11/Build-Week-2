@@ -229,6 +229,12 @@
       #right-section-liked p {
         margin-bottom: 0;
       }
+      .track-artist {
+        text-align: center;
+      }
+      #top-tracks {
+        padding: 0;
+      }
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -462,12 +468,16 @@
                 </ol>
               </div>
 
-              <!-- Seconda sezione (scritta e paragrafi) -->
-              <div class="col-md-4" id="liked">
-                <h6 class="mt-0">Brani che ti piacciono</h6>
-                <div id="right-section-liked">
-                  <p>hai messo mi piace a 11 brani</p>
-                  <span>inserisci titolo</span>
+                <!-- Seconda sezione (scritta e paragrafi) -->
+                <div class="col-md-4" id="liked">
+                  <h6 class="mt-0">Brani che ti piacciono</h6>
+                  <div id="right-section-liked">
+                    <p>hai messo mi piace a 11 brani</p>
+                    <img id="artist-image" src="" alt="Immagine artista" /><span
+                      id="artist-name"
+                      >inserisci nome artista</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
