@@ -66,6 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Errore nel recupero dei top brani:", error);
     });
 
+  // Funzione per formattare la durata in minuti:secondi
+  function formatDuration(duration) {
+    const minutes = Math.floor(duration / 60);
+    const seconds = duration % 60;
+    return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+  }
+
   // Render track list
   function renderTrackList() {
     topTracksList.innerHTML = "";
@@ -75,22 +82,29 @@ document.addEventListener("DOMContentLoaded", () => {
       listItem.className =
         "list-group-item bg-dark text-white border-secondary";
       const albumImage = track.album ? track.album.cover_small : "";
+
       listItem.innerHTML = `
-        <div class="row align-items-center">
-          <div class="col-2 d-flex justify-content-center">
-            ${
-              albumImage
-                ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
-                : ""
-            }
-          </div>
-          <div class="col-6 d-flex flex-column gap-2">
-            <span class="track-title">${track.title}</span>
-            <span class="track-artist">${track.artist.name}</span>
-          </div>
+      <div class="row align-items-center">
+        <div class="col-2 d-flex justify-content-center">
+          ${
+            albumImage
+              ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
+              : ""
+          }
         </div>
-      `;
-      listItem.addEventListener("click", () => playTrack(index));
+        <div class="col-4 d-flex flex-column gap-2">
+          <span class="track-title">${track.title}</span>
+          <span class="track-artist">${track.artist.name}</span>  
+        </div>
+<div class="col-2 d-flex justify-content-end">
+          <span class="track-rank">${track.rank}</span>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+          <span class="track-duration">${formatDuration(track.duration)}</span>
+        </div>
+      </div>
+    `;
+
       topTracksList.appendChild(listItem);
     });
   }
