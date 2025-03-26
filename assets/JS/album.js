@@ -20,7 +20,6 @@ const getAlbumDetails = function () {
     .then((data) => {
       console.log("DETTAGLI ALBUM", data)
       trackQueue = data.tracks.data
-      console.log("trackqueue", trackQueue)
       const albumCover = document.getElementById("album-cover")
       const artistCover = document.getElementById("artist-img-sm")
       const albumName = document.getElementById("album-name")
