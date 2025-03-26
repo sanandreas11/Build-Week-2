@@ -1,33 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search)
-  const artistId = params.get("artistId")
+  const params = new URLSearchParams(window.location.search);
+  const artistId = params.get("artistId");
 
   if (!artistId) {
-    console.error("Nessun ID artista trovato nell'URL")
-    return
+    console.error("Nessun ID artista trovato nell'URL");
+    return;
   }
 
-  const apiUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`
-  const topTracksUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=5`
+  const apiUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`;
+  const topTracksUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=5`;
 
-  const artistName = document.getElementById("artist-name")
-  const artistImage = document.getElementById("artist-image")
-  const artistFans = document.getElementById("artist-fans")
-  const artistLink = document.getElementById("artist-link")
-  const topTracksList = document.getElementById("top-tracks")
-  const audioPlayer = document.getElementById("audio-player")
-  const loading = document.getElementById("loading")
+  const artistName = document.getElementById("artist-name");
+  const artistImage = document.getElementById("artist-image");
+  const artistFans = document.getElementById("artist-fans");
+  const artistLink = document.getElementById("artist-link");
+  const topTracksList = document.getElementById("top-tracks");
+  const audioPlayer = document.getElementById("audio-player");
+  const loading = document.getElementById("loading");
+  const nameArtist = document.querySelector("#player-info small");
+  const customPlayerImg = document.querySelector("#custom-player img");
+  let trackQueue = [];
+  let currentTrackIndex = 0;
+  let audio = new Audio();
+  let isPlaying = false;
 
-  let trackQueue = []
-  let currentTrackIndex = 0
-  let audio = new Audio()
-  let isPlaying = false
-
-  loading.style.display = "block"
+  loading.style.display = "block";
 
   function hideLoader() {
-    loading.style.display = "none"
-    document.querySelector(".container-fluid").style.opacity = 1
+    loading.style.display = "none";
+    document.querySelector(".container-fluid").style.opacity = 1;
   }
 
   // Fetch artist data
@@ -36,17 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
       response.ok ? response.json() : Promise.reject("Errore nell'API")
     )
     .then((data) => {
-      hideLoader()
-      artistName.textContent = data.name
-      artistImage.src = data.picture_big
-      artistFans.textContent = data.nb_fan.toLocaleString()
-      artistLink.href = data.link
+      hideLoader();
+      artistName.textContent = data.name;
+      artistImage.src = data.picture_big;
+      artistFans.textContent = data.nb_fan.toLocaleString();
+      artistLink.href = data.link;
+      nameArtist.textContent = data.name;
     })
     .catch((error) => {
-      hideLoader()
-      console.error("Errore nel recupero dati artista:", error)
-      loading.textContent = "Errore nel caricamento dei dati dell'artista"
-    })
+      hideLoader();
+      console.error("Errore nel recupero dati artista:", error);
+      loading.textContent = "Errore nel caricamento dei dati dell'artista";
+    });
 
   // Fetch top tracks
   fetch(topTracksUrl)
@@ -56,21 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
         : Promise.reject("Errore nell'API per i brani")
     )
     .then((data) => {
-      trackQueue = data.data
-      renderTrackList()
+      trackQueue = data.data;
+      renderTrackList();
     })
     .catch((error) => {
-      console.error("Errore nel recupero dei top brani:", error)
-    })
+      console.error("Errore nel recupero dei top brani:", error);
+    });
 
   // Render track list
   function renderTrackList() {
-    topTracksList.innerHTML = ""
+    topTracksList.innerHTML = "";
 
     trackQueue.forEach((track, index) => {
-      const listItem = document.createElement("li")
-      listItem.className = "list-group-item bg-dark text-white border-secondary"
-      const albumImage = track.album ? track.album.cover_small : ""
+      const listItem = document.createElement("li");
+      listItem.className =
+        "list-group-item bg-dark text-white border-secondary";
+      const albumImage = track.album ? track.album.cover_small : "";
       listItem.innerHTML = `
         <div class="row align-items-center">
           <div class="col-2 d-flex justify-content-center">
@@ -85,103 +88,129 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="track-artist">${track.artist.name}</span>
           </div>
         </div>
-      `
-      listItem.addEventListener("click", () => playTrack(index))
-      topTracksList.appendChild(listItem)
-    })
+      `;
+      listItem.addEventListener("click", () => playTrack(index));
+      topTracksList.appendChild(listItem);
+    });
   }
 
   // Funzione per riprodurre il brano e evidenziarlo nella lista
   function playTrack(index) {
     if (index >= 0 && index < trackQueue.length) {
-      currentTrackIndex = index
-      const track = trackQueue[index]
+      currentTrackIndex = index;
+      const track = trackQueue[index];
 
       // Imposta la sorgente del player audio e avvia la riproduzione
-      audio.src = track.preview
-      audio.play()
-      isPlaying = true
+      audio.src = track.preview;
+      audio.play();
+      isPlaying = true;
 
       // Cambia l'icona di play/pause
       document.getElementById(
         "play-pause"
-      ).innerHTML = `<i class="bi bi-pause-fill"></i>`
+      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
 
       // Aggiorna il titolo del brano nel player
-      document.getElementById("track-title").textContent = track.title
+      document.getElementById("track-title").textContent = track.title;
 
       // Aggiorna il titolo del brano nel player specifico
-      document.getElementById("track-title-player").textContent = track.title // Nuova riga per aggiornare il titolo nel player
+      document.getElementById("track-title-player").textContent = track.title; // Nuova riga per aggiornare il titolo nel player
 
       // Rimuovi la classe 'active' da tutti gli elementi della lista
       document.querySelectorAll(".list-group-item").forEach((item) => {
-        item.classList.remove("active")
-      })
+        item.classList.remove("active");
+      });
 
       // Aggiungi la classe 'active' al brano selezionato
-      topTracksList.children[index].classList.add("active")
+      topTracksList.children[index].classList.add("active");
 
       // Passa alla traccia successiva quando il brano finisce
       audio.addEventListener("ended", () => {
         if (currentTrackIndex < trackQueue.length - 1) {
-          playTrack(currentTrackIndex + 1)
+          playTrack(currentTrackIndex + 1);
         }
-      })
+      });
+      if (track.album && track.album.cover_big) {
+        customPlayerImg.src = track.album.cover_big;
+      } else {
+        customPlayerImg.src = "./assets/imgs/main/image-3.jpg"; // Immagine di default
+      }
     }
+  }
+  // Progress-bar player musicale
+  audio.addEventListener("timeupdate", () => {
+    const currentTime = audio.currentTime;
+    const duration = audio.duration;
+    const progressBar = document.getElementById("pb");
+
+    if (!isNaN(duration)) {
+      // Aggiorna la barra di progresso
+      progressBar.style.width = `${(currentTime / duration) * 100}%`;
+
+      // Aggiorna i tempi
+      document.getElementById("prog").textContent = formatTime(currentTime);
+      document.getElementById("dur").textContent = formatTime(duration);
+    }
+  });
+  // Formatta minuti e secondi
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
   }
 
   // Play/Pause toggle
   document.getElementById("play-pause").addEventListener("click", () => {
     if (isPlaying) {
-      audio.pause()
+      audio.pause();
       document.getElementById(
         "play-pause"
-      ).innerHTML = `<i class="bi bi-play-fill"></i>`
+      ).innerHTML = `<i class="bi bi-play-circle-fill fs-2 "></i>`;
     } else {
-      audio.play()
+      audio.play();
       document.getElementById(
         "play-pause"
-      ).innerHTML = `<i class="bi bi-pause-fill"></i>`
+      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
     }
-    isPlaying = !isPlaying
-  })
+    isPlaying = !isPlaying;
+  });
 
   // Next track
   document.getElementById("next").addEventListener("click", () => {
     if (currentTrackIndex < trackQueue.length - 1) {
-      playTrack(currentTrackIndex + 1)
+      playTrack(currentTrackIndex + 1);
     }
-  })
+  });
 
   // Previous track
   document.getElementById("prev").addEventListener("click", () => {
     if (currentTrackIndex > 0) {
-      playTrack(currentTrackIndex - 1)
+      playTrack(currentTrackIndex - 1);
     }
-  })
+  });
 
   // Shuffle functionality
   document.getElementById("random-icon").addEventListener("click", () => {
-    trackQueue = shuffleArray(trackQueue)
-    renderTrackList()
-    const randomIndex = Math.floor(Math.random() * trackQueue.length)
-    playTrack(randomIndex)
-  })
+    trackQueue = shuffleArray(trackQueue);
+    renderTrackList();
+    const randomIndex = Math.floor(Math.random() * trackQueue.length);
+    playTrack(randomIndex);
+  });
 
   // Shuffle function
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[array[i], array[j]] = [array[j], array[i]]
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-    return array
+    return array;
   }
 
   // Handle artist link click to start playing first track
   artistLink.addEventListener("click", (event) => {
     if (trackQueue.length > 0) {
-      event.preventDefault()
-      playTrack(0)
+      event.preventDefault();
+      playTrack(0);
     }
-  })
-})
+  });
+});
