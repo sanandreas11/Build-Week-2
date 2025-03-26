@@ -32,6 +32,9 @@
           rgba(0, 0, 0, 0.721)
         );
       }
+      #artist-img-sm {
+        width: 1.5rem;
+      }
     </style>
   </head>
   <body class="bg-dark">
@@ -83,30 +86,38 @@
 
         <!-- La main di Album -->
         <main class="col-md-8 col-sm-12 px-4">
-          <div
-            id="album"
-            class="d-flex flex-column flex-lg-row align-items-end mt-3 ms-2"
-          >
+          <div id="album" class="d-flex flex-column flex-lg-row mt-3 ms-2">
             <img id="album-cover" class="align-self-center mb-3" alt="" />
-            <h1
-              id="album-name"
-              class="align-self-center align-self-lg-end text-light"
-            ></h1>
+            <div id="album-info">
+              <p class="d-none d-lg-block text-light ms-2">Album</p>
+              <h1
+                id="album-name"
+                class="align-self-start align-self-lg-end text-light order-lg-0 ms-2"
+              ></h1>
+              <div id="artist" class="d-flex align-items-center mb-2">
+                <img
+                  id="artist-img-sm"
+                  class="rounded-circle mx-2"
+                  src=""
+                  alt=""
+                />
+                <a
+                  id="artist-name"
+                  class="text-light text-decoration-none"
+                  href=""
+                  ><span class="release-year"></span
+                ></a>
+              </div>
+              <p class="text-light ms-2 order-lg-1 d-lg-none">
+                Album ·<span class="release-year"></span>
+              </p>
+            </div>
           </div>
-          <div id="artist" class="d-flex align-items-center mb-2">
-            <img id="artist-img-sm" class="rounded-circle mx-2" src="" alt="" />
-            <a
-              id="artist-name"
-              class="text-light text-decoration-none"
-              href=""
-            ></a>
-          </div>
-          <p class="text-light ms-2">Album ·<span id="release-year"></span></p>
           <div
             id="icons"
-            class="d-flex align-items-center justify-content-between"
+            class="d-flex align-items-center justify-content-between justify-content-lg-start"
           >
-            <div id="icons-1" class="ms-2">
+            <div id="icons-1" class="ms-2 order-lg-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -145,13 +156,13 @@
                 />
               </svg>
             </div>
-            <div id="icons-2" class="me-2">
+            <div id="icons-2" class="me-2 order-lg-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-shuffle text-light"
+                class="bi bi-shuffle text-light d-lg-none"
                 id="random-icon"
                 viewBox="0 0 16 16"
               >
@@ -180,7 +191,7 @@
             </div>
           </div>
           <!-- qui entrano le canzoni -->
-          <article id="tracklist" class="col-md-8 col-sm-12 px-4">
+          <article id="tracklist" class="col-md-8 col-sm-12 px-4 my-3">
             <ul id="tracks mb-3"></ul>
           </article>
         </main>
@@ -288,7 +299,7 @@
 
     <div id="custom-player" class="player">
       <div id="player-info">
-        <h5 id="track-title-player"></h5>
+        <h5 id="track-title-player" class="text-light"></h5>
         <!-- Titolo del brano da aggiornare -->
       </div>
       <div id="controls">
