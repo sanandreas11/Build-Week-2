@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loading = document.getElementById("loading");
   const nameArtist = document.querySelector("#player-info small");
   const customPlayerImg = document.querySelector("#custom-player img");
+  const mobileplayerName = document.getElementById("songMobile");
   let trackQueue = [];
   let currentTrackIndex = 0;
   let audio = new Audio();
@@ -109,13 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById(
         "play-pause"
       ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
+      document.getElementById(
+        "play-pause-mobile"
+      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
 
       // Aggiorna il titolo del brano nel player
       document.getElementById("track-title").textContent = track.title;
 
       // Aggiorna il titolo del brano nel player specifico
       document.getElementById("track-title-player").textContent = track.title; // Nuova riga per aggiornare il titolo nel player
-
+      mobileplayerName.textContent = track.title;
       // Rimuovi la classe 'active' da tutti gli elementi della lista
       document.querySelectorAll(".list-group-item").forEach((item) => {
         item.classList.remove("active");
@@ -170,6 +174,22 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.play();
       document.getElementById(
         "play-pause"
+      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // Play/Pause toggle
+  document.getElementById("play-pause-mobile").addEventListener("click", () => {
+    if (isPlaying) {
+      audio.pause();
+      document.getElementById(
+        "play-pause-mobile"
+      ).innerHTML = `<i class="bi bi-play-circle-fill fs-2 "></i>`;
+    } else {
+      audio.play();
+      document.getElementById(
+        "play-pause-mobile"
       ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
     }
     isPlaying = !isPlaying;
