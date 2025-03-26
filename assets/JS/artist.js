@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const artistFans = document.getElementById("artist-fans")
   const artistLink = document.getElementById("artist-link")
   const topTracksList = document.getElementById("top-tracks")
+  const audioPlayer = document.getElementById("audio-player")
   const loading = document.getElementById("loading")
 
   let trackQueue = []

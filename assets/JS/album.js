@@ -2,6 +2,9 @@ const URLparameters = new URLSearchParams(location.search)
 const albumId = URLparameters.get("albumId")
 const albumUrl = `https://striveschool-api.herokuapp.com/api/deezer/album/`
 
+let trackQueue = []
+let currentTrackIndex = 0
+
 const getAlbumDetails = function () {
   fetch(albumUrl + albumId)
     .then((response) => {
@@ -32,7 +35,7 @@ const getAlbumDetails = function () {
       console.log(data)
       for (let i = 0; i < data.tracks.data.length; i++) {
         const tracklist = document.getElementById("tracklist")
-        tracklist.innerHTML += ` <div>
+        tracklist.innerHTML += ` <div class='songs'>
          <p id="track" class="text-light ms-2">${data.tracks.data[i].title}</p>   
          <p id="artist" class="text-secondary ms-2 mb-5">${data.tracks.data[i].artist.name}</p>
         </div>`
