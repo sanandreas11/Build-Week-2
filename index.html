@@ -31,21 +31,7 @@
                         </li>
 
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="#"><i class="bi bi-three-dots"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light fw-bold" href="#"><i class="bi bi-house-door"></i>
-                                    Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="./search.html"><i class="bi bi-search"></i>
-                                    Cerca</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="#"><i class="bi bi-music-note-list"></i> La tua
-                                    libreria</a>
-                            </li>
+
 
                             <li class="nav-item mt-3">
                                 <a class="nav-link text-light" href="#"><i class="bi bi-plus-circle"></i> Crea
@@ -72,13 +58,14 @@
                         <div class="card d-flex flex-column rounded-0" style="background-color: #343a40" id="sez1">
                             <div class="row g-0">
                                 <div class="col-4">
-                                    <img src=".\assets\imgs\main\image-1.jpg" class="img-fluid rounded-0" alt="...">
+                                    <img id="player-image" src="..." class="img-fluid rounded-0" alt="...">
                                 </div>
                                 <div class="col-8 d-flex flex-column">
                                     <div class="card-body flex-grow-1 text-light">
-                                        <h2>VIOLA (feat. Salmo)</h2>
-                                        <p>Fedez, Salmo</p>
-                                        <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
+                                        <h2 id="player-title"></h2>
+                                        <p id="player-artist"></p>
+                                        <p>Ascolta il nuovo singolo di <span id="artist-name"></span>
+                                        </p>
                                     </div>
                                     <div class="mt-auto">
                                         <button class="btn btn-primary rounded-5 px-5 mx-1">Play</button>
@@ -111,21 +98,19 @@
                         <p class="my-3 text-white mb-0 ms-3"> Podcast e show</p>
                     </div>
                     <div id="sezione2">
-
-
                     </div>
 
                     <!-- Sezione 3 -->
                     <div id="sez3" class="mt-1">
                         <h2 class="my-3 text-white">Altro di ciò che ti piace</h2>
+                        <div class="text-end mt-4 mb-3 d-none d-md-block">
+                            <span id="view-more" class="text-light" style="cursor: pointer;">
+                                VISUALIZZA ALTRO
+                            </span>
+                        </div>
                         <div class="container">
-                            <div class="row d-flex" id="sezione3">
-
-
-
+                            <div class="row gx-3 row-cols-1 row-cols-md-5" id="sezione3">
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -184,6 +169,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
             </aside>
