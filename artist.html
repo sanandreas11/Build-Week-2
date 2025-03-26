@@ -32,6 +32,24 @@
           rgba(0, 0, 0, 0.721)
         );
       }
+      /* Imposta la card  */
+      .artist-banner {
+        height: 300px !important;
+        overflow: hidden !important;
+      }
+
+      /* Imposta l'immagine per adattarsi in larghezza, mantenendo le proporzioni */
+      #artist-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        padding: 0 !important;
+      }
+
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
 
       .row {
         margin: 0;
@@ -211,6 +229,12 @@
       #right-section-liked p {
         margin-bottom: 0;
       }
+      .track-artist {
+        text-align: center;
+      }
+      #top-tracks {
+        padding: 0;
+      }
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -307,7 +331,7 @@
   <body class="bg-dark text-white">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3 d-none d-md-block sidebar border border-dark">
+        <div class="col-md-2 d-none d-md-block sidebar border border-dark">
           <nav>
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -350,92 +374,109 @@
           </nav>
         </div>
 
-        <div class="col-12 col-md-7">
-          <div class="card bg-dark text-light">
-            <div class="image-container">
-              <img id="artist-image" class="card-img-top" alt="Artist Image" />
+        <div class="col-12 col-md-8">
+          <div class="card bg-dark text-light artist-banner">
+            <div class="image-container m-0 p-0">
+              <img
+                id="artist-image"
+                class="card-img-top m-0"
+                alt="Artist Image"
+              />
             </div>
-            <div class="card-body">
-              <h2 id="track-title" class="card-title"></h2>
-              <!-- Nuovo elemento h2 per il titolo del brano -->
-              <h5 id="artist-name" class="card-title"></h5>
-              <p class="card-text">
-                <strong>Fans:</strong> <span id="artist-fans"></span>
-              </p>
-              <!-- Nuovo paragrafo per la data dell'album -->
-              <p id="album-date" class="card-text" style="display: none">
-                <strong>Data album:</strong> <span id="album-date-value"></span>
-              </p>
-
-              <!-- Aggiungi icone -->
-              <div class="d-flex justify-content-between">
-                <div>
-                  <a
-                    href="#"
-                    id="heart-icon"
-                    class="btn btn-light rounded-circle mx-2"
-                  >
-                    <i class="bi bi-heart fs-3"></i>
-                  </a>
-                  <a
-                    href="#"
-                    id="download-icon"
-                    class="btn btn-light rounded-circle mx-2"
-                  >
-                    <i class="bi bi-download fs-3"></i>
-                  </a>
-                  <a
-                    href="#"
-                    id="dots-icon"
-                    class="btn btn-light rounded-circle mx-2"
-                  >
-                    <i class="bi bi-three-dots-vertical fs-3"></i>
-                    <!-- Icona aggiornata -->
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#"
-                    id="random-icon"
-                    class="btn btn-light rounded-circle mx-2"
-                  >
-                    <i class="bi bi-shuffle fs-3"></i>
-                    <!-- Icona aggiornata -->
-                  </a>
-
-                  <a
-                    id="artist-link"
-                    href="#"
-                    target="_blank"
-                    class="btn btn-success rounded-circle"
-                  >
-                    <i
-                      class="bi bi-play-fill fs-3 text-dark"
-                      id="play-icon"
-                    ></i>
-                  </a>
-                </div>
+            <div class="card-img-overlay d-flex align-items-end">
+              <div class="ms-1">
+                <h1 id="track-title" class="card-title text-shadow"></h1>
+                <small class="text-shadow">
+                  <i
+                    class="bi bi-check-circle-fill me-2"
+                    style="color: #0095f6"
+                  ></i
+                  >Artista Verificato
+                </small>
+                <!-- Nuovo elemento h2 per il titolo del brano -->
+                <h5
+                  id="artist-name"
+                  class="card-title text-shadow"
+                  style="font-size: 4em"
+                ></h5>
+                <p class="card-text text-shadow">
+                  <span id="artist-fans"></span>
+                  <strong class="text-shadow">Ascoltatori Mensili</strong>
+                </p>
+                <!-- Nuovo paragrafo per la data dell'album -->
+                <p id="album-date" class="card-text" style="display: none">
+                  <strong>Data album:</strong>
+                  <span id="album-date-value"></span>
+                </p>
               </div>
             </div>
+          </div>
+          <!-- Aggiungi icone -->
+          <div class="d-flex justify-content-between">
+            <div>
+              <a
+                href="#"
+                id="heart-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-heart fs-3"></i>
+              </a>
+              <a
+                href="#"
+                id="download-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-download fs-3"></i>
+              </a>
+              <a
+                href="#"
+                id="dots-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-three-dots-vertical fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
+            </div>
+            <div>
+              <a
+                href="#"
+                id="random-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-shuffle fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
 
-            <div class="container">
-              <div class="row">
-                <!-- Prima sezione (lista) -->
-                <div class="col-md-8">
-                  <ol class="list-group list-group-flush bg-b">
-                    <li class="list-group-item"><h6>Popolari</h6></li>
-                    <li class="list-group-item" id="top-tracks"></li>
-                    <li class="list-group-item"></li>
-                  </ol>
-                </div>
+              <a
+                id="artist-link"
+                href="#"
+                target="_blank"
+                class="btn btn-success rounded-circle"
+              >
+                <i class="bi bi-play-fill fs-3 text-dark" id="play-icon"></i>
+              </a>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <!-- Prima sezione (lista) -->
+              <div class="col-md-8">
+                <ol class="list-group list-group-flush bg-b">
+                  <li class="list-group-item"><h6>Popolari</h6></li>
+                  <li class="list-group-item" id="top-tracks"></li>
+                  <li class="list-group-item"></li>
+                </ol>
+              </div>
 
-                <!-- Seconda sezione (scritta e paragrafi) -->
-                <div class="col-md-4" id="liked">
-                  <h6 class="mt-0">Brani che ti piacciono</h6>
-                  <div id="right-section-liked">
-                    <p>hai messo mi piace a 11 brani</p>
-                    <span>inserisci titolo</span>
-                  </div>
+              <!-- Seconda sezione (scritta e paragrafi) -->
+              <div class="col-md-4" id="liked">
+                <h6 class="mt-0">Brani che ti piacciono</h6>
+                <div id="right-section-liked">
+                  <p>hai messo mi piace a 11 brani</p>
+                  <img id="artist-image" src="" alt="Immagine artista" /><span
+                    id="artist-name"
+                    >inserisci nome artista</span
+                  >
                 </div>
               </div>
             </div>
