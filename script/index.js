@@ -60,7 +60,7 @@ listaAlbumSez2.forEach((albumId) => {
                         </div>
                         <div class="col-8">
                             <div class="card-body fs-2">
-                                <h5 class="card-title fs-6 text-light">${data.title}</h5>
+                                <h5 class="card-title fs-6 fw-bold text-light">${data.title}</h5>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@ listaAlbumSez3.forEach((albumId) => {
                     alt="${data.title}">
             </div>
             <div class="col text-light mt-3">
-                <h6>${data.title}</h6>
+                <h6 class="fw-bold">${data.title}</h6>
                 <p style="font-size: 13px;" class="overflow-hidden">
                     ${data.genres.data[0].name}
                 </p>
