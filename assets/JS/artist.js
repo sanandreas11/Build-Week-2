@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlaying = !isPlaying;
   });
 
-  // Play/Pause toggle
+  // Play/Pause toggle-mobile
   document.getElementById("play-pause-mobile").addEventListener("click", () => {
     if (isPlaying) {
       audio.pause();
