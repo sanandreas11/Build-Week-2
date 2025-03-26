@@ -4,31 +4,31 @@ const searchUrl = " https://striveschool-api.herokuapp.com/api/deezer/album/"
 
 albumPlayerId = 8832423
 fetch(searchUrl + albumPlayerId)
-  .then((response) => response.json())
-  .then((data) => {
-    // Modifica il titolo dell'album
-    let playerTitle = document.getElementById("player-title")
-    playerTitle.innerText = data.tracks.data[0].title
+    .then((response) => response.json())
+    .then((data) => {
+        // Modifica il titolo dell'album
+        let playerTitle = document.getElementById("player-title")
+        playerTitle.innerText = data.tracks.data[0].title
 
-    // Modifica l'artista
-    let playerArtist = document.getElementById("player-artist")
-    playerArtist.innerText = data.tracks.data[0].artist.name
+        // Modifica l'artista
+        let playerArtist = document.getElementById("player-artist")
+        playerArtist.innerText = data.tracks.data[0].artist.name
 
-    // Modifica l'immagine dell'album
-    let playerImage = document.getElementById("player-image")
-    playerImage.src = data.cover_big
+        // Modifica l'immagine dell'album
+        let playerImage = document.getElementById("player-image")
+        playerImage.src = data.cover_big
 
-    // Aggiorna anche il nome dell'artista nello span
-    let artistName = document.getElementById("artist-name")
-    artistName.innerText = data.tracks.data[0].artist.name
-  })
-  .catch((error) => console.error("Errore nel recupero dei dati:", error))
+        // Aggiorna anche il nome dell'artista nello span
+        let artistName = document.getElementById("artist-name")
+        artistName.innerText = data.tracks.data[0].artist.name
+    })
+    .catch((error) => console.error("Errore nel recupero dei dati:", error))
 
 //--------------------------------
 
 //codice per generare dinamicamente card sezione-2
 let listaAlbumSez2 = [
-  606344212, 642312861, 727466171, 212391, 442973585, 522138732,
+    606344212, 642312861, 727466171, 212391, 442973585, 522138732,
 ]
 
 const container = document.getElementById("sezione2")
@@ -36,13 +36,13 @@ const container = document.getElementById("sezione2")
 container.classList.add("row", "g-0")
 
 listaAlbumSez2.forEach((albumId) => {
-  fetch(searchUrl + albumId)
-    .then((response) => response.json())
-    .then((data) => {
-      const col = document.createElement("div")
-      col.classList.add("col-6", "col-md-4", "p-1")
+    fetch(searchUrl + albumId)
+        .then((response) => response.json())
+        .then((data) => {
+            const col = document.createElement("div")
+            col.classList.add("col-6", "col-md-4", "p-1")
 
-      col.innerHTML = `
+            col.innerHTML = `
                 <div class="card fs-2 bg-dark">
                     <div class="row g-0 h-100">
                         <div class="col-4 h-100">
@@ -57,42 +57,42 @@ listaAlbumSez2.forEach((albumId) => {
                 </div> 
             `
 
-      container.appendChild(col)
-    })
-    .catch((error) => console.error("Errore nel recupero dei dati:", error))
+            container.appendChild(col)
+        })
+        .catch((error) => console.error("Errore nel recupero dei dati:", error))
 })
 
 document.getElementById("view-more").addEventListener("click", function () {
-  //Naviga verso una pagina
-  window.location.href = "artist.html?artistId=17#"
+    //Naviga verso una pagina
+    window.location.href = "artist.html?artistId=17#"
 })
 
 let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792]
 
 const container2 = document.getElementById("sezione3")
 container2.classList.add(
-  "row",
-  "g-3",
-  "d-flex",
-  "justify-content-around",
-  "flex-wrap"
+    "row",
+    "g-3",
+    "d-flex",
+    "justify-content-around",
+    "flex-wrap"
 )
 
 listaAlbumSez3.forEach((albumId) => {
-  fetch(searchUrl + albumId)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Dati ricevuti:", data)
+    fetch(searchUrl + albumId)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Dati ricevuti:", data)
 
-      if (!data || !data.cover_big) {
-        console.error("Errore: dati non validi per albumId", albumId)
-        return
-      }
+            if (!data || !data.cover_big) {
+                console.error("Errore: dati non validi per albumId", albumId)
+                return
+            }
 
-      const col2 = document.createElement("div")
-      col2.classList.add("px-2")
+            const col2 = document.createElement("div")
+            col2.classList.add("px-2")
 
-      col2.innerHTML = `
+            col2.innerHTML = `
     <div class="col p-2 border border-1 border-dark rounded-2 bg-dark" style="height: auto;">
         <div class="row flex-md-column">
             <div class="col w-100">
@@ -133,33 +133,35 @@ listaAlbumSez3.forEach((albumId) => {
     </div>
 `
 
-      container2.appendChild(col2)
+            container2.appendChild(col2)
 
-      const heartIcon = col2.querySelector("#heart-icon")
+            // Gestione del clic sul cuore
 
-      // Gestione del clic sul cuore
-      heartIcon.addEventListener("click", () => {
-        if (heartIcon.classList.contains("bi-heart")) {
-          // Se è vuoto, lo colora
-          heartIcon.classList.replace("bi-heart", "bi-heart-fill")
-          heartIcon.classList.add("text-success")
-        } else {
-          // Se è già colorato, lo svuota
-          heartIcon.classList.replace("bi-heart-fill", "bi-heart")
-          heartIcon.classList.remove("bi-heart-fill")
-        }
-      })
-    })
-    .catch((error) => console.error("Errore nel recupero dei dati:", error))
+            const heartIcon = col2.querySelector("#heart-icon")
+            heartIcon.addEventListener("click", () => {
+                if (heartIcon.classList.contains("bi-heart")) {
+                    // Se è vuoto, lo colora
+                    heartIcon.classList.replace("bi-heart", "bi-heart-fill")
+                    heartIcon.classList.add("text-success")
+                } else {
+                    // Se è già colorato, lo svuota
+                    heartIcon.classList.replace("bi-heart-fill", "bi-heart")
+                    heartIcon.classList.remove("bi-heart-fill")
+                }
+            })
+        })
+        .catch((error) => console.error("Errore nel recupero dei dati:", error))
 })
+
+
 
 // codice per recuperare numero dei brani da inserire nelle card della "sezione3" versione mobile
 function getNumberOfTracksString(album) {
-  const numBrani = album.nb_tracks
+    const numBrani = album.nb_tracks
 
-  if (numBrani > 1) {
-    return numBrani + " brani"
-  } else {
-    return numBrani + " brano"
-  }
+    if (numBrani > 1) {
+        return numBrani + " brani"
+    } else {
+        return numBrani + " brano"
+    }
 }
