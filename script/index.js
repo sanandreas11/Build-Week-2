@@ -21,8 +21,18 @@ fetch(searchUrl + albumPlayerId)
         // Aggiorna anche il nome dell'artista nello span
         let artistName = document.getElementById("artist-name")
         artistName.innerText = data.tracks.data[0].artist.name
+        // Funzione bottone "Play"
+        let playButton = document.getElementById("playCard");
+        playButton.addEventListener("click", function () {
+            console.log("Play button clicked!");
+            window.location.href = `album.html?albumId=${albumPlayerId}`;
+        });
+
     })
+
     .catch((error) => console.error("Errore nel recupero dei dati:", error))
+
+
 
 //--------------------------------
 
@@ -43,7 +53,7 @@ listaAlbumSez2.forEach((albumId) => {
             col.classList.add("col-6", "col-md-4", "p-1")
 
             col.innerHTML = `
-                <div class="card fs-2 bg-dark">
+                <div class="card fs-2 bg-dark  clickable-card" data-album-id="${data.id}">
                     <div class="row g-0 h-100">
                         <div class="col-4 h-100">
                             <img src="${data.cover_big}" class="img-fluid rounded-start  w-100 h-100" alt="${data.title}">
@@ -55,45 +65,47 @@ listaAlbumSez2.forEach((albumId) => {
                         </div>
                     </div>
                 </div> 
-            `
+                        `
+            //funzione per la class "clickable-card" rende la card cliccabile e reindirizza alla pagina album dell'artista in questione
+            const card = col.querySelector(".clickable-card");
+            card.addEventListener("click", () => {
+                window.location.href = `album.html?albumId=${data.id}`;
+            });
+
 
             container.appendChild(col)
         })
         .catch((error) => console.error("Errore nel recupero dei dati:", error))
 })
 
+//Naviga verso una pagina
 document.getElementById("view-more").addEventListener("click", function () {
-    //Naviga verso una pagina
     window.location.href = "artist.html?artistId=17#"
 })
 
-let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792]
 
-const container2 = document.getElementById("sezione3")
-container2.classList.add(
-    "row",
-    "g-3",
-    "d-flex",
-    "justify-content-around",
-    "flex-wrap"
-)
+//codice per generare dinamicamente card sezione 3
+let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792];
+
+const container2 = document.getElementById("sezione3");
+container2.classList.add("row", "g-3", "d-flex", "justify-content-around", "flex-wrap");
 
 listaAlbumSez3.forEach((albumId) => {
     fetch(searchUrl + albumId)
         .then((response) => response.json())
         .then((data) => {
-            console.log("Dati ricevuti:", data)
+            console.log("Dati ricevuti:", data);
 
             if (!data || !data.cover_big) {
-                console.error("Errore: dati non validi per albumId", albumId)
-                return
+                console.error("Errore: dati non validi per albumId", albumId);
+                return;
             }
 
-            const col2 = document.createElement("div")
-            col2.classList.add("px-2")
+            const col2 = document.createElement("div");
+            col2.classList.add("px-2");
 
             col2.innerHTML = `
-    <div class="col p-2 border border-1 border-dark rounded-2 bg-dark" style="height: auto;">
+    <div class="col p-2 border border-1 border-dark rounded-2 bg-dark clickable-card" data-album-id="${data.id}" style="height: auto;">
         <div class="row flex-md-column">
             <div class="col w-100">
                 <img class="rounded-2" src="${data.cover_big}" 
@@ -112,7 +124,7 @@ listaAlbumSez3.forEach((albumId) => {
         <div class="row d-md-none mt-2 align-items-center justify-content-between">
             <!-- Icone a sinistra -->
             <div class="col-5 d-flex justify-content-start gap-2">
-                <i id="heart-icon" class="bi bi-heart text-success fs-2"></i>
+                <i class="bi bi-heart text-success fs-2 heart-icon"></i> 
                 <i class="bi bi-three-dots-vertical text-light fs-2"></i>
             </div>
 
@@ -131,28 +143,32 @@ listaAlbumSez3.forEach((albumId) => {
             </div>
         </div>
     </div>
-`
+`;
 
-            container2.appendChild(col2)
+            container2.appendChild(col2);
 
-            // Gestione del clic sul cuore
-
-            const heartIcon = col2.querySelector("#heart-icon")
-            heartIcon.addEventListener("click", () => {
-                if (heartIcon.classList.contains("bi-heart")) {
-                    // Se è vuoto, lo colora
-                    heartIcon.classList.replace("bi-heart", "bi-heart-fill")
-                    heartIcon.classList.add("text-success")
-                } else {
-                    // Se è già colorato, lo svuota
-                    heartIcon.classList.replace("bi-heart-fill", "bi-heart")
-                    heartIcon.classList.remove("bi-heart-fill")
+            // Click sulla card per reindirizzare alla pagina album
+            col2.querySelector(".clickable-card").addEventListener("click", (event) => {
+                if (!event.target.closest(".heart-icon") && !event.target.closest(".bi-three-dots-vertical")) {
+                    window.location.href = `album.html?albumId=${data.id}`;
                 }
-            })
-        })
-        .catch((error) => console.error("Errore nel recupero dei dati:", error))
-})
+            });
 
+            // Gestione del click sul cuore
+            const heartIcon = col2.querySelector(".heart-icon");
+            heartIcon.addEventListener("click", (event) => {
+                event.stopPropagation(); // Evita il redirect quando si clicca sul cuore
+                if (heartIcon.classList.contains("bi-heart")) {
+                    heartIcon.classList.replace("bi-heart", "bi-heart-fill");
+                    heartIcon.classList.add("text-success");
+                } else {
+                    heartIcon.classList.replace("bi-heart-fill", "bi-heart");
+                    heartIcon.classList.remove("bi-heart-fill");
+                }
+            });
+        })
+        .catch((error) => console.error("Errore nel recupero dei dati:", error));
+});
 
 
 // codice per recuperare numero dei brani da inserire nelle card della "sezione3" versione mobile
@@ -165,3 +181,5 @@ function getNumberOfTracksString(album) {
         return numBrani + " brano"
     }
 }
+
+
