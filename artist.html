@@ -88,7 +88,8 @@
       #download-icon,
       #dots-icon,
       #random-icon,
-      #artist-link {
+      #artist-link,
+      #play-pause-mobile {
         background-color: #212529;
         border: none;
         padding: 10px;
@@ -391,9 +392,10 @@
               </div>
             </div>
 
-            <ol class="list-group list-group-flush">
+            <ol class="list-group list-group-flush bg-b">
               <li class="list-group-item"><h6>Popolari</h6></li>
               <li class="list-group-item" id="top-tracks"></li>
+              <li class="list-group-item"></li>
             </ol>
           </div>
         </div>
@@ -500,7 +502,7 @@
     </div>
 
     <div id="loading" class="text-center text-white">Caricamento...</div>
-
+    <!-- player descktop -->
     <div
       id="custom-player"
       class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block"
@@ -585,13 +587,14 @@
         </div>
       </div>
     </div>
+    <!-- player mobile -->
     <div class="sticky-bottom ms-1 me-1 d-block d-lg-none">
       <div
         class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center"
         id="music"
       >
         <div class="flex-grow-1">
-          <p class="text-light mb-0 mt-0 ms-5">papapapaprarar</p>
+          <p id="songMobile" class="text-light mb-0 mt-0 ms-5">Albano</p>
         </div>
         <div>
           <i class="bi bi-music-player-fill text-light fs-2"></i>
@@ -600,7 +603,13 @@
           <i class="bi bi-suit-heart text-light fs-2 ms-4"></i>
         </div>
         <div>
-          <i class="bi bi-play-fill text-light fs-2 ms-4 me-4"></i>
+          <button id="play-pause-mobile" class="btn btn-dark">
+            <i
+              class="bi bi-play-circle-fill fs-2 text-white"
+              id="play-icon-mobile"
+            ></i>
+            <!-- Icona play/pause -->
+          </button>
         </div>
       </div>
       <div class="container-fluid gradient-bg d-block d-lg-none">
@@ -636,62 +645,13 @@
         </div>
       </div>
     </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <footer class="footer">
-      <div class="container">
-        <div class="row text-center text-md-start">
-          <!-- Sezione Links -->
-          <div class="col-md-4 mb-3">
-            <h5 class="text-white">Azienda</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Chi siamo</a></li>
-              <li><a href="#">Lavora con noi</a></li>
-              <li><a href="#">For the Record</a></li>
-            </ul>
-          </div>
 
-          <div class="col-md-4 mb-3">
-            <h5 class="text-white">Community</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Artisti</a></li>
-              <li><a href="#">Sviluppatori</a></li>
-              <li><a href="#">Pubblicità</a></li>
-            </ul>
-          </div>
-
-          <div class="col-md-4 mb-3">
-            <h5 class="text-white">Supporto</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Assistenza</a></li>
-              <li><a href="#">App per dispositivi</a></li>
-              <li><a href="#">Termini e privacy</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <hr class="border-secondary" />
-
-        <div class="row text-center">
-          <div class="col-md-6 text-md-start">
-            <p class="mb-0 text-white">
-              &copy; <span id="date-year"> </span> Spotify Clone. Tutti i
-              diritti riservati.
-            </p>
-          </div>
-          <div class="col-md-6 text-md-end social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script src="assets/JS/index.js"></script>
     <script src="assets/JS/artist.js"></script>
   </body>
 </html>
