@@ -8974,7 +8974,7 @@ textarea.form-control-lg {
 }
 
 .fs-1 {
-  font-size: calc(1.775rem + 6.3vw) !important;
+  font-size: calc(1.475rem + 2.7vw) !important;
 }
 
 .fs-2 {
@@ -13998,7 +13998,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 1200px) {
   .fs-1 {
-    font-size: 6.5rem !important;
+    font-size: 3.5rem !important;
   }
   .fs-2 {
     font-size: 2rem !important;
