@@ -14,27 +14,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
     <style>
-      .list-group-item {
-        border: none !important;
-        background-color: #212529 !important;
-        cursor: pointer !important;
-        color: #f8f9fa !important;
-      }
-
-      .list-group-item:hover {
-        cursor: pointer;
-      }
-
-      #artist-link i {
-        color: black;
-      }
-
-      #loading {
-        display: none;
-        color: white;
-        font-size: 1.5rem;
-      }
-
+      /* Stile generale per il corpo e la container */
       body,
       .container-fluid {
         margin: 0;
@@ -50,11 +30,161 @@
         padding: 15px;
       }
 
+      /* Stile per la lista degli elementi */
+      .list-group-item {
+        border: none !important;
+        background-color: #212529 !important;
+        cursor: pointer !important;
+        color: #f8f9fa !important;
+      }
+
+      .list-group-item:hover {
+        cursor: pointer;
+      }
+
       .list-group-item.active {
         background-color: green !important;
         color: white;
       }
 
+      /* Colore per i link all'interno del sidebar */
+      #artist-link i {
+        color: white !important;
+      }
+
+      #artist-link:hover i {
+        color: green !important;
+      }
+
+      #loading {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      /* Stile per le icone */
+      #heart-icon i,
+      #download-icon i,
+      #dots-icon i,
+      #random-icon i {
+        color: white;
+        background-color: transparent;
+      }
+
+      /* Stile per i bottoni con icone */
+      #heart-icon,
+      #download-icon,
+      #dots-icon,
+      #random-icon,
+      #artist-link {
+        background-color: #212529;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+      }
+
+      /* Colore verde quando il mouse passa sopra le icone */
+      #heart-icon:hover i,
+      #download-icon:hover i,
+      #dots-icon:hover i,
+      #random-icon:hover i {
+        color: green;
+      }
+
+      /* Colore verde quando il mouse passa sopra il bottone con play */
+      #heart-icon:hover,
+      #download-icon:hover,
+      #dots-icon:hover,
+      #random-icon:hover,
+      #artist-link:hover {
+        background-color: #343a40;
+      }
+
+      .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #artist-image {
+        width: 50%;
+        padding: 1em;
+      }
+
+      .audio-player-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #121212;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        color: #fff;
+      }
+
+      .audio-player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .player-controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .control-button {
+        background-color: #1a1a1a;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .control-button:hover {
+        background-color: #333;
+      }
+
+      .audio-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      #track-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      #custom-player {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10%;
+      }
+      #controls {
+        display: flex;
+      }
+
+      #controls .btn {
+        border: none;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+        margin-left: 0.2em;
+      }
+
+      #controls .btn:hover {
+        background-color: #495057;
+      }
+
+      /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
           display: flex;
@@ -85,8 +215,30 @@
         .duration {
           display: none;
         }
-      }
 
+        #audio-player {
+          position: relative;
+          z-index: 10;
+          margin-bottom: 50px; /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
+        }
+
+        #custom-player {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10%;
+          margin-bottom: 70px; /* Questo garantisce che il player non si sovrapponga alla navbar */
+        }
+
+        .navbar.fixed-bottom {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 5; /* Assicurati che la navbar stia dietro al player */
+        }
+      }
+      /* Stile per layout su desktop */
       @media (min-width: 768px) {
         .track-info {
           display: grid;
@@ -161,21 +313,70 @@
 
         <div class="col-12 col-md-7">
           <div class="card bg-dark text-light">
-            <img id="artist-image" class="card-img-top" alt="Artist Image" />
-
+            <div class="image-container">
+              <img id="artist-image" class="card-img-top" alt="Artist Image" />
+            </div>
             <div class="card-body">
+              <h2 id="track-title" class="card-title"></h2>
+              <!-- Nuovo elemento h2 per il titolo del brano -->
               <h5 id="artist-name" class="card-title"></h5>
               <p class="card-text">
                 <strong>Fans:</strong> <span id="artist-fans"></span>
               </p>
-              <a
-                id="artist-link"
-                href="#"
-                target="_blank"
-                class="btn btn-success rounded-circle"
-              >
-                <i class="bi bi-play-fill fs-3 text-dark"></i>
-              </a>
+              <!-- Nuovo paragrafo per la data dell'album -->
+              <p id="album-date" class="card-text" style="display: none">
+                <strong>Data album:</strong> <span id="album-date-value"></span>
+              </p>
+
+              <!-- Aggiungi icone -->
+              <div class="d-flex justify-content-between">
+                <div>
+                  <a
+                    href="#"
+                    id="heart-icon"
+                    class="btn btn-light rounded-circle mx-2"
+                  >
+                    <i class="bi bi-heart fs-3"></i>
+                  </a>
+                  <a
+                    href="#"
+                    id="download-icon"
+                    class="btn btn-light rounded-circle mx-2"
+                  >
+                    <i class="bi bi-download fs-3"></i>
+                  </a>
+                  <a
+                    href="#"
+                    id="dots-icon"
+                    class="btn btn-light rounded-circle mx-2"
+                  >
+                    <i class="bi bi-three-dots-vertical fs-3"></i>
+                    <!-- Icona aggiornata -->
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href="#"
+                    id="random-icon"
+                    class="btn btn-light rounded-circle mx-2"
+                  >
+                    <i class="bi bi-shuffle fs-3"></i>
+                    <!-- Icona aggiornata -->
+                  </a>
+
+                  <a
+                    id="artist-link"
+                    href="#"
+                    target="_blank"
+                    class="btn btn-success rounded-circle"
+                  >
+                    <i
+                      class="bi bi-play-fill fs-3 text-dark"
+                      id="play-icon"
+                    ></i>
+                  </a>
+                </div>
+              </div>
             </div>
 
             <ol class="list-group list-group-flush">
@@ -288,7 +489,27 @@
 
     <div id="loading" class="text-center text-white">Caricamento...</div>
 
-    <audio id="audio-player" controls class="w-100 mt-3"></audio>
+    <div id="custom-player" class="player">
+      <div id="player-info">
+        <h5 id="track-title-player"></h5>
+        <!-- Titolo del brano da aggiornare -->
+      </div>
+      <div id="controls">
+        <button id="prev" class="btn btn-dark">
+          <i class="bi bi-skip-backward-fill fs-3 text-white"></i>
+          <!-- Icona precedente -->
+        </button>
+        <button id="play-pause" class="btn btn-dark">
+          <i class="bi bi-play-fill fs-3 text-white" id="play-icon"></i>
+          <!-- Icona play/pause -->
+        </button>
+        <button id="next" class="btn btn-dark">
+          <i class="bi bi-skip-forward-fill fs-3 text-white"></i>
+          <!-- Icona successiva -->
+        </button>
+      </div>
+    </div>
+
     <nav class="navbar fixed-bottom d-md-none bg-black border border-dark">
       <div class="container d-flex justify-content-around">
         <a class="nav-link text-light" href="#"
