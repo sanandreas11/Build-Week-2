@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameArtist = document.querySelector("#player-info small");
   const customPlayerImg = document.querySelector("#custom-player img");
   const mobileplayerName = document.getElementById("songMobile");
+
   let trackQueue = [];
   let currentTrackIndex = 0;
   let audio = new Audio();
@@ -96,16 +97,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="track-title">${track.title}</span>
           <span class="track-artist">${track.artist.name}</span>  
         </div>
-<div class="col-2 d-flex justify-content-end">
+        <div class="col-3 d-flex justify-content-end">
           <span class="track-rank">${track.rank}</span>
         </div>
-        <div class="col-2 d-flex justify-content-end">
+        <div class="col-3 d-flex justify-content-end">
           <span class="track-duration">${formatDuration(track.duration)}</span>
         </div>
       </div>
     `;
 
       topTracksList.appendChild(listItem);
+
+      // Aggiungi un evento di click per ogni traccia
+      listItem.addEventListener("click", () => playTrack(index));
     });
   }
 
@@ -115,46 +119,54 @@ document.addEventListener("DOMContentLoaded", () => {
       currentTrackIndex = index;
       const track = trackQueue[index];
 
-      // Imposta la sorgente del player audio e avvia la riproduzione
-      audio.src = track.preview;
-      audio.play();
-      isPlaying = true;
+      // Verifica se l'anteprima del brano è disponibile
+      if (track.preview) {
+        audio.src = track.preview;
+        audio.play();
+        isPlaying = true;
 
-      // Cambia l'icona di play/pause
-      document.getElementById(
-        "play-pause"
-      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
-      document.getElementById(
-        "play-pause-mobile"
-      ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
+        // Cambia l'icona di play/pause
+        document.getElementById(
+          "play-pause"
+        ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
+        document.getElementById(
+          "play-pause-mobile"
+        ).innerHTML = `<i class="bi bi-pause-fill fs-2  "></i>`;
 
-      // Aggiorna il titolo del brano nel player
-      document.getElementById("track-title").textContent = track.title;
+        // Aggiorna il titolo del brano nel player
+        document.getElementById("track-title").textContent = track.title;
 
-      // Aggiorna il titolo del brano nel player specifico
-      document.getElementById("track-title-player").textContent = track.title; // Nuova riga per aggiornare il titolo nel player
-      mobileplayerName.textContent = track.title;
-      // Rimuovi la classe 'active' da tutti gli elementi della lista
-      document.querySelectorAll(".list-group-item").forEach((item) => {
-        item.classList.remove("active");
-      });
+        // Aggiorna il titolo del brano nel player specifico
+        document.getElementById("track-title-player").textContent = track.title; // Nuova riga per aggiornare il titolo nel player
+        mobileplayerName.textContent = track.title;
 
-      // Aggiungi la classe 'active' al brano selezionato
-      topTracksList.children[index].classList.add("active");
+        // Rimuovi la classe 'active' da tutti gli elementi della lista
+        document.querySelectorAll(".list-group-item").forEach((item) => {
+          item.classList.remove("active");
+        });
 
-      // Passa alla traccia successiva quando il brano finisce
-      audio.addEventListener("ended", () => {
-        if (currentTrackIndex < trackQueue.length - 1) {
-          playTrack(currentTrackIndex + 1);
+        // Aggiungi la classe 'active' al brano selezionato
+        topTracksList.children[index].classList.add("active");
+
+        // Passa alla traccia successiva quando il brano finisce
+        audio.addEventListener("ended", () => {
+          if (currentTrackIndex < trackQueue.length - 1) {
+            playTrack(currentTrackIndex + 1);
+          }
+        });
+
+        // Gestione dell'immagine dell'album
+        if (track.album && track.album.cover_big) {
+          customPlayerImg.src = track.album.cover_big;
+        } else {
+          customPlayerImg.src = "./assets/imgs/main/image-3.jpg"; // Immagine di default
         }
-      });
-      if (track.album && track.album.cover_big) {
-        customPlayerImg.src = track.album.cover_big;
       } else {
-        customPlayerImg.src = "./assets/imgs/main/image-3.jpg"; // Immagine di default
+        console.error("Anteprima del brano non disponibile");
       }
     }
   }
+
   // Progress-bar player musicale
   audio.addEventListener("timeupdate", () => {
     const currentTime = audio.currentTime;
@@ -170,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("dur").textContent = formatTime(duration);
     }
   });
+
   // Formatta minuti e secondi
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);

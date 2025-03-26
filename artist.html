@@ -182,6 +182,7 @@
         align-items: center;
         margin-left: 10%;
       }
+
       #controls {
         display: flex;
       }
@@ -197,6 +198,19 @@
         background-color: #495057;
       }
 
+      .container {
+        font-size: small;
+      }
+
+      #liked {
+        margin-top: 7px !important;
+      }
+      #right-section-liked {
+        margin-top: 3em;
+      }
+      #right-section-liked p {
+        margin-bottom: 0;
+      }
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -205,14 +219,11 @@
           align-items: flex-start;
         }
 
-        .track-title {
-          font-size: 1rem;
-        }
-
         .track-artist {
           font-size: 0.875rem;
           color: white;
           margin-top: 5px;
+          text-align: center;
         }
 
         .three-dots {
@@ -222,6 +233,14 @@
 
         .track-artist {
           display: block;
+        }
+
+        /* Nascondi gli elementi su mobile */
+        .track-artist,
+        .track-rank,
+        .track-duration,
+        #liked {
+          display: none;
         }
 
         .rank,
@@ -251,6 +270,7 @@
           z-index: 5; /* Assicurati che la navbar stia dietro al player */
         }
       }
+
       /* Stile per layout su desktop */
       @media (min-width: 768px) {
         .track-info {
@@ -263,8 +283,9 @@
           text-align: center;
         }
 
+        /* Visibile solo su desktop */
         .track-artist {
-          display: none;
+          display: block;
         }
 
         .rank,
@@ -274,6 +295,11 @@
 
         .three-dots {
           text-align: center;
+        }
+
+        /* Mostra l'elemento #liked solo su desktop */
+        #liked {
+          display: block;
         }
       }
     </style>
@@ -392,11 +418,27 @@
               </div>
             </div>
 
-            <ol class="list-group list-group-flush bg-b">
-              <li class="list-group-item"><h6>Popolari</h6></li>
-              <li class="list-group-item" id="top-tracks"></li>
-              <li class="list-group-item"></li>
-            </ol>
+            <div class="container">
+              <div class="row">
+                <!-- Prima sezione (lista) -->
+                <div class="col-md-8">
+                  <ol class="list-group list-group-flush bg-b">
+                    <li class="list-group-item"><h6>Popolari</h6></li>
+                    <li class="list-group-item" id="top-tracks"></li>
+                    <li class="list-group-item"></li>
+                  </ol>
+                </div>
+
+                <!-- Seconda sezione (scritta e paragrafi) -->
+                <div class="col-md-4" id="liked">
+                  <h6 class="mt-0">Brani che ti piacciono</h6>
+                  <div id="right-section-liked">
+                    <p>hai messo mi piace a 11 brani</p>
+                    <span>inserisci titolo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
