@@ -79,9 +79,6 @@ function playTrack(index) {
     // Aggiorna il titolo del brano nel player
     document.getElementById("track-title-player").textContent = track.title
 
-    // Rimuove il loading quando si seleziona una canzone
-    document.getElementById("loading").classList.add("d-none")
-
     // Aggiorna il titolo del brano nel player specifico
     document.getElementById("track-title-player").textContent = track.title // Nuova riga per aggiornare il titolo nel player
 
