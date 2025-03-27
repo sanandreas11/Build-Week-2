@@ -4,22 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Album | Music App</title>
-    <link rel="stylesheet" href="./assets/style/mystile.css" />
-    <link rel="stylesheet" href="assets/css/index.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/YOUR_KIT_CODE.js"
-      crossorigin="anonymous"
-    ></script>
-    #
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./assets/style/mystile.css" />
     <style>
       .gradient-bg {
         background: linear-gradient(
@@ -50,6 +40,12 @@
 
       .sidebar-playlists:hover::-webkit-scrollbar {
         opacity: 1;
+      }
+      .shadow-text {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      .shadow-img {
+        box-shadow: 0px 3px 20px 2px rgba(0, 0, 0, 0.5);
       }
     </style>
   </head>
@@ -127,32 +123,47 @@
           </div>
         </div>
         <!-- La main di Album -->
-        <main class="col-md-8 col-sm-12 px-4">
-          <div id="album" class="d-flex flex-column flex-lg-row mt-3 ms-2">
-            <img id="album-cover" class="align-self-center mb-3" alt="" />
-            <div id="album-info">
-              <p class="d-none d-lg-block text-light ms-2">Album</p>
+        <main class="col-md-8 col-sm-12 m-0 p-0">
+          <div
+            id="album"
+            class="d-flex flex-column flex-lg-row"
+            style="background-color: rgb(175, 21, 175)"
+          >
+            <img
+              id="album-cover"
+              class="align-self-center align-self-md-end m-3 shadow-img"
+              style="width: 200px"
+              alt=""
+            />
+            <div
+              id="album-info"
+              class="align-self-start align-self-md-end mb-3 ms-3"
+            >
+              <p class="d-none d-lg-block text-light ms-2 shadow-text">Album</p>
               <h1
                 id="album-name"
-                class="align-self-start align-self-lg-end text-light order-lg-0 ms-2"
+                class="align-self-start align-self-lg-end text-light order-lg-0 ms-2 shadow-text"
               ></h1>
               <div id="artist" class="d-flex align-items-center mb-2">
                 <img
                   id="artist-img-sm"
-                  class="rounded-circle mx-2"
+                  class="rounded-circle mx-2 shadow-img"
                   src=""
                   alt=""
                 />
-                <div id="artist-name"></div>
+                <div id="artist-name" class="shadow-text"></div>
               </div>
-              <p class="text-light ms-2 order-lg-1 d-lg-none">
+              <p class="text-light ms-2 order-lg-1 d-lg-none shadow-text">
                 Album ·<span id="release-year"></span>
               </p>
             </div>
           </div>
           <div
             id="icons"
-            class="d-flex align-items-center justify-content-between justify-content-lg-start"
+            class="d-flex align-items-center justify-content-between justify-content-lg-start pt-4 pb-4 ps-4"
+            style="
+              background: linear-gradient(to top, #212529, rgb(144, 17, 144));
+            "
           >
             <div id="icons-1" class="ms-2 order-lg-1">
               <svg
@@ -233,8 +244,12 @@
           </article>
         </main>
         <!-- Sidebar Destra (Aside) -->
-        <aside class="col-md-2 d-none d-md-block activity-bar text-light">
-          <div class="d-flex justify-content-between align-items-center mb-3">
+        <aside
+          class="col-md-2 d-none d-md-block activity-bar text-light bg-black"
+        >
+          <div
+            class="d-flex justify-content-between align-items-center mb-3 mt-2"
+          >
             <h6 class="mb-0">Attività amici</h6>
             <div>
               <i class="bi bi-person-plus mx-2"></i>
