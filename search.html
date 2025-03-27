@@ -21,6 +21,22 @@
           rgba(0, 0, 0, 0.844),
           rgba(0, 0, 0, 0.721)
         );
+        li {
+          margin-top: 10px;
+          margin-left: 5px;
+        }
+
+        .sidebar-playlists::-webkit-scrollbar {
+          width: 8px;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+          scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+          scrollbar-width: thin;
+        }
+
+        .sidebar-playlists:hover::-webkit-scrollbar {
+          opacity: 1;
+        }
       }
     </style>
     <title>Search</title>
@@ -69,14 +85,43 @@
                 >
               </li>
             </ul>
+            <!-- playlists  (ricopiate nel vostro codice anche le classi dalla riga 26 a 41 "li" e "sidebar-playlists")-->
+            <div
+              class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
+              style="max-height: 500px"
+            >
+              <ul class="list-unstyled text-secondary small">
+                <li>early stage emily syndrome (sett-ott 2022)</li>
+                <li>Be The Young</li>
+                <li>"... cit. Kimiko (lug-ago 2022)</li>
+                <li>saggio vibes 🏋️‍♀️🎧</li>
+                <li>main character energy (mag-giu 2022)</li>
+                <li>that f***ing mood 🔪🖤</li>
+                <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
+                <li>An Emily Winchester kind of mood 🔪</li>
+                <li>landing page (mar-apr 2022)</li>
+                <li>2021 lol</li>
+                <li>
+                  cosa cavolo vuol dire questa affermazione (gen-feb 2022)
+                </li>
+                <li>honey and glass (nov-dic 2021)</li>
+                <li>(Revenge) Training Arc 🏋️</li>
+                <li>Lidia 💛 Emily</li>
+                <li>minecraft e nintendo switch (sep-oct 2021)</li>
+                <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
+                <li>Culo 2021</li>
+                <li>Frah Quintale Mix</li>
+                <li>Francesco Guccini Mix</li>
+              </ul>
+            </div>
           </nav>
         </div>
         <!-- Sezione centrale -->
         <div
-          class="col col-12 col-md-8 col-lg-8 sticky-top bg-black"
+          class="col col-12 col-md-8 col-lg-8 sticky-top bg-dark"
           id="search-bar"
         >
-          <div class="sticky-top bg-black">
+          <div class="sticky-top bg-dark">
             <a href="./search.html" class="text-decoration-none">
               <h1 class="text-light fw-bold pt-5 mb-3 text-center">Cerca</h1>
             </a>
@@ -86,7 +131,7 @@
                 data-bs-theme="dark"
                 id="search-input"
                 placeholder=" Cosa vuoi ascoltare?"
-                class="bg-dark form-control text-light fw-semibold mb-3 border-0"
+                class="bg-black form-control text-light fw-semibold mb-3 border-0"
                 aria-label="Search"
               />
               <div>
@@ -100,7 +145,7 @@
             </div>
             <h3 class="text-light text-center mb-4 pb-4">Sfoglia Tutto</h3>
           </div>
-          <div id="results" class="container mt-4 bg-black">
+          <div id="results" class="container mt-4 bg-dark">
             <div class="row g-4">
               <div class="col col-6 col-md-3">
                 <img
@@ -219,8 +264,14 @@
         </div>
         <!-- Barra Destra -->
         <aside class="col-md-2 d-none d-md-block activity-bar text-light">
-          <div class="sticky-top pt-3">
-            <h5>Attività amici</h5>
+          <div class="sticky-top mt-2">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0">Attività amici</h6>
+              <div>
+                <i class="bi bi-person-plus mx-2"></i>
+                <i class="bi bi-x"></i>
+              </div>
+            </div>
 
             <div
               class="card mb-3"
@@ -234,19 +285,28 @@
                     src="./assets/imgs/search/image-30.jpg"
                     class="img-fluid rounded-circle"
                     alt="Charlie"
-                    style="width: 30px; height: 30px"
+                    style="width: 30px; height: 30px; margin-right: 5px"
                   />
                 </div>
-                <div class="col-9">
+                <div class="col-9 d-flex flex-column justify-content-center">
                   <div class="card-body p-1">
                     <h6
-                      class="card-title text-light"
-                      style="font-size: 14px; margin-bottom: 5px"
+                      class="card-title text-light d-flex justify-content-between"
+                      style="font-size: 12px; margin-bottom: 5px"
                     >
-                      Charlie
+                      Charlie Hooknam
+                      <span class="text-secondary" style="font-size: 10px"
+                        >4 ore</span
+                      >
                     </h6>
-                    <p class="card-text text-light" style="font-size: 12px">
-                      In Camera - Yumi Zouma
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      In Camera · Yumi Zouma
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-disc"></i> EP III
                     </p>
                   </div>
                 </div>
@@ -265,19 +325,28 @@
                     src="./assets/imgs/search/image-29.jpg"
                     class="img-fluid rounded-circle"
                     alt="Lightdark02"
-                    style="width: 30px; height: 30px"
+                    style="width: 30px; height: 30px; margin-right: 5px"
                   />
                 </div>
-                <div class="col-9">
+                <div class="col-9 d-flex flex-column justify-content-center">
                   <div class="card-body p-1">
                     <h6
-                      class="card-title text-light"
+                      class="card-title text-light d-flex justify-content-between"
                       style="font-size: 14px; margin-bottom: 5px"
                     >
                       Lightdark02
+                      <span class="text-secondary" style="font-size: 10px"
+                        >8 ore</span
+                      >
                     </h6>
-                    <p class="card-text text-light" style="font-size: 12px">
-                      Aimed to Kill-Jade LeMac
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      Aimed to Kill · Jade LeMac
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-disc"></i> Aimed to Kill
                     </p>
                   </div>
                 </div>
@@ -296,19 +365,28 @@
                     src="./assets/imgs/search/image-38.jpg"
                     class="img-fluid rounded-circle"
                     alt="Valeria"
-                    style="width: 30px; height: 30px"
+                    style="width: 30px; height: 30px; margin-right: 5px"
                   />
                 </div>
-                <div class="col-9">
+                <div class="col-9 d-flex flex-column justify-content-center">
                   <div class="card-body p-1">
                     <h6
-                      class="card-title text-light"
+                      class="card-title text-light d-flex justify-content-between"
                       style="font-size: 14px; margin-bottom: 5px"
                     >
                       Valeria
+                      <span class="text-secondary" style="font-size: 10px"
+                        >3 giorni</span
+                      >
                     </h6>
-                    <p class="card-text text-light" style="font-size: 12px">
-                      New Kings-Sleeping Wolf
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      New Kings · Sleeping Wolf
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-music-note"></i>Twint Badass mood
                     </p>
                   </div>
                 </div>
@@ -371,7 +449,9 @@
       </div>
     </div>
     <!-- Navbar desktop -->
-    <div class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block">
+    <div
+      class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block border-top border-secondary"
+    >
       <div class="row align-items-center">
         <div class="col col-2 d-flex justify-content-center align-items-center">
           <img
