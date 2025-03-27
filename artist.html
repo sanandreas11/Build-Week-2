@@ -110,7 +110,8 @@
 
       /* Stile per le icone */
       #heart-icon i,
-      #download-icon i,
+      #followers-icon button,
+      #followers-icon2 button,
       #dots-icon i,
       #random-icon i {
         color: white;
@@ -119,7 +120,8 @@
 
       /* Stile per i bottoni con icone */
       #heart-icon,
-      #download-icon,
+      #followers-icon,
+      #followers-icon2,
       #dots-icon,
       #random-icon,
       #artist-link,
@@ -132,15 +134,17 @@
 
       /* Colore verde quando il mouse passa sopra le icone */
       #heart-icon:hover i,
-      #download-icon:hover i,
-      #dots-icon:hover i,
+      #followers-icon:hover button,
+      #followers-icon2:hover button,
+      button #dots-icon:hover i,
       #random-icon:hover i {
         color: green;
       }
 
       /* Colore verde quando il mouse passa sopra il bottone con play */
       #heart-icon:hover,
-      #download-icon:hover,
+      #followers-icon:hover,
+      #followers-icon2:hover,
       #dots-icon:hover,
       #random-icon:hover,
       #artist-link:hover {
@@ -309,6 +313,12 @@
           right: 0;
           z-index: 5; /* Assicurati che la navbar stia dietro al player */
         }
+        #heart-icon {
+          display: none;
+        }
+        #followers-icon2 {
+          display: none;
+        }
       }
 
       /* Stile per layout su desktop */
@@ -340,6 +350,9 @@
         /* Mostra l'elemento #liked solo su desktop */
         #liked {
           display: block;
+        }
+        #nodesktop {
+          display: none;
         }
       }
     </style>
@@ -457,7 +470,7 @@
           </div>
           <!-- Aggiungi icone -->
           <div class="d-flex justify-content-between">
-            <div>
+            <div id="nodesktop">
               <a
                 href="#"
                 id="heart-icon"
@@ -467,10 +480,10 @@
               </a>
               <a
                 href="#"
-                id="download-icon"
+                id="followers-icon"
                 class="btn btn-light rounded-circle mx-2"
               >
-                <i class="bi bi-download fs-3"></i>
+                <button class="border-light">seguiti</button>
               </a>
               <a
                 href="#"
@@ -498,6 +511,13 @@
                 class="btn btn-success rounded-circle"
               >
                 <i class="bi bi-play-fill fs-3 text-dark" id="play-icon"></i>
+              </a>
+              <a
+                href="#"
+                id="followers-icon2"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <button class="border-light">seguiti</button>
               </a>
             </div>
           </div>
