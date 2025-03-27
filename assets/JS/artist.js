@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     trackQueue.forEach((track, index) => {
       const listItem = document.createElement("li");
       listItem.className =
-        "list-group-item bg-dark text-white border-secondary";
+        "list-group-item bg-dark text-white border-secondary ";
       const albumImage = track.album ? track.album.cover_small : "";
 
       listItem.innerHTML = `
