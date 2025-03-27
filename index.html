@@ -28,6 +28,13 @@
             margin-left: 5px;
         }
 
+        .sidebar-playlists li:hover {
+            color: white !important;
+            transition: color 0.3s ease-in-out;
+            cursor: pointer;
+
+        }
+
         .sidebar-playlists::-webkit-scrollbar {
             width: 8px;
             opacity: 0;
@@ -38,6 +45,12 @@
 
         .sidebar-playlists:hover::-webkit-scrollbar {
             opacity: 1;
+
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transition: color 0.3s ease-in-out;
         }
     </style>
 
@@ -46,43 +59,52 @@
 <body class="my-3 bg-dark">
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar (Sinistra) -->
+            <!-- Sidebar (Sinistra) (ricopiare anche class .nav-link:hover) -->
             <div class="col-md-2 d-none d-md-block sidebar">
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="bi bi-three-dots"></i></a>
+                            <a class="nav-link text-secondary" href="#"><i class="bi bi-three-dots "></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fw-bold" href="#"><i class="bi bi-house-door"></i> Home</a>
+                            <a class="nav-link text-secondary" href="#"><i class="bi bi-house text-secondary"></i>
+                                Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="./search.html"><i class="bi bi-search"></i> Cerca</a>
+                            <a class="nav-link text-secondary" href="./search.html"><i
+                                    class="bi bi-search text-secondary"></i>
+                                Cerca</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="bi bi-music-note-list"></i> La tua
+                            <a class="nav-link text-secondary" href="#"><i
+                                    class="bi bi-collection-play text-secondary "></i> La
+                                tua
                                 libreria</a>
                         </li>
 
                         <ul class="nav flex-column">
 
 
-                            <li class="nav-item mt-3">
-                                <a class="nav-link text-light" href="#"><i class="bi bi-plus-circle"></i> Crea
+                            <li class="nav-item mt-5">
+                                <a class="nav-link text-secondary" href="#"><i
+                                        class="bi bi-plus-circle text-secondary"></i> Crea
                                     playlist</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#"><i class="bi bi-heart"></i> Brani che ti
+                                <a class="nav-link text-secondary" href="#"><i class="bi bi-heart text-secondary"></i>
+                                    Brani che ti
                                     piacciono</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#"><i class="bi bi-file-earmark-music"></i> I tuoi
+                                <a class="nav-link text-secondary" href="#"><i
+                                        class="bi bi-collection-play text-secondary"></i>
+                                    I tuoi
                                     episodi</a>
                             </li>
                         </ul>
                 </nav>
 
-                <!-- playlists  (ricopiate nel vostro codice anche le classi dalla riga 26 a 41 "li" e "sidebar-playlists")-->
+                <!-- playlists  (ricopiate nel vostro codice anche le classi dalla riga 26 a 49 "li" e "sidebar-playlists")-->
                 <div class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
                     style="max-height: 500px;">
                     <ul class="list-unstyled text-secondary small">
