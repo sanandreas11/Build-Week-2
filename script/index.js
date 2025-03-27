@@ -53,10 +53,10 @@ listaAlbumSez2.forEach((albumId) => {
             col.classList.add("col-6", "col-md-4", "p-1")
 
             col.innerHTML = `
-                <div class="card fs-2 clickable-card" style="background-color:rgb(43, 42, 42);height:70px;" data-album-id="${data.id}">
+                <div class="card fs-2 mx-2 rounded-1 clickable-card" style="background-color:rgb(43, 42, 42);height:70px;" data-album-id="${data.id}">
                     <div class="row g-0 h-100">
                         <div class="col-4 h-100">
-                            <img src="${data.cover_medium}" class="img-fluid rounded-start  w-100 h-100" alt="${data.title}">
+                            <img src="${data.cover_medium}" class="img-fluid w-100 h-100 rounded-1 " alt="${data.title}">
                         </div>
                         <div class="col-8">
                             <div class="card-body fs-2 d-flex align-items-center">
