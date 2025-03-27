@@ -25,16 +25,23 @@ const getAlbumDetails = function () {
       const artistCover = document.getElementById("artist-img-sm")
       const albumName = document.getElementById("album-name")
       const artistName = document.getElementById("artist-name")
-      const releaseYear = document.querySelectorAll(".release-year")
+      const releaseYear = document.getElementById("release-year")
+      // let sum = 0
+      // for (let i = 0; i < data.tracks.data.length; i++) {
+      //   sum + data.tracks.data.duration
+      //   return sum
+      // }
       albumCover.setAttribute("src", data.cover) //Funziona
       artistCover.setAttribute("src", data.artist.picture_small)
       albumName.innerText = data.title //funziona
-      artistName.innerText = data.artist.name //funziona
-      artistName.setAttribute(
-        "href",
-        "./artist.html?artistId=" + data.artist.id
-      )
-      releaseYear[(0, 1)].innerText = " " + data.release_date.slice(0, 4) //funziona
+      artistName.innerHTML = `<a class='text-decoration-none text-light d-flex' href='./artist.html?artistId=${
+        data.artist.id
+      }'>
+      ${data.artist.name}
+      <span class="d-none d-lg-block">· ${data.release_date.slice(0, 4)} · ${
+        data.tracks.data.length
+      } brani · </span></a>`
+      releaseYear.innerText = " " + data.release_date.slice(0, 4) //funziona
       console.log(data.tracks.data)
       console.log(data)
       const tracklist = document.getElementById("tracklist")
