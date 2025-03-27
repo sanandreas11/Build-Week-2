@@ -16,7 +16,7 @@ fetch(searchUrl + albumPlayerId)
 
         // Modifica l'immagine dell'album
         let playerImage = document.getElementById("player-image")
-        playerImage.src = data.cover_big
+        playerImage.src = data.cover_medium
 
         // Aggiorna anche il nome dell'artista nello span
         let artistName = document.getElementById("artist-name")
@@ -53,13 +53,13 @@ listaAlbumSez2.forEach((albumId) => {
             col.classList.add("col-6", "col-md-4", "p-1")
 
             col.innerHTML = `
-                <div class="card fs-2 bg-dark  clickable-card" data-album-id="${data.id}">
+                <div class="card fs-2 clickable-card" style="background-color:rgb(43, 42, 42);height:70px;" data-album-id="${data.id}">
                     <div class="row g-0 h-100">
                         <div class="col-4 h-100">
-                            <img src="${data.cover_big}" class="img-fluid rounded-start  w-100 h-100" alt="${data.title}">
+                            <img src="${data.cover_medium}" class="img-fluid rounded-start  w-100 h-100" alt="${data.title}">
                         </div>
                         <div class="col-8">
-                            <div class="card-body fs-2">
+                            <div class="card-body fs-2 d-flex align-items-center">
                                 <h5 class="card-title fs-6 fw-bold text-light">${data.title}</h5>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ listaAlbumSez3.forEach((albumId) => {
             col2.classList.add("px-2");
 
             col2.innerHTML = `
-    <div class="col p-2 border border-1 border-dark rounded-2 bg-dark clickable-card" data-album-id="${data.id}" style="height: auto;">
+    <div class="col p-2 border border-1 border-dark rounded-2 clickable-card" data-album-id="${data.id}" style="height: auto;background-color:rgb(29, 29, 29);">
         <div class="row flex-md-column">
             <div class="col w-100">
                 <img class="rounded-2" src="${data.cover_big}" 
@@ -182,4 +182,9 @@ function getNumberOfTracksString(album) {
     }
 }
 
-
+//codice bottoni icone aside 
+document.querySelectorAll('.btn-friends').forEach(button => {
+    button.addEventListener('click', function () {
+        this.classList.toggle('focused');
+    });
+});
