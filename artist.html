@@ -46,6 +46,22 @@
         object-position: center !important;
         padding: 0 !important;
       }
+      li {
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      .sidebar-playlists::-webkit-scrollbar {
+        width: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+        scrollbar-width: thin;
+      }
+
+      .sidebar-playlists:hover::-webkit-scrollbar {
+        opacity: 1;
+      }
 
       .text-shadow {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -371,6 +387,34 @@
                 >
               </li>
             </ul>
+            <div
+              class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
+              style="max-height: 500px"
+            >
+              <ul class="list-unstyled text-secondary small">
+                <li>early stage emily syndrome (sett-ott 2022)</li>
+                <li>Be The Young</li>
+                <li>"... cit. Kimiko (lug-ago 2022)</li>
+                <li>saggio vibes 🏋️‍♀️🎧</li>
+                <li>main character energy (mag-giu 2022)</li>
+                <li>that f***ing mood 🔪🖤</li>
+                <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
+                <li>An Emily Winchester kind of mood 🔪</li>
+                <li>landing page (mar-apr 2022)</li>
+                <li>2021 lol</li>
+                <li>
+                  cosa cavolo vuol dire questa affermazione (gen-feb 2022)
+                </li>
+                <li>honey and glass (nov-dic 2021)</li>
+                <li>(Revenge) Training Arc 🏋️</li>
+                <li>Lidia 💛 Emily</li>
+                <li>minecraft e nintendo switch (sep-oct 2021)</li>
+                <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
+                <li>Culo 2021</li>
+                <li>Frah Quintale Mix</li>
+                <li>Francesco Guccini Mix</li>
+              </ul>
+            </div>
           </nav>
         </div>
 
@@ -483,99 +527,135 @@
           </div>
         </div>
 
+        <!-- Barra Destra -->
         <aside
-          class="col-md-2 d-none d-md-block activity-bar bg-black text-light"
+          class="col-md-2 d-none d-md-block activity-bar text-light bg-black"
         >
-          <h5>Attività amici</h5>
-
-          <div
-            class="card mb-3"
-            style="max-width: 300px; border: none; background-color: #343a40"
-          >
-            <div class="row g-0">
-              <div
-                class="col-3 d-flex justify-content-center align-items-center"
-              >
-                <img
-                  src="./assets/imgs/search/image-30.jpg"
-                  class="img-fluid rounded-circle"
-                  alt="Charlie"
-                  style="width: 30px; height: 30px"
-                />
+          <div class="sticky-top mt-2">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0">Attività amici</h6>
+              <div>
+                <i class="bi bi-person-plus mx-2"></i>
+                <i class="bi bi-x"></i>
               </div>
-              <div class="col-9">
-                <div class="card-body p-1">
-                  <h6
-                    class="card-title text-light"
-                    style="font-size: 14px; margin-bottom: 5px"
-                  >
-                    Charlie
-                  </h6>
-                  <p class="card-text text-light" style="font-size: 12px">
-                    In Camera - Yumi Zouma
-                  </p>
+            </div>
+
+            <div
+              class="card mb-3"
+              style="max-width: 300px; border: none; background-color: #343a40"
+            >
+              <div class="row g-0">
+                <div
+                  class="col-3 d-flex justify-content-center align-items-center"
+                >
+                  <img
+                    src="./assets/imgs/search/image-30.jpg"
+                    class="img-fluid rounded-circle"
+                    alt="Charlie"
+                    style="width: 30px; height: 30px; margin-right: 5px"
+                  />
+                </div>
+                <div class="col-9 d-flex flex-column justify-content-center">
+                  <div class="card-body p-1">
+                    <h6
+                      class="card-title text-light d-flex justify-content-between"
+                      style="font-size: 12px; margin-bottom: 5px"
+                    >
+                      Charlie Hooknam
+                      <span class="text-secondary" style="font-size: 10px"
+                        >4 ore</span
+                      >
+                    </h6>
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      In Camera · Yumi Zouma
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-disc"></i> EP III
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="card mb-3"
-            style="max-width: 300px; border: none; background-color: #343a40"
-          >
-            <div class="row g-0">
-              <div
-                class="col-3 d-flex justify-content-center align-items-center"
-              >
-                <img
-                  src="./assets/imgs/search/image-29.jpg"
-                  class="img-fluid rounded-circle"
-                  alt="Lightdark02"
-                  style="width: 30px; height: 30px"
-                />
-              </div>
-              <div class="col-9">
-                <div class="card-body p-1">
-                  <h6
-                    class="card-title text-light"
-                    style="font-size: 14px; margin-bottom: 5px"
-                  >
-                    Lightdark02
-                  </h6>
-                  <p class="card-text text-light" style="font-size: 12px">
-                    Aimed to Kill-Jade LeMac
-                  </p>
+            <div
+              class="card mb-3"
+              style="max-width: 300px; border: none; background-color: #343a40"
+            >
+              <div class="row g-0">
+                <div
+                  class="col-3 d-flex justify-content-center align-items-center"
+                >
+                  <img
+                    src="./assets/imgs/search/image-29.jpg"
+                    class="img-fluid rounded-circle"
+                    alt="Lightdark02"
+                    style="width: 30px; height: 30px; margin-right: 5px"
+                  />
+                </div>
+                <div class="col-9 d-flex flex-column justify-content-center">
+                  <div class="card-body p-1">
+                    <h6
+                      class="card-title text-light d-flex justify-content-between"
+                      style="font-size: 14px; margin-bottom: 5px"
+                    >
+                      Lightdark02
+                      <span class="text-secondary" style="font-size: 10px"
+                        >8 ore</span
+                      >
+                    </h6>
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      Aimed to Kill · Jade LeMac
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-disc"></i> Aimed to Kill
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="card mb-3"
-            style="max-width: 300px; border: none; background-color: #343a40"
-          >
-            <div class="row g-0">
-              <div
-                class="col-3 d-flex justify-content-center align-items-center"
-              >
-                <img
-                  src="./assets/imgs/search/image-38.jpg"
-                  class="img-fluid rounded-circle"
-                  alt="Valeria"
-                  style="width: 30px; height: 30px"
-                />
-              </div>
-              <div class="col-9">
-                <div class="card-body p-1">
-                  <h6
-                    class="card-title text-light"
-                    style="font-size: 14px; margin-bottom: 5px"
-                  >
-                    Valeria
-                  </h6>
-                  <p class="card-text text-light" style="font-size: 12px">
-                    New Kings-Sleeping Wolf
-                  </p>
+            <div
+              class="card mb-3"
+              style="max-width: 300px; border: none; background-color: #343a40"
+            >
+              <div class="row g-0">
+                <div
+                  class="col-3 d-flex justify-content-center align-items-center"
+                >
+                  <img
+                    src="./assets/imgs/search/image-38.jpg"
+                    class="img-fluid rounded-circle"
+                    alt="Valeria"
+                    style="width: 30px; height: 30px; margin-right: 5px"
+                  />
+                </div>
+                <div class="col-9 d-flex flex-column justify-content-center">
+                  <div class="card-body p-1">
+                    <h6
+                      class="card-title text-light d-flex justify-content-between"
+                      style="font-size: 14px; margin-bottom: 5px"
+                    >
+                      Valeria
+                      <span class="text-secondary" style="font-size: 10px"
+                        >3 giorni</span
+                      >
+                    </h6>
+                    <p
+                      class="card-text text-light"
+                      style="font-size: 10px; margin-bottom: 5px"
+                    >
+                      New Kings · Sleeping Wolf
+                    </p>
+                    <p class="mb-0 text-secondary" style="font-size: 10px">
+                      <i class="bi bi-music-note"></i>Twint Badass mood
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -588,7 +668,7 @@
     <!-- player descktop -->
     <div
       id="custom-player"
-      class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block"
+      class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block border-top border-secondary"
     >
       <div class="row align-items-center">
         <div class="col col-2 d-flex justify-content-center align-items-center">
