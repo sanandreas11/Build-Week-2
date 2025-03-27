@@ -261,8 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-//Naviga verso una pagina "VISUALIZZA TUTTO"
+//Naviga verso una pagina
 document.getElementById("view-more").addEventListener("click", function () {
   window.location.href = "artist.html?artistId=17#"
 })
