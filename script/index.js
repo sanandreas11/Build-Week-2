@@ -85,7 +85,7 @@ document.getElementById("view-more").addEventListener("click", function () {
 
 
 //codice per generare dinamicamente card sezione 3
-let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792];
+let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792,];
 
 const container2 = document.getElementById("sezione3");
 container2.classList.add("row", "g-3", "d-flex", "justify-content-around", "flex-wrap");
@@ -129,8 +129,8 @@ listaAlbumSez3.forEach((albumId) => {
             </div>
 
             <!-- Numero tracce -->
-            <div class="col-2 d-flex justify-content-center">
-                <p class="text-light fs-6 fw-bold m-0">
+            <div class="col-4 d-flex justify-content-center">
+                <p class="text-light fs-6 m-0">
                     ${getNumberOfTracksString(data)}
                 </p>
             </div>
@@ -182,9 +182,3 @@ function getNumberOfTracksString(album) {
     }
 }
 
-//codice bottoni icone aside 
-document.querySelectorAll('.btn-friends').forEach(button => {
-    button.addEventListener('click', function () {
-        this.classList.toggle('focused');
-    });
-});
