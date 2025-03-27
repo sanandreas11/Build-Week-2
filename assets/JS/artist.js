@@ -87,11 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
       listItem.innerHTML = `
       <div class="row align-items-center">
         <div class="col-2 d-flex justify-content-center">
-          ${
-            albumImage
-              ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
-              : ""
-          }
+          ${albumImage
+          ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
+          : ""
+        }
         </div>
         <div class="col-4 d-flex flex-column gap-2">
           <span class="track-title">${track.title}</span>
@@ -261,3 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+//Naviga verso una pagina "VISUALIZZA TUTTO"
+document.getElementById("view-more").addEventListener("click", function () {
+  window.location.href = "artist.html?artistId=17#"
+})
