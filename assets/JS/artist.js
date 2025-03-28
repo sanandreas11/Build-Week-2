@@ -81,21 +81,24 @@ document.addEventListener("DOMContentLoaded", () => {
     trackQueue.forEach((track, index) => {
       const listItem = document.createElement("li");
       listItem.className =
-        "list-group-item bg-dark text-white border-secondary";
+        "list-group-item bg-dark text-white border-secondary ";
       const albumImage = track.album ? track.album.cover_small : "";
 
       listItem.innerHTML = `
       <div class="row align-items-center">
-        <div class="col-2 d-flex justify-content-center">
+        <div class="col-4 col-md-2 d-flex justify-content-center">
           ${
             albumImage
               ? `<img src="${albumImage}" alt="Album Image" class="img-fluid">`
               : ""
           }
         </div>
-        <div class="col-4 d-flex flex-column gap-2">
+        <div class="col-6 col-md-4 d-flex flex-column gap-2">
           <span class="track-title">${track.title}</span>
           <span class="track-artist">${track.artist.name}</span>  
+        </div>
+        <div class="col-2 text-light d-flex justify-content-end d-md-none">
+          <span <i class="bi bi-three-dots-vertical fs-5"></i></span>
         </div>
         <div class="col-3 d-flex justify-content-end">
           <span class="track-rank">${track.rank}</span>
@@ -279,3 +282,8 @@ fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=pop")
     });
   })
   .catch((error) => console.error("Errore:", error));
+
+//Naviga verso una pagina
+document.getElementById("view-more").addEventListener("click", function () {
+  window.location.href = "artist.html?artistId=17#";
+});

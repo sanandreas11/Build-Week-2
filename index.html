@@ -28,6 +28,23 @@
             margin-left: 5px;
         }
 
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+        }
+
+        .nav-link i {
+            color: inherit;
+            transition: color 0.3s ease-in-out;
+        }
+
         li:hover,
         li i:hover {
             color: white !important;
@@ -49,19 +66,60 @@
 
         }
 
-        .nav-link:hover {
+        .card-friends:focus {
+            outline: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            transition: box-shadow 0.3s ease;
+        }
+
+
+        .card-friends:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            transition: box-shadow 0.3s ease;
+        }
+
+
+        .btn-friends:hover {
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+            border: 1px solid #fff;
+            transition: box-shadow 0.3s ease, border 0.3s ease;
+        }
+
+        .btn-friends.focused {
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            border: 1px solid #fff;
+
+        }
+
+
+        .nav-link:hover,
+        .nav-link:hover i {
             color: white !important;
             transition: color 0.3s ease-in-out;
+        }
+
+        .spacing-footer {
+            margin-top: 100px;
+        }
+
+        .logoSpotify {
+            width: 100px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            position: relative;
+            top: -10px;
+
+
         }
     </style>
 
 </head>
 
-<body class="my-3 bg-dark">
+<body class="my-3 bg-black">
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar (Sinistra) (ricopiare anche class .nav-link:hover) -->
-            <div class="col-md-2 d-none d-md-block sidebar">
+            <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
+            <div class="col-md-2 d-none d-md-block sidebar bg-black">
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -105,8 +163,8 @@
                         </ul>
                 </nav>
 
-                <!-- playlists  (ricopiate nel vostro codice anche le classi dalla riga 26 a 49 "li" e "sidebar-playlists")-->
-                <div class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
+                <!-- playlists  (ricopiate nel vostro codice anche le classi da "li" a ".nav-link:hover i")-->
+                <div class="sidebar-playlists d-none d-lg-block text-light mt-5 mx-2 fs-6 border-top border-secondary pt-2 overflow-auto"
                     style="max-height: 500px;">
                     <ul class="list-unstyled text-secondary small">
                         <li>early stage emily syndrome (sett-ott 2022)</li>
@@ -138,12 +196,13 @@
 
 
             <!-- Contenuto Principale (Centro) -->
-            <main class="col-md-8 col-sm-12 px-4" style="background-color: #171717" ;>
+            <main class="col-md-8 col-sm-12 px-4" style="background: linear-gradient(90deg, #0e0d0d,#1d1d1d);">
                 <div>
                     <div class="album-header d-none d-md-block">
-                        <div class="card d-flex flex-column rounded-0" style="background-color:#171717" id="sez1">
-                            <div class="row g-0">
-                                <div class="col-4">
+                        <div class="card d-flex flex-column rounded-0"
+                            style="background: linear-gradient(90deg, #000000, #1f1e1e)" id="sez1">
+                            <div class="row g-1 align-items-center">
+                                <div class="col-3">
                                     <img id="player-image" src="..." class="img-fluid rounded-0" alt="...">
                                 </div>
                                 <div class="col-8 d-flex flex-column">
@@ -153,20 +212,21 @@
                                         <p>Ascolta il nuovo singolo di <span id="artist-name"></span>
                                         </p>
                                     </div>
-                                    <div class="mt-auto">
+                                    <div class="mt-auto my-2">
                                         <!-- Pulsante Play -->
-                                        <button class="btn btn-primary rounded-pill px-4 py-2 fw-bold fs-5 mx-3"
+                                        <button class="btn btn-primary rounded-pill px-4 py-2 fw-bold fs-5 mx-3 my-3"
                                             id="playCard">
                                             <span class="me-2 justify-content-center"></span>Play
                                         </button>
 
                                         <!-- Pulsante Salva -->
-                                        <button class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold fs-5 mx-2">
+                                        <button
+                                            class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold fs-5 mx-2 my-3">
                                             <span class="me-2 justify-content-center"></span>Salva
                                         </button>
 
                                         <!-- Pulsante con i tre puntini -->
-                                        <button class="btn mx-1 text-light mx-1">
+                                        <button class="btn mx-1 text-light mx-1 my-3">
                                             <i class="bi bi-three-dots fs-5"></i>
                                         </button>
                                     </div>
@@ -198,10 +258,11 @@
 
                     <!-- Sezione 3 -->
                     <div id="sez3" class="mt-1 mb-2">
-                        <h2 class="my-3 text-white">Altro di ciò che ti piace</h2>
-                        <div class="text-end mt-4 mb-3 d-none d-md-block">
-                            <span id="view-more" class="text-light" style="cursor: pointer;">
-                                VISUALIZZA ALTRO
+                        <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+                            <h2 class="text-white fs-4 mb-0">Altro di ciò che ti piace</h2>
+                            <span id="view-more" class="text-secondary d-none d-md-block"
+                                style="cursor: pointer; padding-right: 15px;">
+                                VISUALIZZA TUTTO
                             </span>
                         </div>
                         <div class="container">
@@ -210,7 +271,163 @@
                         </div>
                     </div>
                 </div>
+                <div class="spacing-footer">
+                    <footer class="footer d-none d-md-block mt-5">
+                        <div class="container">
+                            <div class="row text-center text-md-start">
+
+
+
+                                <!-- Sezione completa del footer visibile solo su dispositivi medi e più grandi -->
+                                <div class="col-md-3 mb-3 text-center d-none d-md-block">
+                                    <img class="logoSpotify" src="./assets/imgs/logo.svg" alt="">
+                                </div>
+                                <!-- Sezione Links -->
+                                <div class="col-md-3 mb-3 ">
+                                    <h6 class="text-light">Azienda</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="secondary"><a href="#">Chi siamo</a></li>
+                                        <li class="secondary"><a href="#">Lavora con noi</a></li>
+                                        <li class="secondary"><a href="#">For the Record</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-3 mb-3 ">
+                                    <h6 class="text-light">Community</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="secondary"><a href="#">Artisti</a></li>
+                                        <li class="secondary"><a href="#">Sviluppatori</a></li>
+                                        <li class="secondary"><a href="#">Pubblicità</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-3 mb-3 ">
+                                    <h6 class="text-light">Supporto</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="secondary"><a href="#">Assistenza</a></li>
+                                        <li class="secondary"><a href="#">App per dispositivi</a></li>
+                                        <li class="secondary"><a href="#">Termini e privacy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <hr class="border-secondary">
+
+                            <div class="row text-center">
+                                <div class="col-md-6 text-md-center">
+                                    <p class="mb-0 text-secondary">&copy; <span id="date-year"> </span> Spotify Clone.
+                                        Tutti
+                                        i
+                                        diritti
+                                        riservati.</p>
+                                </div>
+                                <div class="col-md-6 text-md-end social-icons">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- Sezione logo visibile solo su mobile -->
+                    <div class="col-12 d-block d-md-none  text-center">
+                        <img style="width: 120px; height:100px" class="logoSpotify" src="./assets/imgs/logo.svg" alt="">
+                    </div>
+                </div>
             </main>
+
+            <!-- Sidebar Destra (Aside) -->
+            <aside class="col-md-2 d-none d-md-block activity-bar text-light bg-black">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="mb-0">Attività amici</h6>
+                    <div>
+                        <button class="btn-friends btn btn-link p-0 text-light" id="person-plus">
+                            <i class="bi bi-person-plus mx-2"></i>
+                        </button>
+
+                        <button class=" btn-friends btn btn-link p-0 text-light" id="x-icon">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class=" card-friends card mb-3"
+                    style="max-width: 300px; border: none; background-color:rgb(43, 42, 42);" tabindex="0">
+                    <div class="row g-0">
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img src="./assets/imgs/search/image-30.jpg" class="img-fluid rounded-circle" alt="Charlie"
+                                style="width: 30px; height: 30px; margin-right: 5px;">
+                        </div>
+                        <div class="col-9 d-flex flex-column justify-content-center">
+                            <div class="card-body p-1">
+                                <h6 class="card-title text-light d-flex justify-content-between"
+                                    style="font-size: 12px; margin-bottom: 5px;">Charlie Hooknam
+                                    <span class="text-secondary d-none d-lg-inline" style="font-size: 10px;">4
+                                        ore</span>
+                                </h6>
+                                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px;">In Camera ·
+                                    Yumi Zouma</p>
+                                <p class="mb-0 text-secondary" style="font-size: 10px;"><i class="bi bi-disc"></i> EP
+                                    III</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-friends card mb-3"
+                    style="max-width: 300px; border: none;background-color:rgb(43, 42, 42);" tabindex="0">
+                    <div class="row g-0">
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img src="./assets/imgs/search/image-29.jpg" class="img-fluid rounded-circle"
+                                alt="Lightdark02" style="width: 30px; height: 30px; margin-right: 5px;">
+                        </div>
+                        <div class="col-9  d-flex flex-column justify-content-center">
+                            <div class="card-body p-1">
+                                <h6 class="card-title text-light d-flex justify-content-between"
+                                    style="font-size: 14px; margin-bottom: 5px;">
+                                    Lightdark02 <span class="text-secondary d-none d-lg-inline"
+                                        style="font-size: 10px;">8 ore</span></h6>
+                                <p class="card-text text-light" style="font-size: 10px; margin-bottom:5px;">Aimed to
+                                    Kill
+                                    · Jade LeMac</p>
+                                <p class="mb-0 text-secondary" style="font-size: 10px;"><i class="bi bi-disc"></i> Aimed
+                                    to Kill</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-friends card mb-3"
+                    style="max-width: 300px; border: none;background-color:rgb(43, 42, 42);" tabindex="0">
+                    <div class="row g-0">
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img src="./assets/imgs/search/image-38.jpg" class="img-fluid rounded-circle" alt="Valeria"
+                                style="width: 30px; height: 30px; margin-right:5px;">
+                        </div>
+                        <div class="col-9  d-flex flex-column justify-content-center">
+                            <div class="card-body p-1">
+                                <h6 class="card-title text-light d-flex justify-content-between"
+                                    style="font-size: 14px; margin-bottom:5px;">Valeria <span
+                                        class="text-secondary  d-none d-lg-inline" style="font-size: 10px;">3
+                                        giorni</span>
+                                </h6>
+                                <p class="card-text text-light" style="font-size: 10px;margin-bottom:5px;">New Kings ·
+                                    Sleeping Wolf
+                                </p>
+                                <p class="mb-0 text-secondary" style="font-size: 10px;"><i
+                                        class="bi bi-music-note"></i>Twint Badass mood</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+            <!-- Sidebar Destra (Aside) -->
+
+        </div>
+    </div>
+
     <!-- Navbar Fissa in Basso per Mobile -->
     <nav class="sticky-bottom ms-1 me-1 d-block d-lg-none gradient-bg">
         <div class="container d-block d-lg-none">
@@ -220,7 +437,7 @@
                     <a href="./index.html" class="text-decoration-none text-light">Home</a>
                 </div>
                 <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-                    <a href="./test-cerca.html"><i class="bi bi-search text-light fs-2"></i></a>
+                    <a href="./search.html"><i class="bi bi-search text-light fs-2"></i></a>
                     <a href="./search.html" class="text-decoration-none text-light">Cerca</a>
                 </div>
                 <div class="col-4 d-flex justify-content-center align-items-center flex-column">
@@ -231,53 +448,6 @@
         </div>
     </nav>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row text-center text-md-start">
-                <!-- Sezione Links -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Azienda</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Chi siamo</a></li>
-                        <li><a href="#">Lavora con noi</a></li>
-                        <li><a href="#">For the Record</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Community</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Artisti</a></li>
-                        <li><a href="#">Sviluppatori</a></li>
-                        <li><a href="#">Pubblicità</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <h5 class="text-white">Supporto</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Assistenza</a></li>
-                        <li><a href="#">App per dispositivi</a></li>
-                        <li><a href="#">Termini e privacy</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="border-secondary">
-
-            <div class="row text-center">
-                <div class="col-md-6 text-md-start">
-                    <p class="mb-0 text-white">&copy; <span id="date-year"> </span> Spotify Clone. Tutti i diritti
-                        riservati.</p>
-                </div>
-                <div class="col-md-6 text-md-end social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="assets/JS/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

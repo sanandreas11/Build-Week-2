@@ -22,6 +22,7 @@
         margin: 0;
         padding: 0;
       }
+
       .gradient-bg {
         background: linear-gradient(
           to top,
@@ -33,6 +34,7 @@
           rgba(0, 0, 0, 0.721)
         );
       }
+
       /* Imposta la card  */
       .artist-banner {
         height: 300px !important;
@@ -47,6 +49,7 @@
         object-position: center !important;
         padding: 0 !important;
       }
+
       li {
         margin-top: 10px;
         margin-left: 5px;
@@ -83,6 +86,9 @@
         background-color: #212529 !important;
         cursor: pointer !important;
         color: #f8f9fa !important;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1em;
       }
 
       .list-group-item:hover {
@@ -209,10 +215,8 @@
         width: 100%;
       }
 
-      #track-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
+      .track-title {
+        text-align: center !important;
       }
 
       #custom-player {
@@ -244,18 +248,25 @@
       #liked {
         margin-top: 7px !important;
       }
+
       #right-section-liked {
         margin-top: 3em;
       }
+
       #right-section-liked p {
         margin-bottom: 0;
       }
+
       .track-artist {
         text-align: center;
+        margin-top: 0;
+        color: lightslategray;
       }
+
       #top-tracks {
         padding: 0;
       }
+
       /* Stile per il layout su mobile */
       @media (max-width: 767.98px) {
         .track-info {
@@ -266,8 +277,7 @@
 
         .track-artist {
           font-size: 0.875rem;
-          color: white;
-          margin-top: 5px;
+          color: lightslategray;
           text-align: center;
         }
 
@@ -281,7 +291,6 @@
         }
 
         /* Nascondi gli elementi su mobile */
-        .track-artist,
         .track-rank,
         .track-duration,
         #liked {
@@ -296,7 +305,8 @@
         #audio-player {
           position: relative;
           z-index: 10;
-          margin-bottom: 50px; /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
+          margin-bottom: 50px;
+          /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
         }
 
         #custom-player {
@@ -304,7 +314,8 @@
           justify-content: center;
           align-items: center;
           margin-left: 10%;
-          margin-bottom: 70px; /* Questo garantisce che il player non si sovrapponga alla navbar */
+          margin-bottom: 70px;
+          /* Questo garantisce che il player non si sovrapponga alla navbar */
         }
 
         .navbar.fixed-bottom {
@@ -312,11 +323,14 @@
           bottom: 0;
           left: 0;
           right: 0;
-          z-index: 5; /* Assicurati che la navbar stia dietro al player */
+          z-index: 5;
+          /* Assicurati che la navbar stia dietro al player */
         }
+
         #heart-icon {
           display: none;
         }
+
         #followers-icon2 {
           display: none;
         }
@@ -352,55 +366,129 @@
         #liked {
           display: block;
         }
+
         #nodesktop {
           display: none;
         }
       }
+
+      /* stile per Sidebar (sinistra) */
+      li {
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c757d;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .nav-link:hover {
+        color: white !important;
+      }
+
+      .nav-link i {
+        color: inherit;
+        transition: color 0.3s ease-in-out;
+      }
+
+      li:hover,
+      li i:hover {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+      }
+
+      /* Stile per Aside (destra) */
+
+      .card-friends:focus {
+        outline: 3px solid #fff;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .card-friends:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .btn-friends:hover {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+      }
+
+      .btn-friends.focused {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+      }
+
+      .nav-link:hover,
+      .nav-link:hover i {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .bg-nav {
+        background-color: rgb(18, 18, 18);
+      }
     </style>
   </head>
+
   <body class="bg-dark text-white">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2 d-none d-md-block sidebar border border-dark">
+        <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
+        <div class="col-md-2 d-none d-md-block sidebar">
           <nav>
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link text-light" href="#"
+                <a class="nav-link text-secondary" href="#"
                   ><i class="bi bi-three-dots"></i
                 ></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light fw-bold" href="index.html"
-                  ><i class="bi bi-house-door"></i> Home</a
+                <a class="nav-link text-secondary" href="./index.html"
+                  ><i class="bi bi-house text-secondary"></i> Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="./search.html"
-                  ><i class="bi bi-search"></i> Cerca</a
+                <a class="nav-link text-secondary" href="./search.html"
+                  ><i class="bi bi-search text-secondary"></i> Cerca</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="#"
-                  ><i class="bi bi-music-note-list"></i> La tua libreria</a
-                >
-              </li>
-
-              <li class="nav-item mt-3">
-                <a class="nav-link text-light" href="#"
-                  ><i class="bi bi-plus-circle"></i> Crea playlist</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="#"
-                  ><i class="bi bi-heart"></i> Brani che ti piacciono</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="#"
-                  ><i class="bi bi-file-earmark-music"></i> I tuoi episodi</a
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> La tua
+                  libreria</a
                 >
               </li>
             </ul>
+
+            <ul class="nav flex-column">
+              <li class="nav-item mt-5">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-plus-circle text-secondary"></i> Crea
+                  playlist</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-heart text-secondary"></i> Brani che ti
+                  piacciono</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> I tuoi
+                  episodi</a
+                >
+              </li>
+            </ul>
+
             <div
               class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
               style="max-height: 500px"
@@ -432,8 +520,8 @@
           </nav>
         </div>
 
-        <div class="col-12 col-md-8">
-          <div class="card bg-dark text-light artist-banner">
+        <div class="col-12 col-md-8 p-0">
+          <div class="card bg-dark text-light artist-banner bg-small">
             <div class="image-container m-0 p-0">
               <img
                 id="artist-image"
@@ -527,10 +615,20 @@
               <!-- Prima sezione (lista) -->
               <div class="col-md-8">
                 <ol class="list-group list-group-flush bg-b">
-                  <li class="list-group-item"><h6>Popolari</h6></li>
+                  <li class="list-group-item">
+                    <h6>Popolari</h6>
+                  </li>
                   <li class="list-group-item" id="top-tracks"></li>
                   <li class="list-group-item"></li>
                 </ol>
+                <!-- Naviga verso una pagina "VISUALIZZA TUTTO"  -->
+                <span
+                  id="view-more"
+                  class="text-secondary d-none d-md-block"
+                  style="cursor: pointer; padding-left: 45px"
+                >
+                  VISUALIZZA ALTRO
+                </span>
               </div>
 
               <!-- Seconda sezione (scritta e paragrafi) -->
@@ -545,140 +643,171 @@
           </div>
         </div>
 
-        <!-- Barra Destra -->
+        <!-- Sidebar Destra (Aside) -->
         <aside
           class="col-md-2 d-none d-md-block activity-bar text-light bg-black"
         >
-          <div class="sticky-top mt-2">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="mb-0">Attività amici</h6>
-              <div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="mb-0">Attività amici</h6>
+            <div>
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="person-plus"
+              >
                 <i class="bi bi-person-plus mx-2"></i>
+              </button>
+
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="x-icon"
+              >
                 <i class="bi bi-x"></i>
-              </div>
+              </button>
             </div>
+          </div>
 
-            <div
-              class="card mb-3"
-              style="max-width: 300px; border: none; background-color: #343a40"
-            >
-              <div class="row g-0">
-                <div
-                  class="col-3 d-flex justify-content-center align-items-center"
-                >
-                  <img
-                    src="./assets/imgs/search/image-30.jpg"
-                    class="img-fluid rounded-circle"
-                    alt="Charlie"
-                    style="width: 30px; height: 30px; margin-right: 5px"
-                  />
-                </div>
-                <div class="col-9 d-flex flex-column justify-content-center">
-                  <div class="card-body p-1">
-                    <h6
-                      class="card-title text-light d-flex justify-content-between"
-                      style="font-size: 12px; margin-bottom: 5px"
-                    >
-                      Charlie Hooknam
-                      <span class="text-secondary" style="font-size: 10px"
-                        >4 ore</span
-                      >
-                    </h6>
-                    <p
-                      class="card-text text-light"
-                      style="font-size: 10px; margin-bottom: 5px"
-                    >
-                      In Camera · Yumi Zouma
-                    </p>
-                    <p class="mb-0 text-secondary" style="font-size: 10px">
-                      <i class="bi bi-disc"></i> EP III
-                    </p>
-                  </div>
-                </div>
+          <div
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-30.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Charlie"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
               </div>
-            </div>
-
-            <div
-              class="card mb-3"
-              style="max-width: 300px; border: none; background-color: #343a40"
-            >
-              <div class="row g-0">
-                <div
-                  class="col-3 d-flex justify-content-center align-items-center"
-                >
-                  <img
-                    src="./assets/imgs/search/image-29.jpg"
-                    class="img-fluid rounded-circle"
-                    alt="Lightdark02"
-                    style="width: 30px; height: 30px; margin-right: 5px"
-                  />
-                </div>
-                <div class="col-9 d-flex flex-column justify-content-center">
-                  <div class="card-body p-1">
-                    <h6
-                      class="card-title text-light d-flex justify-content-between"
-                      style="font-size: 14px; margin-bottom: 5px"
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 12px; margin-bottom: 5px"
+                  >
+                    Charlie Hooknam
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >4 ore</span
                     >
-                      Lightdark02
-                      <span class="text-secondary" style="font-size: 10px"
-                        >8 ore</span
-                      >
-                    </h6>
-                    <p
-                      class="card-text text-light"
-                      style="font-size: 10px; margin-bottom: 5px"
-                    >
-                      Aimed to Kill · Jade LeMac
-                    </p>
-                    <p class="mb-0 text-secondary" style="font-size: 10px">
-                      <i class="bi bi-disc"></i> Aimed to Kill
-                    </p>
-                  </div>
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    In Camera · Yumi Zouma
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> EP III
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div
-              class="card mb-3"
-              style="max-width: 300px; border: none; background-color: #343a40"
-            >
-              <div class="row g-0">
-                <div
-                  class="col-3 d-flex justify-content-center align-items-center"
-                >
-                  <img
-                    src="./assets/imgs/search/image-38.jpg"
-                    class="img-fluid rounded-circle"
-                    alt="Valeria"
-                    style="width: 30px; height: 30px; margin-right: 5px"
-                  />
+          <div
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-29.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Lightdark02"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Lightdark02
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >8 ore</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    Aimed to Kill · Jade LeMac
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> Aimed to Kill
+                  </p>
                 </div>
-                <div class="col-9 d-flex flex-column justify-content-center">
-                  <div class="card-body p-1">
-                    <h6
-                      class="card-title text-light d-flex justify-content-between"
-                      style="font-size: 14px; margin-bottom: 5px"
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-38.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Valeria"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Valeria
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >3 giorni</span
                     >
-                      Valeria
-                      <span class="text-secondary" style="font-size: 10px"
-                        >3 giorni</span
-                      >
-                    </h6>
-                    <p
-                      class="card-text text-light"
-                      style="font-size: 10px; margin-bottom: 5px"
-                    >
-                      New Kings · Sleeping Wolf
-                    </p>
-                    <p class="mb-0 text-secondary" style="font-size: 10px">
-                      <i class="bi bi-music-note"></i>Twint Badass mood
-                    </p>
-                  </div>
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    New Kings · Sleeping Wolf
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-music-note"></i>Twint Badass mood
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </aside>
+        <!-- Sidebar Destra (Aside) -->
       </div>
     </div>
 
@@ -769,7 +898,9 @@
       </div>
     </div>
     <!-- player mobile -->
-    <div class="sticky-bottom ms-1 me-1 d-block d-lg-none">
+    <div
+      class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black"
+    >
       <div
         class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center"
         id="music"
