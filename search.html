@@ -1,360 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style/mystile.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style/mystile.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./assets/style/mystile.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/style/mystile.css" />
-
-  <style>
-    .gradient-bg {
-      background: linear-gradient(to top,
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          to top,
           rgba(0, 0, 0, 1),
           rgb(0, 0, 0),
           rgba(0, 0, 0, 0.973),
           rgba(0, 0, 0, 0.918),
           rgba(0, 0, 0, 0.844),
-          rgba(0, 0, 0, 0.721));
-    }
+          rgba(0, 0, 0, 0.721)
+        );
+      }
 
-    li {
-      margin-top: 10px;
-      margin-left: 5px;
-    }
+      li {
+        margin-top: 10px;
+        margin-left: 5px;
+      }
 
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #6c757d;
-      transition: color 0.3s ease-in-out;
-    }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c757d;
+        transition: color 0.3s ease-in-out;
+      }
 
-    .nav-link:hover {
-      color: white !important;
-    }
+      .nav-link:hover {
+        color: white !important;
+      }
 
-    .nav-link i {
-      color: inherit;
-      transition: color 0.3s ease-in-out;
-    }
+      .nav-link i {
+        color: inherit;
+        transition: color 0.3s ease-in-out;
+      }
 
-    li:hover,
-    li i:hover {
-      color: white !important;
-      transition: color 0.3s ease-in-out;
-      cursor: pointer;
-    }
+      li:hover,
+      li i:hover {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+      }
 
-    .sidebar-playlists::-webkit-scrollbar {
-      width: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
-      scrollbar-width: thin;
-    }
+      .sidebar-playlists::-webkit-scrollbar {
+        width: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+        scrollbar-width: thin;
+      }
 
-    .sidebar-playlists:hover::-webkit-scrollbar {
-      opacity: 1;
-    }
+      .sidebar-playlists:hover::-webkit-scrollbar {
+        opacity: 1;
+      }
 
-    .card-friends:focus {
-      outline: 3px solid #fff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-      transition: box-shadow 0.3s ease;
-    }
+      .card-friends:focus {
+        outline: 3px solid #fff;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
 
-    .card-friends:hover {
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-      transition: box-shadow 0.3s ease;
-    }
+      .card-friends:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
 
-    .btn-friends:hover {
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-      border: 1px solid #fff;
-      transition: box-shadow 0.3s ease, border 0.3s ease;
-    }
+      .btn-friends:hover {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+      }
 
-    .btn-friends.focused {
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-      border: 1px solid #fff;
-    }
+      .btn-friends.focused {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+      }
 
-    .nav-link:hover,
-    .nav-link:hover i {
-      color: white !important;
-      transition: color 0.3s ease-in-out;
-    }
-  </style>
-  <title>Search</title>
-</head>
+      .nav-link:hover,
+      .nav-link:hover i {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+      }
+    </style>
+    <title>Search</title>
+  </head>
 
-<body class="bg-black">
-  <div class="container-fluid bg-black m-0">
-    <div class="row">
-      <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
-      <div class="col-md-2 d-none d-md-block sidebar bg-black">
-        <nav>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-three-dots"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="./index.html"><i class="bi bi-house text-secondary"></i> Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="./search.html"><i class="bi bi-search text-secondary"></i>
-                Cerca</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-collection-play text-secondary"></i> La tua
-                libreria</a>
-            </li>
-          </ul>
+  <body class="bg-black">
+    <div class="container-fluid bg-black m-0">
+      <div class="row">
+        <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
+        <div class="col-md-2 d-none d-md-block sidebar bg-black">
+          <nav>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-three-dots"></i
+                ></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="./index.html"
+                  ><i class="bi bi-house text-secondary"></i> Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="./search.html"
+                  ><i class="bi bi-search text-secondary"></i> Cerca</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> La tua
+                  libreria</a
+                >
+              </li>
+            </ul>
 
-          <ul class="nav flex-column">
-            <li class="nav-item mt-5">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-plus-circle text-secondary"></i> Crea
-                playlist</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-heart text-secondary"></i> Brani che ti
-                piacciono</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-collection-play text-secondary"></i> I tuoi
-                episodi</a>
-            </li>
-          </ul>
-        </nav>
+            <ul class="nav flex-column">
+              <li class="nav-item mt-5">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-plus-circle text-secondary"></i> Crea
+                  playlist</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-heart text-secondary"></i> Brani che ti
+                  piacciono</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> I tuoi
+                  episodi</a
+                >
+              </li>
+            </ul>
+          </nav>
 
-        <!-- playlists  (ricopiate nel vostro codice anche le classi da "li" a ".nav-link:hover i")-->
-        <div
-          class="sidebar-playlists d-none d-lg-block text-light mt-5 mx-2 fs-6 border-top border-secondary pt-2 overflow-auto"
-          style="max-height: 500px">
-          <ul class="list-unstyled text-secondary small">
-            <li>early stage emily syndrome (sett-ott 2022)</li>
-            <li>Be The Young</li>
-            <li>"... cit. Kimiko (lug-ago 2022)</li>
-            <li>saggio vibes 🏋️‍♀️🎧</li>
-            <li>main character energy (mag-giu 2022)</li>
-            <li>that f***ing mood 🔪🖤</li>
-            <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
-            <li>An Emily Winchester kind of mood 🔪</li>
-            <li>landing page (mar-apr 2022)</li>
-            <li>2021 lol</li>
-            <li>cosa cavolo vuol dire questa affermazione (gen-feb 2022)</li>
-            <li>honey and glass (nov-dic 2021)</li>
-            <li>(Revenge) Training Arc 🏋️</li>
-            <li>Lidia 💛 Emily</li>
-            <li>minecraft e nintendo switch (sep-oct 2021)</li>
-            <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
-            <li>Culo 2021</li>
-            <li>Frah Quintale Mix</li>
-            <li>Francesco Guccini Mix</li>
-          </ul>
+          <!-- playlists  (ricopiate nel vostro codice anche le classi da "li" a ".nav-link:hover i")-->
+          <div
+            class="sidebar-playlists d-none d-lg-block text-light mt-5 mx-2 fs-6 border-top border-secondary pt-2 overflow-auto"
+            style="max-height: 500px"
+          >
+            <ul class="list-unstyled text-secondary small">
+              <li>early stage emily syndrome (sett-ott 2022)</li>
+              <li>Be The Young</li>
+              <li>"... cit. Kimiko (lug-ago 2022)</li>
+              <li>saggio vibes 🏋️‍♀️🎧</li>
+              <li>main character energy (mag-giu 2022)</li>
+              <li>that f***ing mood 🔪🖤</li>
+              <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
+              <li>An Emily Winchester kind of mood 🔪</li>
+              <li>landing page (mar-apr 2022)</li>
+              <li>2021 lol</li>
+              <li>cosa cavolo vuol dire questa affermazione (gen-feb 2022)</li>
+              <li>honey and glass (nov-dic 2021)</li>
+              <li>(Revenge) Training Arc 🏋️</li>
+              <li>Lidia 💛 Emily</li>
+              <li>minecraft e nintendo switch (sep-oct 2021)</li>
+              <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
+              <li>Culo 2021</li>
+              <li>Frah Quintale Mix</li>
+              <li>Francesco Guccini Mix</li>
+            </ul>
+          </div>
+          <!-- playlists-->
         </div>
-        <!-- playlists-->
-      </div>
 
-      <div class="col col-12 col-md-8 col-lg-8 sticky-top bg-dark bg-small" id="search-bar">
-        <div class="sticky-top bg-dark bg-small">
-          <a href="./search.html" class="text-decoration-none">
-            <h1 class="text-light fw-bold pt-5 mb-3 text-center">Cerca</h1>
-          </a>
-          <div class="d-flex">
-            <input type="search" data-bs-theme="dark" id="search-input" placeholder=" Cosa vuoi ascoltare?"
-              class="bg-black form-control text-light fw-semibold mb-3 border-0 bg-small-dark" aria-label="Search" />
+        <div
+          class="col col-12 col-md-8 col-lg-8 sticky-top bg-dark bg-small"
+          id="search-bar"
+        >
+          <div class="sticky-top bg-dark bg-small">
+            <a href="./search.html" class="text-decoration-none">
+              <h1 class="text-light fw-bold pt-5 mb-3 text-center">Cerca</h1>
+            </a>
+            <div class="d-flex">
+              <input
+                type="search"
+                data-bs-theme="dark"
+                id="search-input"
+                placeholder=" Cosa vuoi ascoltare?"
+                class="bg-black form-control text-light fw-semibold mb-3 border-0 bg-small-dark"
+                aria-label="Search"
+              />
+              <div>
+                <button
+                  id="search-button"
+                  class="btn btn-primary d-none d-md-block ms-3"
+                >
+                  Cerca
+                </button>
+              </div>
+            </div>
+            <h3 class="text-light text-center mb-4 pb-4">Sfoglia Tutto</h3>
+          </div>
+          <div id="results" class="container mt-4 bg-dark bg-small">
+            <div class="row g-4">
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-19.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-3.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-4.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-35.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-6.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-7.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-8.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-9.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-10.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-39.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-20.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-15.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-26.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-27.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col col-6 col-md-3">
+                <img
+                  class="img-fluid rounded-4"
+                  src="./assets/imgs/search/image-28.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Sidebar Destra (Aside) -->
+        <aside
+          class="col-md-2 d-none d-md-block activity-bar text-light bg-black"
+        >
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="mb-0">Attività amici</h6>
             <div>
-              <button id="search-button" class="btn btn-primary d-none d-md-block ms-3">
-                Cerca
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="person-plus"
+              >
+                <i class="bi bi-person-plus mx-2"></i>
+              </button>
+
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="x-icon"
+              >
+                <i class="bi bi-x"></i>
               </button>
             </div>
           </div>
-          <h3 class="text-light text-center mb-4 pb-4">Sfoglia Tutto</h3>
-        </div>
-        <div id="results" class="container mt-4 bg-dark bg-small">
-          <div class="row g-4">
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-19.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-2.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-3.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-4.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-35.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-6.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-7.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-8.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-9.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-10.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-39.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-20.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-15.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-26.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-27.jpg" alt="" />
-            </div>
-            <div class="col col-6 col-md-3">
-              <img class="img-fluid rounded-4" src="./assets/imgs/search/image-28.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Sidebar Destra (Aside) -->
-      <aside class="col-md-2 d-none d-md-block activity-bar text-light bg-black">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h6 class="mb-0">Attività amici</h6>
-          <div>
-            <button class="btn-friends btn btn-link p-0 text-light" id="person-plus">
-              <i class="bi bi-person-plus mx-2"></i>
-            </button>
 
-            <button class="btn-friends btn btn-link p-0 text-light" id="x-icon">
-              <i class="bi bi-x"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="card-friends card mb-3" style="
+          <div
+            class="card-friends card mb-3"
+            style="
               max-width: 300px;
               border: none;
               background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-30.jpg" class="img-fluid rounded-circle" alt="Charlie"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 12px; margin-bottom: 5px">
-                  Charlie Hooknam
-                  <span class="text-secondary" style="font-size: 10px">4 ore</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  In Camera · Yumi Zouma
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-disc"></i> EP III
-                </p>
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-30.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Charlie"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 12px; margin-bottom: 5px"
+                  >
+                    Charlie Hooknam
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >4 ore</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    In Camera · Yumi Zouma
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> EP III
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="card-friends card mb-3" style="
+          <div
+            class="card-friends card mb-3"
+            style="
               max-width: 300px;
               border: none;
               background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-29.jpg" class="img-fluid rounded-circle" alt="Lightdark02"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 14px; margin-bottom: 5px">
-                  Lightdark02
-                  <span class="text-secondary" style="font-size: 10px">8 ore</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  Aimed to Kill · Jade LeMac
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-disc"></i> Aimed to Kill
-                </p>
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-29.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Lightdark02"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Lightdark02
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >8 ore</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    Aimed to Kill · Jade LeMac
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> Aimed to Kill
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="card-friends card mb-3" style="
+          <div
+            class="card-friends card mb-3"
+            style="
               max-width: 300px;
               border: none;
               background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-38.jpg" class="img-fluid rounded-circle" alt="Valeria"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 14px; margin-bottom: 5px">
-                  Valeria
-                  <span class="text-secondary" style="font-size: 10px">3 giorni</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  New Kings · Sleeping Wolf
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-music-note"></i>Twint Badass mood
-                </p>
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-38.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Valeria"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Valeria
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >3 giorni</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    New Kings · Sleeping Wolf
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-music-note"></i>Twint Badass mood
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </aside>
-      <!-- Sidebar Destra (Aside) -->
-    </div>
-  </div>
-  <!-- Navbar mobile -->
-  <div class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black">
-    <div class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center" id="music">
-      <div class="flex-grow-1">
-        <p class="text-light mb-0 mt-0 ms-5">papapapaprarar</p>
-      </div>
-      <div>
-        <i class="bi bi-music-player-fill text-light fs-2"></i>
-      </div>
-      <div>
-        <i class="bi bi-suit-heart text-light fs-2 ms-4"></i>
-      </div>
-      <div>
-        <i class="bi bi-play-fill text-light fs-2 ms-4 me-4"></i>
+        </aside>
+        <!-- Sidebar Destra (Aside) -->
       </div>
     </div>
     <!-- Navbar mobile -->
-    <div class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black">
-      <div class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center" id="music">
+    <div
+      class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black"
+    >
+      <div
+        class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center"
+        id="music"
+      >
         <div class="flex-grow-1">
-          <p class="text-light mb-0 mt-0 ms-5">Albano</p>
+          <p class="text-light mb-0 mt-0 ms-5">papapapaprarar</p>
         </div>
-        <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-          <a href="./search.html"><i class="bi bi-search text-light fs-2"></i></a>
-          <a href="./search.html" class="text-decoration-none text-light">Cerca</a>
+        <div>
+          <i class="bi bi-music-player-fill text-light fs-2"></i>
         </div>
         <div>
           <i class="bi bi-suit-heart text-light fs-2 ms-4"></i>
@@ -363,70 +510,108 @@
           <i class="bi bi-play-fill text-light fs-2 ms-4 me-4"></i>
         </div>
       </div>
-      <div class="container gradient-bg d-block d-lg-none">
+      <!-- Navbar mobile -->
+
+      <div class="container gradient-bg d-block d-md-none">
         <div class="row justify-content-around pt-3 pb-3">
-          <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-            <a href="./index.html"><i class="bi bi-house text-light fs-2"></i></a>
-            <a href="./index.html" class="text-decoration-none text-light">Home</a>
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
+            <a href="./index.html"
+              ><i class="bi bi-house text-light fs-2"></i
+            ></a>
+            <a href="./index.html" class="text-decoration-none text-light"
+              >Home</a
+            >
           </div>
-          <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-            <a href="./search.html"><i class="bi bi-search text-light fs-2"></i></a>
-            <a href="./search.html" class="text-decoration-none text-light">Cerca</a>
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
+            <a href="./search.html"
+              ><i class="bi bi-search text-light fs-2"></i
+            ></a>
+            <a href="./search.html" class="text-decoration-none text-light"
+              >Cerca</a
+            >
           </div>
-          <div class="col-4 d-flex justify-content-center align-items-center flex-column">
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
             <a href=""><i class="bi bi-collection-play text-light fs-2"></i></a>
-            <a href="" class="text-decoration-none text-light">La tua libreria</a>
+            <a href="" class="text-decoration-none text-light"
+              >La tua libreria</a
+            >
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Navbar desktop -->
-  <div class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block border-top border-secondary">
-    <div class="row align-items-center">
-      <div class="col col-2 d-flex justify-content-center align-items-center">
-        <img style="width: 70px" class="p-2" src="./assets/imgs/main/image-3.jpg" alt="" />
-        <div class="me-2">
-          <p class="text-light m-0">TopoGigio</p>
-          <small class="text-secondary">Albano</small>
-        </div>
-        <i class="bi bi-suit-heart text-light"></i>
-      </div>
 
-      <div class="col col-8">
-        <div class="d-flex align-items-center justify-content-center">
-          <i class="bi bi-shuffle text-primary"></i>
-          <i class="bi bi-skip-backward-fill text-light ms-3"></i>
-          <i class="bi bi-play-circle-fill text-light fs-2 ms-3"></i>
-          <i class="bi bi-skip-forward-fill text-light ms-3"></i>
-          <i class="bi bi-arrow-repeat text-primary ms-3"></i>
-        </div>
-        <div class="d-flex justify-content-center align-items-center">
-          <small class="text-white-50 m-0 me-2">0:32</small>
-          <div class="progress w-50" role="progressbar" aria-label="Example 1px high" aria-valuenow="25"
-            aria-valuemin="0" aria-valuemax="100" style="height: 3px">
-            <div class="progress-bar bg-primary" style="width: 25%"></div>
+    <!-- Navbar desktop -->
+    <div
+      class="container-fluid bg-dark m-0 sticky-bottom d-none d-md-block border-top border-secondary"
+    >
+      <div class="row align-items-center">
+        <div class="col col-2 d-flex justify-content-center align-items-center">
+          <img
+            style="width: 70px"
+            class="p-2"
+            src="./assets/imgs/main/image-3.jpg"
+            alt=""
+          />
+          <div class="me-2">
+            <p class="text-light m-0">TopoGigio</p>
+            <small class="text-secondary">Albano</small>
           </div>
-          <small class="text-white-50 m-0 ms-2">05:02</small>
+          <i class="bi bi-suit-heart text-light"></i>
         </div>
-      </div>
-      <div class="col col-2">
-        <div class="d-flex align-items-center justify-content-center">
-          <i class="bi bi-mic-fill text-white-50"></i>
-          <i class="bi bi-collection-play text-white-50 ms-2"></i>
-          <i class="bi bi-music-player-fill text-white-50 ms-2"></i>
-          <i class="bi bi-volume-up-fill text-white-50 ms-2"></i>
-          <div class="progress w-25" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100" style="height: 4px">
-            <div class="progress-bar" style="width: 0%"></div>
+
+        <div class="col col-8">
+          <div class="d-flex align-items-center justify-content-center">
+            <i class="bi bi-shuffle text-primary"></i>
+            <i class="bi bi-skip-backward-fill text-light ms-3"></i>
+            <i class="bi bi-play-circle-fill text-light fs-2 ms-3"></i>
+            <i class="bi bi-skip-forward-fill text-light ms-3"></i>
+            <i class="bi bi-arrow-repeat text-primary ms-3"></i>
           </div>
-          <i class="bi bi-arrows-angle-expand text-white-50 ms-2"></i>
+          <div class="d-flex justify-content-center align-items-center">
+            <small class="text-white-50 m-0 me-2">0:32</small>
+            <div
+              class="progress w-50"
+              role="progressbar"
+              aria-label="Example 1px high"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="height: 3px"
+            >
+              <div class="progress-bar bg-primary" style="width: 25%"></div>
+            </div>
+            <small class="text-white-50 m-0 ms-2">05:02</small>
+          </div>
+        </div>
+        <div class="col col-2">
+          <div class="d-flex align-items-center justify-content-center">
+            <i class="bi bi-mic-fill text-white-50"></i>
+            <i class="bi bi-collection-play text-white-50 ms-2"></i>
+            <i class="bi bi-music-player-fill text-white-50 ms-2"></i>
+            <i class="bi bi-volume-up-fill text-white-50 ms-2"></i>
+            <div
+              class="progress w-25"
+              role="progressbar"
+              aria-label="Basic example"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="height: 4px"
+            >
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <i class="bi bi-arrows-angle-expand text-white-50 ms-2"></i>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="./assets/JS/search.js"></script>
-</body>
-
+    <script src="./assets/JS/search.js"></script>
+  </body>
 </html>
