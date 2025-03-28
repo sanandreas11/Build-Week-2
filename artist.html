@@ -85,6 +85,9 @@
         background-color: #212529 !important;
         cursor: pointer !important;
         color: #f8f9fa !important;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1em;
       }
 
       .list-group-item:hover {
@@ -211,10 +214,8 @@
         width: 100%;
       }
 
-      #track-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
+      .track-title {
+        text-align: center !important;
       }
 
       #custom-player {
@@ -257,6 +258,8 @@
 
       .track-artist {
         text-align: center;
+        margin-top: 0;
+        color: lightslategray;
       }
 
       #top-tracks {
@@ -273,8 +276,7 @@
 
         .track-artist {
           font-size: 0.875rem;
-          color: white;
-          margin-top: 5px;
+          color: lightslategray;
           text-align: center;
         }
 
@@ -288,7 +290,6 @@
         }
 
         /* Nascondi gli elementi su mobile */
-        .track-artist,
         .track-rank,
         .track-duration,
         #liked {
