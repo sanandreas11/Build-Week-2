@@ -262,24 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=pop")
-  .then((response) => response.json())
-  .then((data) => {
-    const artistList = document.getElementById("artist-list");
-    const artists = data.data.slice(0, 6); // Prende i primi 6 risultati
-
-    artists.forEach((artist) => {
-      const artistElement = document.createElement("div");
-      artistElement.classList.add("artist");
-      artistElement.innerHTML = `
-          <img src="${artist.album.cover_small}" alt="${artist.artist.name}">
-          <span>${artist.artist.name}</span>
-      `;
-      artistList.appendChild(artistElement);
-    });
-  })
-  .catch((error) => console.error("Errore:", error));
-
 //Naviga verso una pagina
 document.getElementById("view-more").addEventListener("click", function () {
   window.location.href = "artist.html?artistId=17#"
