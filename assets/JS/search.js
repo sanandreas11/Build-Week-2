@@ -16,7 +16,8 @@ function search() {
       resultsDiv.innerHTML = ""; //Svuoto il div da eventuali contenuti
       data.data.forEach((track) => {
         const trackElement = document.createElement("div"); //creo il div row
-        trackElement.className = "row pt-3 justify-content-center";
+        trackElement.className =
+          "row pt-3 justify-content-center justify-content-md-evenly justify-content-xl-center";
         //Qui andrà la creazione e  la struttura dei risultati
         trackElement.innerHTML = `
           <a href="album.html?albumId=${track.album.id}" class="col col-2 col-md-1">
