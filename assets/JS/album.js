@@ -52,9 +52,10 @@ const getAlbumDetails = function () {
         trackItem.classList.add("songs")
         trackItem.innerHTML = `<p class="d-flex justify-content-between text-light ms-2">${
           track.title
-        }<span class='text-secondary'>${formatDuration(
+        }<span class='text-secondary d-none d-lg-block'>${track.rank}
+        </span><span class='text-secondary d-none d-lg-block'>${formatDuration(
           track.duration
-        )}</span></p>   
+        )}</span><i class="bi bi-three-dots-vertical d-lg-none"></i></p>   
           <p class="text-secondary ms-2 mb-5">${track.artist.name}</p>`
         trackItem.addEventListener("click", () => playTrack(i))
         tracklist.appendChild(trackItem)
