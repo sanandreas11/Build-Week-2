@@ -249,7 +249,7 @@
       }
 
       #right-section-liked {
-        margin-top: 3em;
+        margin-top: 1em;
       }
 
       #right-section-liked p {
@@ -264,6 +264,17 @@
 
       #top-tracks {
         padding: 0;
+      }
+
+      #artist-image2 {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 16px;
+      }
+      #nomeartista {
+        color: #6c757d !important;
       }
 
       /* Stile per il layout su mobile */
@@ -634,12 +645,14 @@
               <!-- Seconda sezione (scritta e paragrafi) -->
               <div class="col-md-4" id="liked">
                 <h6 class="mt-0">Brani che ti piacciono</h6>
-                <div id="right-section-liked">
-                  <p>hai messo mi piace a 11 brani</p>
-                  <img id="artist-image" src="" alt="Immagine artista" /><span
-                    id="artist-name"
-                    >inserisci nome artista</span
-                  >
+                <div class="d-flex">
+                  <img id="artist-image2" src="" alt="Immagine artista" />
+                  <div id="right-section-liked">
+                    <div>
+                      <p>hai messo mi piace a 11 brani</p>
+                      <p id="nomeartista">inserisci nome artista</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
