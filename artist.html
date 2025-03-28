@@ -1,303 +1,221 @@
 <!DOCTYPE html>
 <html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artista | Music App</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artista | Music App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="assets/style/mystile.css" />
+    <style>
+      /* Stile generale per il corpo e la container */
+      body,
+      .container-fluid {
+        margin: 0;
+        padding: 0;
+      }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="assets/style/mystile.css" />
-  <style>
-    /* Stile generale per il corpo e la container */
-    body,
-    .container-fluid {
-      margin: 0;
-      padding: 0;
-    }
-
-    .gradient-bg {
-      background: linear-gradient(to top,
+      .gradient-bg {
+        background: linear-gradient(
+          to top,
           rgba(0, 0, 0, 1),
           rgb(0, 0, 0),
           rgba(0, 0, 0, 0.973),
           rgba(0, 0, 0, 0.918),
           rgba(0, 0, 0, 0.844),
-          rgba(0, 0, 0, 0.721));
-    }
+          rgba(0, 0, 0, 0.721)
+        );
+      }
 
-    /* Imposta la card  */
-    .artist-banner {
-      height: 300px !important;
-      overflow: hidden !important;
-    }
+      /* Imposta la card  */
+      .artist-banner {
+        height: 300px !important;
+        overflow: hidden !important;
+      }
 
-    /* Imposta l'immagine per adattarsi in larghezza, mantenendo le proporzioni */
-    #artist-image {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      padding: 0 !important;
-    }
+      /* Imposta l'immagine per adattarsi in larghezza, mantenendo le proporzioni */
+      #artist-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        padding: 0 !important;
+      }
 
-    li {
-      margin-top: 10px;
-      margin-left: 5px;
-    }
+      li {
+        margin-top: 10px;
+        margin-left: 5px;
+      }
 
-    .sidebar-playlists::-webkit-scrollbar {
-      width: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
-      scrollbar-width: thin;
-    }
+      .sidebar-playlists::-webkit-scrollbar {
+        width: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
+        scrollbar-width: thin;
+      }
 
-    .sidebar-playlists:hover::-webkit-scrollbar {
-      opacity: 1;
-    }
+      .sidebar-playlists:hover::-webkit-scrollbar {
+        opacity: 1;
+      }
 
-    .text-shadow {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
 
-    .row {
-      margin: 0;
-    }
+      .row {
+        margin: 0;
+      }
 
-    .sidebar {
-      background-color: black;
-      padding: 15px;
-    }
+      .sidebar {
+        background-color: black;
+        padding: 15px;
+      }
 
-    /* Stile per la lista degli elementi */
-    .list-group-item {
-      border: none !important;
-      background-color: #212529 !important;
-      cursor: pointer !important;
-      color: #f8f9fa !important;
-    }
+      /* Stile per la lista degli elementi */
+      .list-group-item {
+        border: none !important;
+        background-color: #212529 !important;
+        cursor: pointer !important;
+        color: #f8f9fa !important;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1em;
+      }
 
-    .list-group-item:hover {
-      cursor: pointer;
-    }
+      .list-group-item:hover {
+        cursor: pointer;
+      }
 
-    .list-group-item.active {
-      background-color: green !important;
-      color: white;
-    }
+      .list-group-item.active {
+        background-color: green !important;
+        color: white;
+      }
 
-    /* Colore per i link all'interno del sidebar */
-    #artist-link i {
-      color: white !important;
-    }
+      /* Colore per i link all'interno del sidebar */
+      #artist-link i {
+        color: white !important;
+      }
 
-    #artist-link:hover i {
-      color: green !important;
-    }
+      #artist-link:hover i {
+        color: green !important;
+      }
 
-    #loading {
-      display: none;
-      color: white;
-      font-size: 1.5rem;
-    }
+      #loading {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+      }
 
-    /* Stile per le icone */
-    #heart-icon i,
-    #followers-icon button,
-    #followers-icon2 button,
-    #dots-icon i,
-    #random-icon i {
-      color: white;
-      background-color: transparent;
-    }
+      /* Stile per le icone */
+      #heart-icon i,
+      #followers-icon button,
+      #followers-icon2 button,
+      #dots-icon i,
+      #random-icon i {
+        color: white;
+        background-color: transparent;
+      }
 
-    /* Stile per i bottoni con icone */
-    #heart-icon,
-    #followers-icon,
-    #followers-icon2,
-    #dots-icon,
-    #random-icon,
-    #artist-link,
-    #play-pause-mobile {
-      background-color: #212529;
-      border: none;
-      padding: 10px;
-      border-radius: 50%;
-    }
+      /* Stile per i bottoni con icone */
+      #heart-icon,
+      #followers-icon,
+      #followers-icon2,
+      #dots-icon,
+      #random-icon,
+      #artist-link,
+      #play-pause-mobile {
+        background-color: #212529;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+      }
 
-    /* Colore verde quando il mouse passa sopra le icone */
-    #heart-icon:hover i,
-    #followers-icon:hover button,
-    #followers-icon2:hover button,
-    button #dots-icon:hover i,
-    #random-icon:hover i {
-      color: green;
-    }
+      /* Colore verde quando il mouse passa sopra le icone */
+      #heart-icon:hover i,
+      #followers-icon:hover button,
+      #followers-icon2:hover button,
+      button #dots-icon:hover i,
+      #random-icon:hover i {
+        color: green;
+      }
 
-    /* Colore verde quando il mouse passa sopra il bottone con play */
-    #heart-icon:hover,
-    #followers-icon:hover,
-    #followers-icon2:hover,
-    #dots-icon:hover,
-    #random-icon:hover,
-    #artist-link:hover {
-      background-color: #343a40;
-    }
+      /* Colore verde quando il mouse passa sopra il bottone con play */
+      #heart-icon:hover,
+      #followers-icon:hover,
+      #followers-icon2:hover,
+      #dots-icon:hover,
+      #random-icon:hover,
+      #artist-link:hover {
+        background-color: #343a40;
+      }
 
-    .image-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    #artist-image {
-      width: 50%;
-      padding: 1em;
-    }
+      #artist-image {
+        width: 50%;
+        padding: 1em;
+      }
 
-    .audio-player-container {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      background-color: #121212;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      color: #fff;
-    }
+      .audio-player-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #121212;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        color: #fff;
+      }
 
-    .audio-player {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .player-controls {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .control-button {
-      background-color: #1a1a1a;
-      border: none;
-      padding: 15px;
-      border-radius: 50%;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .control-button:hover {
-      background-color: #333;
-    }
-
-    .audio-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    #track-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    #custom-player {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 10%;
-    }
-
-    #controls {
-      display: flex;
-    }
-
-    #controls .btn {
-      border: none;
-      border-radius: 50%;
-      transition: background-color 0.3s ease;
-      margin-left: 0.2em;
-    }
-
-    #controls .btn:hover {
-      background-color: #495057;
-    }
-
-    .container {
-      font-size: small;
-    }
-
-    #liked {
-      margin-top: 7px !important;
-    }
-
-    #right-section-liked {
-      margin-top: 3em;
-    }
-
-    #right-section-liked p {
-      margin-bottom: 0;
-    }
-
-    .track-artist {
-      text-align: center;
-    }
-
-    #top-tracks {
-      padding: 0;
-    }
-
-    /* Stile per il layout su mobile */
-    @media (max-width: 767.98px) {
-      .track-info {
+      .audio-player {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
       }
 
-      .track-artist {
-        font-size: 0.875rem;
-        color: white;
-        margin-top: 5px;
-        text-align: center;
+      .player-controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
       }
 
-      .three-dots {
-        font-size: 1.5rem;
-        margin-left: auto;
+      .control-button {
+        background-color: #1a1a1a;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
       }
 
-      .track-artist {
-        display: block;
+      .control-button:hover {
+        background-color: #333;
       }
 
-      /* Nascondi gli elementi su mobile */
-      .track-artist,
-      .track-rank,
-      .track-duration,
-      #liked {
-        display: none;
+      .audio-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
       }
 
-      .rank,
-      .duration {
-        display: none;
-      }
-
-      #audio-player {
-        position: relative;
-        z-index: 10;
-        margin-bottom: 50px;
-        /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
+      .track-title {
+        text-align: center !important;
       }
 
       #custom-player {
@@ -305,481 +223,749 @@
         justify-content: center;
         align-items: center;
         margin-left: 10%;
-        margin-bottom: 70px;
-        /* Questo garantisce che il player non si sovrapponga alla navbar */
       }
 
-      .navbar.fixed-bottom {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 5;
-        /* Assicurati che la navbar stia dietro al player */
+      #controls {
+        display: flex;
       }
 
-      #heart-icon {
-        display: none;
+      #controls .btn {
+        border: none;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+        margin-left: 0.2em;
       }
 
-      #followers-icon2 {
-        display: none;
-      }
-    }
-
-    /* Stile per layout su desktop */
-    @media (min-width: 768px) {
-      .track-info {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        align-items: center;
+      #controls .btn:hover {
+        background-color: #495057;
       }
 
-      .track-title {
-        text-align: center;
+      .container {
+        font-size: small;
       }
 
-      /* Visibile solo su desktop */
-      .track-artist {
-        display: block;
-      }
-
-      .rank,
-      .duration {
-        text-align: center;
-      }
-
-      .three-dots {
-        text-align: center;
-      }
-
-      /* Mostra l'elemento #liked solo su desktop */
       #liked {
-        display: block;
+        margin-top: 7px !important;
       }
 
-      #nodesktop {
-        display: none;
+      #right-section-liked {
+        margin-top: 3em;
       }
-    }
 
-    /* stile per Sidebar (sinistra) */
-    li {
-      margin-top: 10px;
-      margin-left: 5px;
-    }
+      #right-section-liked p {
+        margin-bottom: 0;
+      }
 
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #6c757d;
-      transition: color 0.3s ease-in-out;
-    }
+      .track-artist {
+        text-align: center;
+        margin-top: 0;
+        color: lightslategray;
+      }
 
-    .nav-link:hover {
-      color: white !important;
-    }
+      #top-tracks {
+        padding: 0;
+      }
 
-    .nav-link i {
-      color: inherit;
-      transition: color 0.3s ease-in-out;
-    }
+      /* Stile per il layout su mobile */
+      @media (max-width: 767.98px) {
+        .track-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
 
-    li:hover,
-    li i:hover {
-      color: white !important;
-      transition: color 0.3s ease-in-out;
-      cursor: pointer;
-    }
+        .track-artist {
+          font-size: 0.875rem;
+          color: lightslategray;
+          text-align: center;
+        }
 
-    /* Stile per Aside (destra) */
+        .three-dots {
+          font-size: 1.5rem;
+          margin-left: auto;
+        }
 
-    .card-friends:focus {
-      outline: 3px solid #fff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-      transition: box-shadow 0.3s ease;
-    }
+        .track-artist {
+          display: block;
+        }
 
-    .card-friends:hover {
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-      transition: box-shadow 0.3s ease;
-    }
+        /* Nascondi gli elementi su mobile */
+        .track-rank,
+        .track-duration,
+        #liked {
+          display: none;
+        }
 
-    .btn-friends:hover {
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-      border: 1px solid #fff;
-      transition: box-shadow 0.3s ease, border 0.3s ease;
-    }
+        .rank,
+        .duration {
+          display: none;
+        }
 
-    .btn-friends.focused {
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-      border: 1px solid #fff;
-    }
+        #audio-player {
+          position: relative;
+          z-index: 10;
+          margin-bottom: 50px;
+          /* Aggiungi un margine inferiore per evitare che la navbar copra il player */
+        }
 
-    .nav-link:hover,
-    .nav-link:hover i {
-      color: white !important;
-      transition: color 0.3s ease-in-out;
-    }
+        #custom-player {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10%;
+          margin-bottom: 70px;
+          /* Questo garantisce che il player non si sovrapponga alla navbar */
+        }
 
-    .bg-nav {
-      background-color: rgb(18, 18, 18);
-    }
-  </style>
-</head>
+        .navbar.fixed-bottom {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 5;
+          /* Assicurati che la navbar stia dietro al player */
+        }
 
-<body class="bg-dark text-white">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
-      <div class="col-md-2 d-none d-md-block sidebar">
-        <nav>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-three-dots"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="./index.html"><i class="bi bi-house text-secondary"></i> Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="./search.html"><i class="bi bi-search text-secondary"></i>
-                Cerca</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-collection-play text-secondary"></i> La tua
-                libreria</a>
-            </li>
-          </ul>
+        #heart-icon {
+          display: none;
+        }
 
-          <ul class="nav flex-column">
-            <li class="nav-item mt-5">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-plus-circle text-secondary"></i> Crea
-                playlist</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-heart text-secondary"></i> Brani che ti
-                piacciono</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-secondary" href="#"><i class="bi bi-collection-play text-secondary"></i> I tuoi
-                episodi</a>
-            </li>
-          </ul>
+        #followers-icon2 {
+          display: none;
+        }
+      }
+
+      /* Stile per layout su desktop */
+      @media (min-width: 768px) {
+        .track-info {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          align-items: center;
+        }
+
+        .track-title {
+          text-align: center;
+        }
+
+        /* Visibile solo su desktop */
+        .track-artist {
+          display: block;
+        }
+
+        .rank,
+        .duration {
+          text-align: center;
+        }
+
+        .three-dots {
+          text-align: center;
+        }
+
+        /* Mostra l'elemento #liked solo su desktop */
+        #liked {
+          display: block;
+        }
+
+        #nodesktop {
+          display: none;
+        }
+      }
+
+      /* stile per Sidebar (sinistra) */
+      li {
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c757d;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .nav-link:hover {
+        color: white !important;
+      }
+
+      .nav-link i {
+        color: inherit;
+        transition: color 0.3s ease-in-out;
+      }
+
+      li:hover,
+      li i:hover {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+      }
+
+      /* Stile per Aside (destra) */
+
+      .card-friends:focus {
+        outline: 3px solid #fff;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .card-friends:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .btn-friends:hover {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+      }
+
+      .btn-friends.focused {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        border: 1px solid #fff;
+      }
+
+      .nav-link:hover,
+      .nav-link:hover i {
+        color: white !important;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .bg-nav {
+        background-color: rgb(18, 18, 18);
+      }
+    </style>
+  </head>
+
+  <body class="bg-dark text-white">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar (Sinistra) (ricopiare anche le classi da "li" a ".nav-link:hover i") -->
+        <div class="col-md-2 d-none d-md-block sidebar">
+          <nav>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-three-dots"></i
+                ></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="./index.html"
+                  ><i class="bi bi-house text-secondary"></i> Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="./search.html"
+                  ><i class="bi bi-search text-secondary"></i> Cerca</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> La tua
+                  libreria</a
+                >
+              </li>
+            </ul>
+
+            <ul class="nav flex-column">
+              <li class="nav-item mt-5">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-plus-circle text-secondary"></i> Crea
+                  playlist</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-heart text-secondary"></i> Brani che ti
+                  piacciono</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  ><i class="bi bi-collection-play text-secondary"></i> I tuoi
+                  episodi</a
+                >
+              </li>
+            </ul>
+
+            <div
+              class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
+              style="max-height: 500px"
+            >
+              <ul class="list-unstyled text-secondary small">
+                <li>early stage emily syndrome (sett-ott 2022)</li>
+                <li>Be The Young</li>
+                <li>"... cit. Kimiko (lug-ago 2022)</li>
+                <li>saggio vibes 🏋️‍♀️🎧</li>
+                <li>main character energy (mag-giu 2022)</li>
+                <li>that f***ing mood 🔪🖤</li>
+                <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
+                <li>An Emily Winchester kind of mood 🔪</li>
+                <li>landing page (mar-apr 2022)</li>
+                <li>2021 lol</li>
+                <li>
+                  cosa cavolo vuol dire questa affermazione (gen-feb 2022)
+                </li>
+                <li>honey and glass (nov-dic 2021)</li>
+                <li>(Revenge) Training Arc 🏋️</li>
+                <li>Lidia 💛 Emily</li>
+                <li>minecraft e nintendo switch (sep-oct 2021)</li>
+                <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
+                <li>Culo 2021</li>
+                <li>Frah Quintale Mix</li>
+                <li>Francesco Guccini Mix</li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div class="col-12 col-md-8 p-0">
+          <div class="card bg-dark text-light artist-banner bg-small">
+            <div class="image-container m-0 p-0">
+              <img
+                id="artist-image"
+                class="card-img-top m-0"
+                alt="Artist Image"
+              />
+            </div>
+            <div class="card-img-overlay d-flex align-items-end">
+              <div class="ms-1">
+                <h1 id="track-title" class="card-title text-shadow"></h1>
+                <small class="text-shadow">
+                  <i
+                    class="bi bi-check-circle-fill me-2"
+                    style="color: #0095f6"
+                  ></i
+                  >Artista Verificato
+                </small>
+                <!-- Nuovo elemento h2 per il titolo del brano -->
+                <h5
+                  id="artist-name"
+                  class="card-title text-shadow"
+                  style="font-size: 4em"
+                ></h5>
+                <p class="card-text text-shadow">
+                  <span id="artist-fans"></span>
+                  <strong class="text-shadow">Ascoltatori Mensili</strong>
+                </p>
+                <!-- Nuovo paragrafo per la data dell'album -->
+                <p id="album-date" class="card-text" style="display: none">
+                  <strong>Data album:</strong>
+                  <span id="album-date-value"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Aggiungi icone -->
+          <div class="d-flex justify-content-between">
+            <div id="nodesktop">
+              <a
+                href="#"
+                id="heart-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-heart fs-3"></i>
+              </a>
+              <a
+                href="#"
+                id="followers-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <button class="border-light">seguiti</button>
+              </a>
+              <a
+                href="#"
+                id="dots-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-three-dots-vertical fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
+            </div>
+            <div>
+              <a
+                href="#"
+                id="random-icon"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <i class="bi bi-shuffle fs-3"></i>
+                <!-- Icona aggiornata -->
+              </a>
+
+              <a
+                id="artist-link"
+                href="#"
+                target="_blank"
+                class="btn btn-success rounded-circle"
+              >
+                <i class="bi bi-play-fill fs-3 text-dark" id="play-icon"></i>
+              </a>
+              <a
+                href="#"
+                id="followers-icon2"
+                class="btn btn-light rounded-circle mx-2"
+              >
+                <button class="border-light">seguiti</button>
+              </a>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <!-- Prima sezione (lista) -->
+              <div class="col-md-8">
+                <ol class="list-group list-group-flush bg-b">
+                  <li class="list-group-item">
+                    <h6>Popolari</h6>
+                  </li>
+                  <li class="list-group-item" id="top-tracks"></li>
+                  <li class="list-group-item"></li>
+                </ol>
+                <!-- Naviga verso una pagina "VISUALIZZA TUTTO"  -->
+                <span
+                  id="view-more"
+                  class="text-secondary d-none d-md-block"
+                  style="cursor: pointer; padding-left: 45px"
+                >
+                  VISUALIZZA ALTRO
+                </span>
+              </div>
+
+              <!-- Seconda sezione (scritta e paragrafi) -->
+              <div class="col-md-4" id="liked">
+                <h6 class="mt-0">Brani che ti piacciono</h6>
+                <div id="right-section-liked">
+                  <p>hai messo mi piace a 11 brani</p>
+                  <img id="artist-image" src="" alt="Immagine artista" /><span
+                    id="artist-name"
+                    >inserisci nome artista</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Destra (Aside) -->
+        <aside
+          class="col-md-2 d-none d-md-block activity-bar text-light bg-black"
+        >
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="mb-0">Attività amici</h6>
+            <div>
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="person-plus"
+              >
+                <i class="bi bi-person-plus mx-2"></i>
+              </button>
+
+              <button
+                class="btn-friends btn btn-link p-0 text-light"
+                id="x-icon"
+              >
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+          </div>
 
           <div
-            class="sidebar-playlists d-none d-lg-block text-light mt-5 fs-6 border-top border-secondary pt-2 overflow-auto"
-            style="max-height: 500px">
-            <ul class="list-unstyled text-secondary small">
-              <li>early stage emily syndrome (sett-ott 2022)</li>
-              <li>Be The Young</li>
-              <li>"... cit. Kimiko (lug-ago 2022)</li>
-              <li>saggio vibes 🏋️‍♀️🎧</li>
-              <li>main character energy (mag-giu 2022)</li>
-              <li>that f***ing mood 🔪🖤</li>
-              <li>VEE, CARLOTTA e GIACOMO VANNO A BOSIO</li>
-              <li>An Emily Winchester kind of mood 🔪</li>
-              <li>landing page (mar-apr 2022)</li>
-              <li>2021 lol</li>
-              <li>
-                cosa cavolo vuol dire questa affermazione (gen-feb 2022)
-              </li>
-              <li>honey and glass (nov-dic 2021)</li>
-              <li>(Revenge) Training Arc 🏋️</li>
-              <li>Lidia 💛 Emily</li>
-              <li>minecraft e nintendo switch (sep-oct 2021)</li>
-              <li>silvano d'orba? I hardly know her (lug-ago 2021)</li>
-              <li>Culo 2021</li>
-              <li>Frah Quintale Mix</li>
-              <li>Francesco Guccini Mix</li>
-            </ul>
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-30.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Charlie"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 12px; margin-bottom: 5px"
+                  >
+                    Charlie Hooknam
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >4 ore</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    In Camera · Yumi Zouma
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> EP III
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </nav>
+
+          <div
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-29.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Lightdark02"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Lightdark02
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >8 ore</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    Aimed to Kill · Jade LeMac
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-disc"></i> Aimed to Kill
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-friends card mb-3"
+            style="
+              max-width: 300px;
+              border: none;
+              background-color: rgb(43, 42, 42);
+            "
+            tabindex="0"
+          >
+            <div class="row g-0">
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="./assets/imgs/search/image-38.jpg"
+                  class="img-fluid rounded-circle"
+                  alt="Valeria"
+                  style="width: 30px; height: 30px; margin-right: 5px"
+                />
+              </div>
+              <div class="col-9 d-flex flex-column justify-content-center">
+                <div class="card-body p-1">
+                  <h6
+                    class="card-title text-light d-flex justify-content-between"
+                    style="font-size: 14px; margin-bottom: 5px"
+                  >
+                    Valeria
+                    <span
+                      class="text-secondary d-none d-lg-inline"
+                      style="font-size: 10px"
+                      >3 giorni</span
+                    >
+                  </h6>
+                  <p
+                    class="card-text text-light"
+                    style="font-size: 10px; margin-bottom: 5px"
+                  >
+                    New Kings · Sleeping Wolf
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 10px">
+                    <i class="bi bi-music-note"></i>Twint Badass mood
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <!-- Sidebar Destra (Aside) -->
       </div>
-
-      <div class="col-12 col-md-8 p-0">
-        <div class="card bg-dark text-light artist-banner bg-small">
-          <div class="image-container m-0 p-0">
-            <img id="artist-image" class="card-img-top m-0" alt="Artist Image" />
-          </div>
-          <div class="card-img-overlay d-flex align-items-end">
-            <div class="ms-1">
-              <h1 id="track-title" class="card-title text-shadow"></h1>
-              <small class="text-shadow">
-                <i class="bi bi-check-circle-fill me-2" style="color: #0095f6"></i>Artista Verificato
-              </small>
-              <!-- Nuovo elemento h2 per il titolo del brano -->
-              <h5 id="artist-name" class="card-title text-shadow" style="font-size: 4em"></h5>
-              <p class="card-text text-shadow">
-                <span id="artist-fans"></span>
-                <strong class="text-shadow">Ascoltatori Mensili</strong>
-              </p>
-              <!-- Nuovo paragrafo per la data dell'album -->
-              <p id="album-date" class="card-text" style="display: none">
-                <strong>Data album:</strong>
-                <span id="album-date-value"></span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Aggiungi icone -->
-        <div class="d-flex justify-content-between">
-          <div id="nodesktop">
-            <a href="#" id="heart-icon" class="btn btn-light rounded-circle mx-2">
-              <i class="bi bi-heart fs-3"></i>
-            </a>
-            <a href="#" id="followers-icon" class="btn btn-light rounded-circle mx-2">
-              <button class="border-light">seguiti</button>
-            </a>
-            <a href="#" id="dots-icon" class="btn btn-light rounded-circle mx-2">
-              <i class="bi bi-three-dots-vertical fs-3"></i>
-              <!-- Icona aggiornata -->
-            </a>
-          </div>
-          <div>
-            <a href="#" id="random-icon" class="btn btn-light rounded-circle mx-2">
-              <i class="bi bi-shuffle fs-3"></i>
-              <!-- Icona aggiornata -->
-            </a>
-
-            <a id="artist-link" href="#" target="_blank" class="btn btn-success rounded-circle">
-              <i class="bi bi-play-fill fs-3 text-dark" id="play-icon"></i>
-            </a>
-            <a href="#" id="followers-icon2" class="btn btn-light rounded-circle mx-2">
-              <button class="border-light">seguiti</button>
-            </a>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <!-- Prima sezione (lista) -->
-            <div class="col-md-8">
-              <ol class="list-group list-group-flush bg-b">
-                <li class="list-group-item">
-                  <h6>Popolari</h6>
-                </li>
-                <li class="list-group-item" id="top-tracks"></li>
-                <li class="list-group-item"></li>
-              </ol>
-              <!-- Naviga verso una pagina "VISUALIZZA TUTTO"  -->
-              <span id="view-more" class="text-secondary d-none d-md-block" style="cursor: pointer; padding-left: 45px">
-                VISUALIZZA ALTRO
-              </span>
-            </div>
-
-            <!-- Seconda sezione (scritta e paragrafi) -->
-            <div class="col-md-4" id="liked">
-              <h6 class="mt-0">Brani che ti piacciono</h6>
-              <div id="right-section-liked">
-                <p>hai messo mi piace a 11 brani</p>
-                <img id="artist-image" src="" alt="Immagine artista" /><span id="artist-name">inserisci nome
-                  artista</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Destra (Aside) -->
-      <aside class="col-md-2 d-none d-md-block activity-bar text-light bg-black">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h6 class="mb-0">Attività amici</h6>
-          <div>
-            <button class="btn-friends btn btn-link p-0 text-light" id="person-plus">
-              <i class="bi bi-person-plus mx-2"></i>
-            </button>
-
-            <button class="btn-friends btn btn-link p-0 text-light" id="x-icon">
-              <i class="bi bi-x"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="card-friends card mb-3" style="
-              max-width: 300px;
-              border: none;
-              background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-30.jpg" class="img-fluid rounded-circle" alt="Charlie"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 12px; margin-bottom: 5px">
-                  Charlie Hooknam
-                  <span class="text-secondary  d-none d-lg-inline" style="font-size: 10px">4 ore</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  In Camera · Yumi Zouma
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-disc"></i> EP III
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-friends card mb-3" style="
-              max-width: 300px;
-              border: none;
-              background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-29.jpg" class="img-fluid rounded-circle" alt="Lightdark02"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 14px; margin-bottom: 5px">
-                  Lightdark02
-                  <span class="text-secondary d-none d-lg-inline" style="font-size: 10px">8 ore</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  Aimed to Kill · Jade LeMac
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-disc"></i> Aimed to Kill
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-friends card mb-3" style="
-              max-width: 300px;
-              border: none;
-              background-color: rgb(43, 42, 42);
-            " tabindex="0">
-          <div class="row g-0">
-            <div class="col-3 d-flex justify-content-center align-items-center">
-              <img src="./assets/imgs/search/image-38.jpg" class="img-fluid rounded-circle" alt="Valeria"
-                style="width: 30px; height: 30px; margin-right: 5px" />
-            </div>
-            <div class="col-9 d-flex flex-column justify-content-center">
-              <div class="card-body p-1">
-                <h6 class="card-title text-light d-flex justify-content-between"
-                  style="font-size: 14px; margin-bottom: 5px">
-                  Valeria
-                  <span class="text-secondary d-none d-lg-inline" style="font-size: 10px">3 giorni</span>
-                </h6>
-                <p class="card-text text-light" style="font-size: 10px; margin-bottom: 5px">
-                  New Kings · Sleeping Wolf
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 10px">
-                  <i class="bi bi-music-note"></i>Twint Badass mood
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-      <!-- Sidebar Destra (Aside) -->
     </div>
-  </div>
 
-  <div id="loading" class="text-center text-white">Caricamento...</div>
-  <!-- player descktop -->
-  <div id="custom-player"
-    class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block border-top border-secondary">
-    <div class="row align-items-center">
-      <div class="col col-2 d-flex justify-content-center align-items-center">
-        <img style="width: 70px" class="p-2" src="./assets/imgs/main/image-3.jpg" alt="" />
-        <div id="player-info" class="me-2">
-          <p id="track-title-player" class="text-light m-0"></p>
-          <small class="text-secondary">topogigio</small>
+    <div id="loading" class="text-center text-white">Caricamento...</div>
+    <!-- player descktop -->
+    <div
+      id="custom-player"
+      class="container-fluid bg-dark m-0 sticky-bottom d-none d-lg-block border-top border-secondary"
+    >
+      <div class="row align-items-center">
+        <div class="col col-2 d-flex justify-content-center align-items-center">
+          <img
+            style="width: 70px"
+            class="p-2"
+            src="./assets/imgs/main/image-3.jpg"
+            alt=""
+          />
+          <div id="player-info" class="me-2">
+            <p id="track-title-player" class="text-light m-0"></p>
+            <small class="text-secondary">topogigio</small>
+          </div>
+          <i class="bi bi-suit-heart text-light"></i>
         </div>
-        <i class="bi bi-suit-heart text-light"></i>
-      </div>
 
-      <div class="col col-8">
-        <div id="controls" class="d-flex align-items-center justify-content-center">
-          <i class="bi bi-shuffle text-primary"></i>
-          <button id="prev" class="btn btn-dark">
-            <i class="bi bi-skip-backward-fill text-white"></i>
-            <!-- Icona precedente -->
-          </button>
-          <button id="play-pause" class="btn btn-dark">
-            <i class="bi bi-play-circle-fill fs-2 text-white" id="play-icon"></i>
+        <div class="col col-8">
+          <div
+            id="controls"
+            class="d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-shuffle text-primary"></i>
+            <button id="prev" class="btn btn-dark">
+              <i class="bi bi-skip-backward-fill text-white"></i>
+              <!-- Icona precedente -->
+            </button>
+            <button id="play-pause" class="btn btn-dark">
+              <i
+                class="bi bi-play-circle-fill fs-2 text-white"
+                id="play-icon"
+              ></i>
+              <!-- Icona play/pause -->
+            </button>
+            <button id="next" class="btn btn-dark">
+              <i class="bi bi-skip-forward-fill text-white"></i>
+              <!-- Icona successiva -->
+            </button>
+            <i class="bi bi-arrow-repeat text-primary ms-3"></i>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <small id="prog" class="text-white-50 m-0 me-2">0:00</small>
+            <div
+              class="progress w-50"
+              role="progressbar"
+              aria-label="Example 1px high"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="height: 3px"
+            >
+              <div
+                id="pb"
+                class="progress-bar bg-primary"
+                style="width: 0%"
+              ></div>
+            </div>
+            <small id="dur" class="text-white-50 m-0 ms-2">00:00</small>
+          </div>
+        </div>
+        <div class="col col-2">
+          <div class="d-flex align-items-center justify-content-center">
+            <i class="bi bi-mic-fill text-white-50"></i>
+            <i class="bi bi-collection-play text-white-50 ms-2"></i>
+            <i class="bi bi-music-player-fill text-white-50 ms-2"></i>
+            <i class="bi bi-volume-up-fill text-white-50 ms-2"></i>
+            <div
+              class="progress w-25"
+              role="progressbar"
+              aria-label="Basic example"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="height: 4px"
+            >
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <i class="bi bi-arrows-angle-expand text-white-50 ms-2"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- player mobile -->
+    <div
+      class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black"
+    >
+      <div
+        class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center"
+        id="music"
+      >
+        <div class="flex-grow-1">
+          <p id="songMobile" class="text-light mb-0 mt-0 ms-5">Albano</p>
+        </div>
+        <div>
+          <i class="bi bi-music-player-fill text-light fs-2"></i>
+        </div>
+        <div>
+          <i class="bi bi-suit-heart text-light fs-2 ms-4"></i>
+        </div>
+        <div>
+          <button id="play-pause-mobile" class="btn btn-dark">
+            <i
+              class="bi bi-play-circle-fill fs-2 text-white"
+              id="play-icon-mobile"
+            ></i>
             <!-- Icona play/pause -->
           </button>
-          <button id="next" class="btn btn-dark">
-            <i class="bi bi-skip-forward-fill text-white"></i>
-            <!-- Icona successiva -->
-          </button>
-          <i class="bi bi-arrow-repeat text-primary ms-3"></i>
         </div>
-        <div class="d-flex justify-content-center align-items-center">
-          <small id="prog" class="text-white-50 m-0 me-2">0:00</small>
-          <div class="progress w-50" role="progressbar" aria-label="Example 1px high" aria-valuenow="25"
-            aria-valuemin="0" aria-valuemax="100" style="height: 3px">
-            <div id="pb" class="progress-bar bg-primary" style="width: 0%"></div>
+      </div>
+      <div class="container-fluid gradient-bg d-block d-lg-none">
+        <div class="row justify-content-around pt-3 pb-3">
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
+            <a href="./index.html"
+              ><i class="bi bi-house text-light fs-2"></i
+            ></a>
+            <a href="./index.html" class="text-decoration-none text-light"
+              >Home</a
+            >
           </div>
-          <small id="dur" class="text-white-50 m-0 ms-2">00:00</small>
-        </div>
-      </div>
-      <div class="col col-2">
-        <div class="d-flex align-items-center justify-content-center">
-          <i class="bi bi-mic-fill text-white-50"></i>
-          <i class="bi bi-collection-play text-white-50 ms-2"></i>
-          <i class="bi bi-music-player-fill text-white-50 ms-2"></i>
-          <i class="bi bi-volume-up-fill text-white-50 ms-2"></i>
-          <div class="progress w-25" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100" style="height: 4px">
-            <div class="progress-bar" style="width: 0%"></div>
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
+            <a href="./test-cerca.html"
+              ><i class="bi bi-search text-light fs-2"></i
+            ></a>
+            <a href="./search.html" class="text-decoration-none text-light"
+              >Cerca</a
+            >
           </div>
-          <i class="bi bi-arrows-angle-expand text-white-50 ms-2"></i>
+          <div
+            class="col-4 d-flex justify-content-center align-items-center flex-column"
+          >
+            <a href=""><i class="bi bi-collection-play text-light fs-2"></i></a>
+            <a href="" class="text-decoration-none text-light"
+              >La tua libreria</a
+            >
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- player mobile -->
-  <div class="sticky-bottom ms-1 me-1 d-block d-lg-none border-top border-black">
-    <div class="bg-dark pt-3 pb-2 rounded-4 w-100 m-0 d-flex align-items-center" id="music">
-      <div class="flex-grow-1">
-        <p id="songMobile" class="text-light mb-0 mt-0 ms-5">Albano</p>
-      </div>
-      <div>
-        <i class="bi bi-music-player-fill text-light fs-2"></i>
-      </div>
-      <div>
-        <i class="bi bi-suit-heart text-light fs-2 ms-4"></i>
-      </div>
-      <div>
-        <button id="play-pause-mobile" class="btn btn-dark">
-          <i class="bi bi-play-circle-fill fs-2 text-white" id="play-icon-mobile"></i>
-          <!-- Icona play/pause -->
-        </button>
-      </div>
-    </div>
-    <div class="container-fluid gradient-bg d-block d-lg-none">
-      <div class="row justify-content-around pt-3 pb-3">
-        <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-          <a href="./index.html"><i class="bi bi-house text-light fs-2"></i></a>
-          <a href="./index.html" class="text-decoration-none text-light">Home</a>
-        </div>
-        <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-          <a href="./test-cerca.html"><i class="bi bi-search text-light fs-2"></i></a>
-          <a href="./search.html" class="text-decoration-none text-light">Cerca</a>
-        </div>
-        <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-          <a href=""><i class="bi bi-collection-play text-light fs-2"></i></a>
-          <a href="" class="text-decoration-none text-light">La tua libreria</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="assets/JS/artist.js"></script>
-</body>
-
+    <script src="assets/JS/artist.js"></script>
+  </body>
 </html>
