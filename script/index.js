@@ -1,8 +1,8 @@
-const searchUrl = " https://striveschool-api.herokuapp.com/api/deezer/album/"
+const searchUrl = " https://striveschool-api.herokuapp.com/api/deezer/album/";
 
 // ------------ codice per player principale
 
-albumPlayerId = 8832423
+albumPlayerId = 8832423;
 fetch(searchUrl + albumPlayerId)
     .then((response) => response.json())
     .then((data) => {
@@ -38,9 +38,9 @@ let listaAlbumSez2 = [
     606344212, 642312861, 727466171, 212391, 442973585, 522138732,
 ]
 
-const container = document.getElementById("sezione2")
+const container = document.getElementById("sezione2");
 
-container.classList.add("row", "g-0")
+container.classList.add("row", "g-0");
 
 listaAlbumSez2.forEach((albumId) => {
     fetch(searchUrl + albumId)
@@ -53,11 +53,11 @@ listaAlbumSez2.forEach((albumId) => {
                 <div class="card fs-2 clickable-card" style="background-color:rgb(43, 42, 42);height:70px;" data-album-id="${data.id}">
                     <div class="row g-0 h-100">
                         <div class="col-4 h-100">
-                            <img src="${data.cover_medium}" class="img-fluid rounded-start  w-100 h-100" alt="${data.title}">
+                            <img src="${data.cover_medium}" class="img-fluid rounded-start w-100 h-100" alt="${data.title}">
                         </div>
                         <div class="col-8">
                             <div class="card-body fs-2 d-flex align-items-center">
-                                <h5 class="card-title fs-6 fw-bold text-light">${data.title}</h5>
+                                <h5 class="card-title fs-6 fw-bold text-light text-truncate">${data.title}</h5>
                             </div>
                         </div>
                     </div>
@@ -80,9 +80,9 @@ document.getElementById("view-more").addEventListener("click", function () {
 })
 
 //codice per generare dinamicamente card sezione 3
-let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792]
+let listaAlbumSez3 = [52845302, 341061, 1399087, 301050827, 87722792];
 
-const container2 = document.getElementById("sezione3")
+const container2 = document.getElementById("sezione3");
 container2.classList.add(
     "row",
     "g-3",
@@ -123,7 +123,7 @@ listaAlbumSez3.forEach((albumId) => {
         </div>
 
         <!-- Sezione icone per mobile -->
-        <div class="row d-md-none mt-2 align-items-center justify-content-between">
+        <div class="row d-md-none mt-2 align-items-center justify-content-between flex-nowrap">
             <!-- Icone a sinistra -->
             <div class="col-5 d-flex justify-content-start gap-2">
                 <i class="bi bi-heart text-success fs-2 heart-icon"></i> 
@@ -145,7 +145,7 @@ listaAlbumSez3.forEach((albumId) => {
             </div>
         </div>
     </div>
-`
+`;
 
             container2.appendChild(col2)
 
